@@ -1,5 +1,5 @@
 /**
- * ContentRenderer.jsx - Updated for Structured Backend Data
+ * ContentRenderer.jsx - Professional Version with Clean Styling
  * Renders different content types from LangGraph structured responses
  */
 
@@ -31,19 +31,79 @@ const ContentRenderer = ({
     }
   };
 
+  /**
+   * Parse text content and render code blocks simply
+   */
+  const renderFormattedContent = (content) => {
+    if (!content) return null;
+
+    // Split content by code blocks (looking for ```python or ``` patterns)
+    const parts = content.split(/(```[\s\S]*?```)/g);
+    
+    return parts.map((part, index) => {
+      // Check if this part is a code block
+      if (part.startsWith('```')) {
+        // Extract the code content (remove ``` markers)
+        const codeContent = part.replace(/```(\w+)?\n?/g, '').replace(/```$/g, '');
+        
+        return (
+          <div key={index} className="inline-code-block">
+            <pre className="code-content">
+              <code>{codeContent}</code>
+            </pre>
+          </div>
+        );
+      } else {
+        // Regular text content - convert newlines to <br> and handle inline code
+        const textWithLineBreaks = part
+          .split('\n')
+          .map((line, lineIndex) => (
+            <span key={lineIndex}>
+              {line}
+              {lineIndex < part.split('\n').length - 1 && <br />}
+            </span>
+          ));
+        
+        return <span key={index}>{textWithLineBreaks}</span>;
+      }
+    });
+  };
+
+  /**
+   * Render inline code snippets (single backticks)
+   */
+  const renderInlineCode = (text) => {
+    if (!text) return null;
+    
+    const parts = text.split(/(`[^`]+`)/g);
+    
+    return parts.map((part, index) => {
+      if (part.startsWith('`') && part.endsWith('`')) {
+        const codeContent = part.slice(1, -1); // Remove backticks
+        return (
+          <code key={index} className="inline-code">
+            {codeContent}
+          </code>
+        );
+      }
+      return part;
+    });
+  };
+
   switch (content_type) {
     case 'explanation':
       return (
         <div className="content-section explanation-content">
-          <h3>📚 {data.title}</h3>
+          <h3>Mastering {data.title?.replace(/^(📚\s*)?/g, '')}</h3>
           
           <div className="explanation-overview">
-            <p><strong>Overview:</strong> {data.overview}</p>
+            <div className="overview-label">Overview:</div>
+            <div className="overview-text">{data.overview}</div>
           </div>
 
-          <div className="key-concepts">
-            <h4>Key Concepts:</h4>
-            <ul>
+          <div className="key-concepts-box">
+            <div className="key-concepts-title">Key Concepts:</div>
+            <ul className="key-concepts-list">
               {data.key_concepts?.map((concept, index) => (
                 <li key={index}>{concept}</li>
               ))}
@@ -51,26 +111,28 @@ const ContentRenderer = ({
           </div>
 
           <div className="detailed-explanation">
-            <div dangerouslySetInnerHTML={{ __html: data.detailed_explanation?.replace(/\n/g, '<br />') }} />
+            <div className="formatted-content">
+              {renderFormattedContent(data.detailed_explanation)}
+            </div>
           </div>
 
           {data.examples && data.examples.length > 0 && (
-            <div className="examples-section">
+            <div className="examples-box">
               <h4>Examples:</h4>
               <ul>
                 {data.examples.map((example, index) => (
-                  <li key={index}>{example}</li>
+                  <li key={index}>{renderInlineCode(example)}</li>
                 ))}
               </ul>
             </div>
           )}
 
-          <div className="why-matters">
+          <div className="why-matters-box">
             <h4>Why This Matters:</h4>
             <p>{data.why_it_matters}</p>
           </div>
 
-          <div className="next-steps">
+          <div className="next-steps-box">
             <h4>Next Steps:</h4>
             <p>{data.next_steps}</p>
           </div>
@@ -90,7 +152,7 @@ const ContentRenderer = ({
               disabled={loading || !userResponse.trim()}
               className="submit-button"
             >
-              {loading ? '⏳ Processing...' : '➡️ Continue'}
+              {loading ? 'Processing...' : 'Continue'}
             </button>
           </div>
         </div>
@@ -99,10 +161,11 @@ const ContentRenderer = ({
     case 'code_exercise':
       return (
         <div className="content-section code-exercise-content">
-          <h3>💻 {data.title}</h3>
+          <h3>Coding Exercise: {data.title?.replace(/^(💻\s*)?/g, '')}</h3>
           
           <div className="exercise-description">
-            <p><strong>Problem:</strong> {data.problem_description}</p>
+            <div className="exercise-label">Problem:</div>
+            <div className="exercise-text">{data.problem_description}</div>
           </div>
 
           <div className="learning-objectives">
@@ -126,7 +189,9 @@ const ContentRenderer = ({
           {data.expected_output && (
             <div className="expected-output">
               <h4>Expected Output:</h4>
-              <pre className="output-example">{data.expected_output}</pre>
+              <div className="output-example-container">
+                <pre className="output-example">{data.expected_output}</pre>
+              </div>
             </div>
           )}
 
@@ -135,7 +200,7 @@ const ContentRenderer = ({
               <h4>Test Cases:</h4>
               {data.test_cases.map((testCase, index) => (
                 <div key={index} className="test-case">
-                  <strong>Input:</strong> {testCase.input} → <strong>Output:</strong> {testCase.output}
+                  <strong>Input:</strong> <code className="inline-code">{testCase.input}</code> → <strong>Output:</strong> <code className="inline-code">{testCase.output}</code>
                 </div>
               ))}
             </div>
@@ -143,7 +208,7 @@ const ContentRenderer = ({
 
           {data.hints && data.hints.length > 0 && (
             <div className="hints-section">
-              <h4>💡 Hints:</h4>
+              <h4>Hints:</h4>
               <ul>
                 {data.hints.map((hint, index) => (
                   <li key={index}>{hint}</li>
@@ -170,7 +235,7 @@ const ContentRenderer = ({
     case 'scenario':
       return (
         <div className="content-section scenario-content">
-          <h3>🎭 {data.title}</h3>
+          <h3>Business Scenario: {data.title?.replace(/^(🎭\s*)?/g, '')}</h3>
           
           <div className="scenario-context">
             <h4>Context:</h4>
@@ -236,7 +301,7 @@ const ContentRenderer = ({
               disabled={loading || !userResponse.trim()}
               className="submit-button"
             >
-              {loading ? '⏳ Evaluating...' : '📋 Submit Response'}
+              {loading ? 'Evaluating...' : 'Submit Response'}
             </button>
           </div>
         </div>
@@ -245,7 +310,7 @@ const ContentRenderer = ({
     case 'quiz':
       return (
         <div className="content-section quiz-content">
-          <h3>❓ {data.title}</h3>
+          <h3>Knowledge Check: {data.title?.replace(/^(❓\s*)?/g, '')}</h3>
           
           <div className="quiz-instructions">
             <p>{data.instructions}</p>
@@ -288,7 +353,7 @@ const ContentRenderer = ({
               disabled={loading}
               className="submit-button"
             >
-              {loading ? '⏳ Checking...' : '✅ Submit Answers'}
+              {loading ? 'Checking...' : 'Submit Answers'}
             </button>
           </div>
         </div>
@@ -297,14 +362,16 @@ const ContentRenderer = ({
     case 'completion':
       return (
         <div className="content-section completion-content">
-          <h3>🎉 {data.title}</h3>
+          <h3>Module Complete: {data.title?.replace(/^(🎉\s*)?/g, '')}</h3>
           <div className="completion-message">
             <p>{data.message}</p>
           </div>
           {data.summary && (
             <div className="completion-summary">
               <h4>Summary:</h4>
-              <div dangerouslySetInnerHTML={{ __html: data.summary.replace(/\n/g, '<br />') }} />
+              <div className="formatted-content">
+                {renderFormattedContent(data.summary)}
+              </div>
             </div>
           )}
         </div>
@@ -313,7 +380,7 @@ const ContentRenderer = ({
     default:
       return (
         <div className="content-section unknown-content">
-          <h3>❓ Unknown Content Type: {content_type}</h3>
+          <h3>Unknown Content Type: {content_type}</h3>
           <pre>{JSON.stringify(data, null, 2)}</pre>
           
           <div className="response-area">
@@ -330,7 +397,7 @@ const ContentRenderer = ({
               disabled={loading || !userResponse.trim()}
               className="submit-button"
             >
-              {loading ? '⏳ Processing...' : '➡️ Continue'}
+              {loading ? 'Processing...' : 'Continue'}
             </button>
           </div>
         </div>

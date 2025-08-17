@@ -1,5 +1,5 @@
 Repository Source Code Contents
-Generated on: Sun Aug 17 06:33:45 IST 2025
+Generated on: Sun Aug 17 23:42:56 IST 2025
 ----------------------------------------
 File: ./README.md
 ----------------------------------------
@@ -283,8 +283,8 @@ export default reportWebVitals;
 File: ./src/App.css
 ----------------------------------------
 /**
- * App.css - Phase 1 Styling
- * Clean, professional styling for MVP testing interface
+ * App.css - MVP Styling for LangGraph Integration
+ * Clean, professional styling for learning interface
  */
 
 /* Global styles */
@@ -373,7 +373,7 @@ body {
   border: 1px solid rgba(156, 163, 175, 0.3);
 }
 
-.backend-version {
+.user-id {
   background: rgba(255, 255, 255, 0.1);
   padding: 4px 12px;
   border-radius: 12px;
@@ -400,16 +400,6 @@ body {
   margin-bottom: 15px;
 }
 
-.connection-warning code {
-  background: #451a03;
-  color: #fbbf24;
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-family: 'Monaco', 'Menlo', monospace;
-  display: inline-block;
-  margin: 10px 0;
-}
-
 .retry-button {
   background: #f59e0b;
   color: white;
@@ -418,77 +408,299 @@ body {
   border-radius: 6px;
   cursor: pointer;
   font-weight: 500;
-  margin-top: 10px;
 }
 
 .retry-button:hover {
   background: #d97706;
 }
 
-/* Test selector */
-.test-selector {
+/* Error banner */
+.error-banner {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.error-banner p {
+  color: #dc2626;
+  margin: 0;
+}
+
+.close-error {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #dc2626;
+  cursor: pointer;
+  padding: 0 5px;
+}
+
+/* Topic input section */
+.topic-input-section {
   background: white;
   border-radius: 16px;
-  padding: 25px;
-  margin-bottom: 30px;
+  padding: 40px;
+  text-align: center;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   border: 1px solid #e5e7eb;
 }
 
-.test-selector h3 {
-  margin-bottom: 20px;
+.topic-input-section h2 {
+  margin-bottom: 30px;
   color: #1f2937;
-  font-size: 1.3rem;
+  font-size: 2rem;
 }
 
-.scenario-buttons {
+.topic-input-container {
   display: flex;
-  gap: 12px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 30px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.scenario-button {
-  padding: 12px 24px;
+.topic-input {
+  flex: 1;
+  padding: 15px;
   border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  transition: border-color 0.2s ease;
+}
+
+.topic-input:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.start-button {
+  background: #4f46e5;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.start-button:hover:not(:disabled) {
+  background: #4338ca;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
+}
+
+.start-button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Example topics */
+.example-topics {
+  margin-top: 30px;
+}
+
+.example-topics h4 {
+  margin-bottom: 15px;
+  color: #6b7280;
+}
+
+.topic-examples {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.example-topic {
+  background: #f3f4f6;
+  border: 1px solid #d1d5db;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.example-topic:hover:not(:disabled) {
+  background: #e5e7eb;
+  border-color: #9ca3af;
+}
+
+.example-topic:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Module interface */
+.module-interface {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Progress header */
+.progress-header {
   background: white;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.progress-info h2 {
+  margin-bottom: 5px;
+  color: #1f2937;
+}
+
+.progress-info p {
+  color: #6b7280;
+  margin: 0;
+}
+
+.progress-bar-container {
+  flex: 1;
+  max-width: 300px;
+}
+
+.progress-stats {
+  text-align: center;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.9rem;
+}
+
+.progress-bar {
+  background: #e5e7eb;
   border-radius: 10px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  background: linear-gradient(90deg, #4f46e5, #7c3aed);
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}
+
+.new-topic-button {
+  background: #6b7280;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
   cursor: pointer;
   font-weight: 500;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease;
+}
+
+.new-topic-button:hover {
+  background: #4b5563;
+}
+
+/* Content area */
+.content-area {
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e7eb;
+}
+
+/* Content sections */
+.content-section h3 {
+  margin-bottom: 20px;
+  color: #1f2937;
+  font-size: 1.5rem;
+}
+
+.explanation-text p,
+.scenario-description p,
+.exercise-description p,
+.quiz-questions p {
+  margin-bottom: 15px;
+  line-height: 1.6;
   color: #374151;
 }
 
-.scenario-button:hover {
-  border-color: #4f46e5;
-  background: #f8fafc;
-  transform: translateY(-1px);
+/* Response area */
+.response-area {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #e5e7eb;
 }
 
-.scenario-button.active {
+.response-area h4 {
+  margin-bottom: 15px;
+  color: #374151;
+}
+
+.response-textarea {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  resize: vertical;
+  transition: border-color 0.2s ease;
+}
+
+.response-textarea:focus {
+  outline: none;
   border-color: #4f46e5;
-  background: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.submit-button {
+  background: #22c55e;
   color: white;
-  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: all 0.2s ease;
 }
 
-.scenario-description {
-  color: #6b7280;
-  font-style: italic;
+.submit-button:hover:not(:disabled) {
+  background: #16a34a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(34, 197, 94, 0.3);
 }
 
-/* Editor section */
-.editor-section {
-  margin-bottom: 40px;
+.submit-button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  transform: none;
 }
 
-/* Code Editor Component Styles */
+/* Code editor enhancements */
 .code-editor-container {
   background: white;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
   border: 1px solid #e5e7eb;
+  margin-top: 20px;
 }
 
 .editor-header {
@@ -534,7 +746,6 @@ body {
   border-bottom: 1px solid #e5e7eb;
 }
 
-/* Editor controls */
 .editor-controls {
   display: flex;
   gap: 12px;
@@ -546,6 +757,32 @@ body {
 }
 
 .run-button {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.run-button:hover:not(:disabled) {
+  background: #2563eb;
+  transform: translateY(-1px);
+}
+
+.run-button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+.run-button.running {
+  background: #f59e0b;
+  animation: pulse 1.5s infinite;
+}
+
+.submit-code-button {
   background: #22c55e;
   color: white;
   border: none;
@@ -554,30 +791,17 @@ body {
   cursor: pointer;
   font-weight: 600;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 4px rgba(34, 197, 94, 0.3);
+  margin-left: auto;
 }
 
-.run-button:hover:not(:disabled) {
+.submit-code-button:hover:not(:disabled) {
   background: #16a34a;
   transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(34, 197, 94, 0.4);
 }
 
-.run-button:disabled {
+.submit-code-button:disabled {
   background: #9ca3af;
   cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
-}
-
-.run-button.running {
-  background: #f59e0b;
-  animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
 }
 
 .clear-button, .reset-button {
@@ -593,20 +817,16 @@ body {
 
 .clear-button:hover, .reset-button:hover {
   background: #4b5563;
-  transform: translateY(-1px);
 }
 
 .keyboard-hint {
-  margin-left: auto;
   color: #6b7280;
   font-style: italic;
   font-size: 0.85rem;
 }
 
-/* Output section */
 .output-section {
   padding: 25px;
-  min-height: 120px;
 }
 
 .output-box, .error-box {
@@ -667,125 +887,317 @@ body {
   font-weight: 500;
 }
 
-/* Validation section */
-.validation-section {
-  background: white;
-  border-radius: 16px;
-  padding: 30px;
-  margin-bottom: 30px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e5e7eb;
-}
-
-.validation-section h3 {
-  margin-bottom: 25px;
-  color: #1f2937;
-  font-size: 1.4rem;
-}
-
-.checklist {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-bottom: 30px;
-}
-
-.checklist label {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  cursor: pointer;
-  padding: 12px;
+.submission-guidance {
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
   border-radius: 8px;
-  transition: background 0.2s ease;
-  font-weight: 500;
+  padding: 15px;
+  margin-top: 15px;
 }
 
-.checklist label:hover {
-  background: #f8fafc;
+.submission-guidance p {
+  color: #0369a1;
+  margin: 0;
 }
 
-.checklist input[type="checkbox"] {
-  width: 20px;
-  height: 20px;
-  accent-color: #4f46e5;
+/* Completion section */
+.completion-section {
+  text-align: center;
+  padding: 40px 20px;
 }
 
-.next-phase {
+.completion-section h3 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #059669;
+}
+
+.completion-content {
   background: #f0fdf4;
   border: 1px solid #bbf7d0;
   border-radius: 12px;
-  padding: 25px;
+  padding: 30px;
+  margin-bottom: 30px;
+  white-space: pre-wrap;
+  line-height: 1.6;
+  color: #065f46;
 }
 
-.next-phase h4 {
-  color: #166534;
-  margin-bottom: 15px;
+.start-new-button {
+  background: #4f46e5;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.start-new-button:hover {
+  background: #4338ca;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
+}
+
+/* Loading overlay */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.loading-spinner {
+  background: white;
+  border-radius: 16px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e5e7eb;
+  border-top: 4px solid #4f46e5;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Content-specific styling */
+.explanation-overview {
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.key-concepts ul {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.examples-section {
+  background: #fefce8;
+  border: 1px solid #fde047;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 20px 0;
+}
+
+.why-matters, .next-steps {
+  margin: 20px 0;
+  padding: 15px;
+  background: #f0fdf4;
+  border-left: 4px solid #22c55e;
+  border-radius: 0 8px 8px 0;
+}
+
+.exercise-description {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.learning-objectives, .exercise-instructions {
+  margin: 15px 0;
+}
+
+.learning-objectives ul, .exercise-instructions ol {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.expected-output {
+  margin: 15px 0;
+}
+
+.output-example {
+  background: #f3f4f6;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 10px;
+  font-family: 'Monaco', 'Menlo', monospace;
+  font-size: 0.9rem;
+}
+
+.test-cases {
+  margin: 15px 0;
+}
+
+.test-case {
+  background: #fef3c7;
+  border: 1px solid #fbbf24;
+  border-radius: 6px;
+  padding: 10px;
+  margin: 5px 0;
+  font-family: 'Monaco', 'Menlo', monospace;
+  font-size: 0.9rem;
+}
+
+.hints-section {
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 15px 0;
+}
+
+.hints-section ul {
+  margin: 10px 0 0 0;
+}
+
+.scenario-context, .situation, .your-role, .success-criteria {
+  margin: 15px 0;
+  padding: 15px;
+  background: #f8fafc;
+  border-left: 4px solid #6366f1;
+  border-radius: 0 8px 8px 0;
+}
+
+.characters {
+  margin: 15px 0;
+}
+
+.character {
+  background: #fef7ff;
+  border: 1px solid #e879f9;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 5px 0;
+}
+
+.decision-points, .considerations {
+  margin: 15px 0;
+}
+
+.decision-points ul, .considerations ul {
+  background: #fefce8;
+  border: 1px solid #fde047;
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.quiz-instructions {
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.quiz-question {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 15px 0;
+}
+
+.quiz-question h4 {
+  margin-bottom: 10px;
+  color: #374151;
+}
+
+.quiz-options {
+  margin-top: 15px;
+}
+
+.quiz-option {
+  display: block;
+  padding: 8px 12px;
+  margin: 5px 0;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.quiz-option:hover {
+  background: #f3f4f6;
+}
+
+.quiz-option input {
+  margin-right: 10px;
+}
+
+.completion-section {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.completion-message {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 12px;
+  padding: 30px;
+  margin-bottom: 20px;
   font-size: 1.2rem;
+  color: #065f46;
 }
 
-.next-phase ul {
-  color: #166534;
-  padding-left: 20px;
-}
-
-.next-phase li {
-  margin-bottom: 8px;
+.completion-summary {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 30px;
+  text-align: left;
   line-height: 1.6;
 }
 
-/* Tech stack footer */
-.tech-stack {
-  background: #1e293b;
-  color: white;
-  border-radius: 16px;
-  padding: 30px;
-}
-
-.tech-stack h4 {
-  margin-bottom: 20px;
-  color: #e2e8f0;
-  font-size: 1.3rem;
-  text-align: center;
-}
-
-.stack-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 25px;
-}
-
-.stack-item {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
+.debug-info {
+  margin-top: 30px;
   padding: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #1f2937;
+  color: #e5e7eb;
+  border-radius: 8px;
+  font-family: 'Monaco', 'Menlo', monospace;
+  font-size: 0.8rem;
 }
 
-.stack-item strong {
-  color: #a855f7;
-  display: block;
-  margin-bottom: 12px;
-  font-size: 1.1rem;
+.debug-info summary {
+  cursor: pointer;
+  padding: 10px;
+  background: #374151;
+  border-radius: 4px;
+  margin-bottom: 10px;
 }
 
-.stack-item ul {
-  list-style: none;
-  padding: 0;
-}
-
-.stack-item li {
-  margin-bottom: 6px;
-  color: #cbd5e0;
-  padding-left: 15px;
-  position: relative;
-}
-
-.stack-item li::before {
-  content: "•";
-  color: #a855f7;
-  position: absolute;
-  left: 0;
+.debug-info pre {
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 10px;
+  background: #111827;
+  border-radius: 4px;
 }
 
 /* Responsive design */
@@ -798,8 +1210,13 @@ body {
     font-size: 2rem;
   }
   
-  .scenario-buttons {
+  .topic-input-container {
     flex-direction: column;
+  }
+  
+  .progress-header {
+    flex-direction: column;
+    align-items: stretch;
   }
   
   .editor-controls {
@@ -808,8 +1225,6 @@ body {
   }
   
   .keyboard-hint {
-    margin-left: 0;
-    margin-top: 10px;
     text-align: center;
   }
   
@@ -822,9 +1237,13 @@ body {
     flex-direction: column;
     gap: 8px;
   }
-  
-  .stack-grid {
-    grid-template-columns: 1fr;
+
+  .characters, .quiz-question {
+    padding: 15px;
+  }
+
+  .completion-section {
+    padding: 20px 10px;
   }
 }
 ----------------------------------------
@@ -866,15 +1285,358 @@ code {
 }
 
 ----------------------------------------
+File: ./src/components/ContentRenderer.jsx
+----------------------------------------
+/**
+ * ContentRenderer.jsx - Updated for Structured Backend Data
+ * Renders different content types from LangGraph structured responses
+ */
+
+import React from 'react';
+import CodeEditor from './CodeEditor';
+
+const ContentRenderer = ({ 
+  structuredContent,
+  userResponse, 
+  setUserResponse, 
+  onSubmit, 
+  loading,
+  userId 
+}) => {
+  
+  if (!structuredContent) {
+    return (
+      <div className="content-section">
+        <p>Loading content...</p>
+      </div>
+    );
+  }
+
+  const { content_type, data, progress } = structuredContent;
+
+  const handleSubmit = () => {
+    if (userResponse.trim()) {
+      onSubmit(userResponse);
+    }
+  };
+
+  switch (content_type) {
+    case 'explanation':
+      return (
+        <div className="content-section explanation-content">
+          <h3>📚 {data.title}</h3>
+          
+          <div className="explanation-overview">
+            <p><strong>Overview:</strong> {data.overview}</p>
+          </div>
+
+          <div className="key-concepts">
+            <h4>Key Concepts:</h4>
+            <ul>
+              {data.key_concepts?.map((concept, index) => (
+                <li key={index}>{concept}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="detailed-explanation">
+            <div dangerouslySetInnerHTML={{ __html: data.detailed_explanation?.replace(/\n/g, '<br />') }} />
+          </div>
+
+          {data.examples && data.examples.length > 0 && (
+            <div className="examples-section">
+              <h4>Examples:</h4>
+              <ul>
+                {data.examples.map((example, index) => (
+                  <li key={index}>{example}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <div className="why-matters">
+            <h4>Why This Matters:</h4>
+            <p>{data.why_it_matters}</p>
+          </div>
+
+          <div className="next-steps">
+            <h4>Next Steps:</h4>
+            <p>{data.next_steps}</p>
+          </div>
+          
+          <div className="response-area">
+            <h4>Your thoughts or questions:</h4>
+            <textarea
+              value={userResponse}
+              onChange={(e) => setUserResponse(e.target.value)}
+              placeholder="Share your understanding, ask questions, or note key takeaways..."
+              className="response-textarea"
+              rows={4}
+              disabled={loading}
+            />
+            <button 
+              onClick={handleSubmit}
+              disabled={loading || !userResponse.trim()}
+              className="submit-button"
+            >
+              {loading ? '⏳ Processing...' : '➡️ Continue'}
+            </button>
+          </div>
+        </div>
+      );
+
+    case 'code_exercise':
+      return (
+        <div className="content-section code-exercise-content">
+          <h3>💻 {data.title}</h3>
+          
+          <div className="exercise-description">
+            <p><strong>Problem:</strong> {data.problem_description}</p>
+          </div>
+
+          <div className="learning-objectives">
+            <h4>Learning Objectives:</h4>
+            <ul>
+              {data.learning_objectives?.map((objective, index) => (
+                <li key={index}>{objective}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="exercise-instructions">
+            <h4>Instructions:</h4>
+            <ol>
+              {data.instructions?.map((instruction, index) => (
+                <li key={index}>{instruction}</li>
+              ))}
+            </ol>
+          </div>
+
+          {data.expected_output && (
+            <div className="expected-output">
+              <h4>Expected Output:</h4>
+              <pre className="output-example">{data.expected_output}</pre>
+            </div>
+          )}
+
+          {data.test_cases && data.test_cases.length > 0 && (
+            <div className="test-cases">
+              <h4>Test Cases:</h4>
+              {data.test_cases.map((testCase, index) => (
+                <div key={index} className="test-case">
+                  <strong>Input:</strong> {testCase.input} → <strong>Output:</strong> {testCase.output}
+                </div>
+              ))}
+            </div>
+          )}
+
+          {data.hints && data.hints.length > 0 && (
+            <div className="hints-section">
+              <h4>💡 Hints:</h4>
+              <ul>
+                {data.hints.map((hint, index) => (
+                  <li key={index}>{hint}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+          
+          <div className="code-exercise-area">
+            <CodeEditor
+              title="Code Exercise"
+              initialCode={data.starter_code || '# Write your solution here\nprint("Hello, World!")'}
+              height="400px"
+              onCodeChange={setUserResponse}
+              showSubmitButton={true}
+              onSubmitCode={onSubmit}
+              loading={loading}
+              userId={userId}
+            />
+          </div>
+        </div>
+      );
+
+    case 'scenario':
+      return (
+        <div className="content-section scenario-content">
+          <h3>🎭 {data.title}</h3>
+          
+          <div className="scenario-context">
+            <h4>Context:</h4>
+            <p>{data.context}</p>
+          </div>
+
+          {data.characters && data.characters.length > 0 && (
+            <div className="characters">
+              <h4>Key People:</h4>
+              {data.characters.map((character, index) => (
+                <div key={index} className="character">
+                  <strong>{character.name}</strong> ({character.role}): {character.description}
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div className="situation">
+            <h4>Situation:</h4>
+            <p>{data.situation}</p>
+          </div>
+
+          <div className="your-role">
+            <h4>Your Role:</h4>
+            <p>{data.your_role}</p>
+          </div>
+
+          <div className="decision-points">
+            <h4>Key Decisions:</h4>
+            <ul>
+              {data.decision_points?.map((point, index) => (
+                <li key={index}>{point}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="considerations">
+            <h4>Consider:</h4>
+            <ul>
+              {data.considerations?.map((consideration, index) => (
+                <li key={index}>{consideration}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="success-criteria">
+            <h4>Success Looks Like:</h4>
+            <p>{data.success_criteria}</p>
+          </div>
+          
+          <div className="response-area">
+            <h4>How would you handle this situation?</h4>
+            <textarea
+              value={userResponse}
+              onChange={(e) => setUserResponse(e.target.value)}
+              placeholder="Describe your approach, decisions, and reasoning..."
+              className="response-textarea"
+              rows={6}
+              disabled={loading}
+            />
+            <button 
+              onClick={handleSubmit}
+              disabled={loading || !userResponse.trim()}
+              className="submit-button"
+            >
+              {loading ? '⏳ Evaluating...' : '📋 Submit Response'}
+            </button>
+          </div>
+        </div>
+      );
+
+    case 'quiz':
+      return (
+        <div className="content-section quiz-content">
+          <h3>❓ {data.title}</h3>
+          
+          <div className="quiz-instructions">
+            <p>{data.instructions}</p>
+            <p><strong>Passing Score:</strong> {data.passing_score}%</p>
+            {data.time_limit_minutes && (
+              <p><strong>Time Limit:</strong> {data.time_limit_minutes} minutes</p>
+            )}
+          </div>
+
+          <div className="quiz-questions">
+            {data.questions?.map((question, qIndex) => (
+              <div key={qIndex} className="quiz-question">
+                <h4>Question {qIndex + 1}:</h4>
+                <p>{question.question}</p>
+                <div className="quiz-options">
+                  {question.options?.map((option, oIndex) => (
+                    <label key={oIndex} className="quiz-option">
+                      <input 
+                        type="radio" 
+                        name={`question-${qIndex}`} 
+                        value={oIndex}
+                        onChange={(e) => {
+                          // Update response to include selected answers
+                          const answers = userResponse ? JSON.parse(userResponse || '{}') : {};
+                          answers[qIndex] = parseInt(e.target.value);
+                          setUserResponse(JSON.stringify(answers));
+                        }}
+                      />
+                      {String.fromCharCode(65 + oIndex)}. {option}
+                    </label>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          <div className="response-area">
+            <button 
+              onClick={() => onSubmit(userResponse || '{}')}
+              disabled={loading}
+              className="submit-button"
+            >
+              {loading ? '⏳ Checking...' : '✅ Submit Answers'}
+            </button>
+          </div>
+        </div>
+      );
+
+    case 'completion':
+      return (
+        <div className="content-section completion-content">
+          <h3>🎉 {data.title}</h3>
+          <div className="completion-message">
+            <p>{data.message}</p>
+          </div>
+          {data.summary && (
+            <div className="completion-summary">
+              <h4>Summary:</h4>
+              <div dangerouslySetInnerHTML={{ __html: data.summary.replace(/\n/g, '<br />') }} />
+            </div>
+          )}
+        </div>
+      );
+
+    default:
+      return (
+        <div className="content-section unknown-content">
+          <h3>❓ Unknown Content Type: {content_type}</h3>
+          <pre>{JSON.stringify(data, null, 2)}</pre>
+          
+          <div className="response-area">
+            <textarea
+              value={userResponse}
+              onChange={(e) => setUserResponse(e.target.value)}
+              placeholder="Your response..."
+              className="response-textarea"
+              rows={4}
+              disabled={loading}
+            />
+            <button 
+              onClick={handleSubmit}
+              disabled={loading || !userResponse.trim()}
+              className="submit-button"
+            >
+              {loading ? '⏳ Processing...' : '➡️ Continue'}
+            </button>
+          </div>
+        </div>
+      );
+  }
+};
+
+export default ContentRenderer;
+----------------------------------------
 File: ./src/components/CodeEditor.jsx
 ----------------------------------------
 /**
- * CodeEditor.jsx
- * React component for code editing with FastAPI backend execution
- * This will be reused when we add LangGraph in Phase 2
+ * CodeEditor.jsx - Updated for LangGraph Integration
+ * Handles both code testing (Phase 1) and response submission (Phase 2)
  */
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Editor from '@monaco-editor/react';
 
 const CodeEditor = ({ 
@@ -882,7 +1644,11 @@ const CodeEditor = ({
   title = "Python Code Editor",
   height = "400px",
   readOnly = false,
-  onCodeChange = null
+  onCodeChange = null,
+  showSubmitButton = false,      // NEW: Show submit for LangGraph
+  onSubmitCode = null,           // NEW: Submit callback for LangGraph
+  loading = false,               // NEW: Loading state from parent
+  userId = null                  // NEW: User context
 }) => {
   // State management
   const [code, setCode] = useState(initialCode);
@@ -893,6 +1659,11 @@ const CodeEditor = ({
   
   // Editor reference
   const editorRef = useRef(null);
+
+  // Update code when initialCode changes
+  useEffect(() => {
+    setCode(initialCode);
+  }, [initialCode]);
 
   /**
    * Handle Monaco editor mounting
@@ -908,12 +1679,21 @@ const CodeEditor = ({
       automaticLayout: true,
     });
 
-    // Add keyboard shortcut for running code
+    // Add keyboard shortcuts
     editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
       if (!isRunning) {
         runCode();
       }
     });
+
+    // Submit shortcut (Ctrl+Shift+Enter) - NEW
+    if (showSubmitButton) {
+      editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => {
+        if (!loading && onSubmitCode) {
+          onSubmitCode(code);
+        }
+      });
+    }
   };
 
   /**
@@ -930,7 +1710,7 @@ const CodeEditor = ({
   };
 
   /**
-   * Execute code via FastAPI backend
+   * Execute code via FastAPI backend (for testing)
    */
   const runCode = async () => {
     if (!code.trim()) {
@@ -953,7 +1733,7 @@ const CodeEditor = ({
         },
         body: JSON.stringify({
           code: code,
-          timeout: 10  // 10 second timeout
+          timeout: 10
         }),
       });
 
@@ -986,6 +1766,15 @@ const CodeEditor = ({
   };
 
   /**
+   * Submit code response (for LangGraph flow) - NEW
+   */
+  const submitCodeResponse = () => {
+    if (onSubmitCode && code.trim()) {
+      onSubmitCode(code);
+    }
+  };
+
+  /**
    * Clear output and errors
    */
   const clearOutput = () => {
@@ -1014,7 +1803,7 @@ const CodeEditor = ({
             </span>
           )}
           <span className="backend-status">
-            🔗 FastAPI Backend
+            🔗 FastAPI + LangGraph
           </span>
         </div>
       </div>
@@ -1042,7 +1831,7 @@ const CodeEditor = ({
           disabled={isRunning || readOnly}
           className={`run-button ${isRunning ? 'running' : ''}`}
         >
-          {isRunning ? '⏳ Running...' : '▶️ Run Code'}
+          {isRunning ? '⏳ Running...' : '▶️ Test Code'}
         </button>
         
         <button onClick={clearOutput} className="clear-button">
@@ -1052,9 +1841,23 @@ const CodeEditor = ({
         <button onClick={resetCode} className="reset-button">
           🔄 Reset Code
         </button>
+
+        {/* Submit button for LangGraph integration - NEW */}
+        {showSubmitButton && (
+          <button 
+            onClick={submitCodeResponse}
+            disabled={loading || !code.trim()}
+            className="submit-code-button"
+          >
+            {loading ? '⏳ Submitting...' : '📤 Submit Solution'}
+          </button>
+        )}
         
         <small className="keyboard-hint">
-          Tip: Ctrl+Enter (Cmd+Enter) to run
+          {showSubmitButton 
+            ? 'Test: Ctrl+Enter | Submit: Ctrl+Shift+Enter'
+            : 'Tip: Ctrl+Enter to run'
+          }
         </small>
       </div>
 
@@ -1079,7 +1882,14 @@ const CodeEditor = ({
         {/* Running indicator */}
         {isRunning && (
           <div className="running-box">
-            <p>🐍 Executing Python code on FastAPI backend...</p>
+            <p>🔄 Executing Python code on FastAPI backend...</p>
+          </div>
+        )}
+
+        {/* LangGraph submission guidance - NEW */}
+        {showSubmitButton && !loading && (
+          <div className="submission-guidance">
+            <p>💡 <strong>Test your code first</strong>, then submit when ready!</p>
           </div>
         )}
       </div>
@@ -1113,42 +1923,46 @@ import '@testing-library/jest-dom';
 File: ./src/App.js
 ----------------------------------------
 /**
- * App.js
- * Phase 1 test interface for CodeEditor + FastAPI integration
- * Tests the infrastructure that will be used with LangGraph
+ * App.js - MVP LangGraph Integration
+ * Updated to work with structured backend responses
  */
 
 import React, { useState, useEffect } from 'react';
-import CodeEditor from './components/CodeEditor';
+import ContentRenderer from './components/ContentRenderer';
 import './App.css';
 
-function App() {
-  // State for test scenarios and backend status
-  const [currentTest, setCurrentTest] = useState('basic');
-  const [backendStatus, setBackendStatus] = useState('unknown');
-  const [testSamples, setTestSamples] = useState({});
-  const [backendInfo, setBackendInfo] = useState(null);
+// Generate random user ID
+const generateUserId = () => {
+  return 'user_' + Math.random().toString(36).substr(2, 9);
+};
 
-  // Test backend connectivity on component mount
+function App() {
+  // Core state
+  const [userId] = useState(() => generateUserId());
+  const [structuredContent, setStructuredContent] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  
+  // Input state
+  const [topicInput, setTopicInput] = useState('');
+  const [userResponse, setUserResponse] = useState('');
+  
+  // Backend status
+  const [backendStatus, setBackendStatus] = useState('unknown');
+
+  // Check backend health on mount
   useEffect(() => {
     checkBackendHealth();
-    loadTestSamples();
-    loadBackendInfo();
   }, []);
 
   /**
-   * Check if FastAPI backend is healthy
+   * Check if backend is healthy
    */
   const checkBackendHealth = async () => {
     try {
       const response = await fetch('/api/health');
       const data = await response.json();
-      
-      if (response.ok && data.status === 'healthy') {
-        setBackendStatus('healthy');
-      } else {
-        setBackendStatus('unhealthy');
-      }
+      setBackendStatus(data.status === 'healthy' ? 'healthy' : 'unhealthy');
     } catch (error) {
       setBackendStatus('error');
       console.error('Backend health check failed:', error);
@@ -1156,45 +1970,119 @@ function App() {
   };
 
   /**
-   * Load test samples from backend
+   * Start a new learning module
    */
-  const loadTestSamples = async () => {
+  const startModule = async () => {
+    if (!topicInput.trim()) {
+      setError('Please enter a topic to learn');
+      return;
+    }
+
+    setLoading(true);
+    setError('');
+    setStructuredContent(null);
+
     try {
-      const response = await fetch('/api/test-samples');
-      const data = await response.json();
-      setTestSamples(data.samples || {});
-    } catch (error) {
-      console.error('Failed to load test samples:', error);
-      // Fallback samples
-      setTestSamples({
-        basic: {
-          title: "Basic Python",
-          code: "print('Hello, World!')\nx = 5 + 3\nprint(f'5 + 3 = {x}')"
-        }
+      const response = await fetch('/api/start-module', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          topic: topicInput.trim(),
+          user_id: userId
+        }),
       });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.detail || `HTTP ${response.status}`);
+      }
+
+      const result = await response.json();
+      
+      console.log('Start module response:', result); // Debug log
+      
+      setStructuredContent(result);
+      setUserResponse(''); // Clear previous response
+
+    } catch (err) {
+      setError(`Error starting module: ${err.message}`);
+      console.error('Start module error:', err);
+    } finally {
+      setLoading(false);
     }
   };
 
   /**
-   * Load backend info
+   * Submit user response and advance module
    */
-  const loadBackendInfo = async () => {
+  const submitResponse = async (response) => {
+    if (!response || (typeof response === 'string' && !response.trim())) {
+      setError('Please provide a response');
+      return;
+    }
+
+    setLoading(true);
+    setError('');
+
     try {
-      const response = await fetch('/');
-      const data = await response.json();
-      setBackendInfo(data);
-    } catch (error) {
-      console.error('Failed to load backend info:', error);
+      const submitResponse = await fetch('/api/submit-response', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          user_id: userId,
+          response: typeof response === 'string' ? response.trim() : JSON.stringify(response)
+        }),
+      });
+
+      if (!submitResponse.ok) {
+        const errorData = await submitResponse.json();
+        throw new Error(errorData.detail || `HTTP ${submitResponse.status}`);
+      }
+
+      const result = await submitResponse.json();
+      
+      console.log('Submit response result:', result); // Debug log
+      
+      setStructuredContent(result);
+      setUserResponse(''); // Clear response for next section
+
+    } catch (err) {
+      setError(`Error submitting response: ${err.message}`);
+      console.error('Submit response error:', err);
+    } finally {
+      setLoading(false);
     }
   };
 
   /**
-   * Get status indicator component
+   * Reset to start new module
+   */
+  const resetModule = async () => {
+    // Reset session on backend
+    try {
+      await fetch(`/api/reset-session/${userId}`, { method: 'DELETE' });
+    } catch (err) {
+      console.warn('Failed to reset backend session:', err);
+    }
+
+    // Reset frontend state
+    setStructuredContent(null);
+    setTopicInput('');
+    setUserResponse('');
+    setError('');
+  };
+
+  /**
+   * Get status indicator
    */
   const getStatusIndicator = () => {
     switch (backendStatus) {
       case 'healthy':
-        return <span className="status healthy">✅ Backend Healthy</span>;
+        return <span className="status healthy">✅ LangGraph Ready</span>;
       case 'unhealthy':
         return <span className="status unhealthy">⚠️ Backend Issues</span>;
       case 'error':
@@ -1204,19 +2092,40 @@ function App() {
     }
   };
 
+  /**
+   * Calculate progress percentage
+   */
+  const getProgressPercentage = () => {
+    if (!structuredContent?.progress) return 0;
+    return structuredContent.progress.percentage || 0;
+  };
+
+  /**
+   * Get current step info
+   */
+  const getCurrentStep = () => {
+    if (!structuredContent?.progress) return { current: 0, total: 0 };
+    const { current_index = 0, total_items = 0 } = structuredContent.progress;
+    return { current: current_index + 1, total: total_items };
+  };
+
+  /**
+   * Check if module is complete
+   */
+  const isModuleComplete = () => {
+    return structuredContent?.content_type === 'completion' || 
+           structuredContent?.metadata?.completed === true;
+  };
+
   return (
     <div className="App">
       {/* Header */}
       <header className="app-header">
-        <h1>🚀 Mini Course Generator - Phase 1</h1>
-        <p>Testing CodeEditor + FastAPI + Python Execution Integration</p>
+        <h1>🎓 Mini Course Generator</h1>
+        <p>AI-powered learning modules with LangGraph + OpenRouter</p>
         <div className="backend-status">
           {getStatusIndicator()}
-          {backendInfo && (
-            <span className="backend-version">
-              v{backendInfo.version} | {backendInfo.phase}
-            </span>
-          )}
+          <span className="user-id">User: {userId}</span>
         </div>
       </header>
 
@@ -1224,136 +2133,148 @@ function App() {
       {backendStatus !== 'healthy' && (
         <div className="connection-warning">
           <h3>⚠️ Backend Connection Issue</h3>
-          <p>
-            Make sure the FastAPI backend is running on port 8000:
-          </p>
-          <code>cd backend && python main.py</code>
+          <p>Make sure the FastAPI backend is running on port 8000</p>
           <button onClick={checkBackendHealth} className="retry-button">
             🔄 Retry Connection
           </button>
         </div>
       )}
 
-      {/* Test scenario selector */}
-      <div className="test-selector">
-        <h3>Choose Test Scenario:</h3>
-        <div className="scenario-buttons">
-          {Object.entries(testSamples).map(([key, sample]) => (
-            <button
-              key={key}
-              onClick={() => setCurrentTest(key)}
-              className={`scenario-button ${currentTest === key ? 'active' : ''}`}
+      {/* Error display */}
+      {error && (
+        <div className="error-banner">
+          <p>❌ {error}</p>
+          <button onClick={() => setError('')} className="close-error">×</button>
+        </div>
+      )}
+
+      {/* Main content */}
+      {!structuredContent ? (
+        // Topic input screen
+        <div className="topic-input-section">
+          <h2>What would you like to learn?</h2>
+          <div className="topic-input-container">
+            <input
+              type="text"
+              value={topicInput}
+              onChange={(e) => setTopicInput(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && !loading && startModule()}
+              placeholder="e.g., Python functions, Project management, React hooks..."
+              className="topic-input"
+              disabled={loading}
+            />
+            <button 
+              onClick={startModule}
+              disabled={loading || !topicInput.trim()}
+              className="start-button"
             >
-              {sample.title}
+              {loading ? '🔄 Generating...' : '🚀 Start Learning'}
             </button>
-          ))}
-        </div>
-        
-        {testSamples[currentTest] && (
-          <p className="scenario-description">
-            <strong>Testing:</strong> {testSamples[currentTest].title}
-          </p>
-        )}
-      </div>
-
-      {/* Main code editor */}
-      <div className="editor-section">
-        {testSamples[currentTest] && (
-          <CodeEditor
-            key={currentTest} // Force re-render when test changes
-            title={testSamples[currentTest].title}
-            initialCode={testSamples[currentTest].code}
-            height="500px"
-          />
-        )}
-      </div>
-
-      {/* Phase 1 validation checklist */}
-      <div className="validation-section">
-        <h3>🧪 Phase 1 Validation Checklist</h3>
-        <div className="checklist">
-          <label>
-            <input type="checkbox" />
-            Backend health check passes (✅ status above)
-          </label>
-          <label>
-            <input type="checkbox" />
-            Basic Python code executes successfully
-          </label>
-          <label>
-            <input type="checkbox" />
-            Print statements appear in output
-          </label>
-          <label>
-            <input type="checkbox" />
-            Error handling works (try the error test)
-          </label>
-          <label>
-            <input type="checkbox" />
-            Execution timeout prevents infinite loops
-          </label>
-          <label>
-            <input type="checkbox" />
-            Security sanitization blocks dangerous imports
-          </label>
-          <label>
-            <input type="checkbox" />
-            Monaco Editor syntax highlighting works
-          </label>
-          <label>
-            <input type="checkbox" />
-            Ctrl+Enter keyboard shortcut functions
-          </label>
-        </div>
-
-        <div className="next-phase">
-          <h4>✅ After Phase 1 Validation:</h4>
-          <ul>
-            <li>✅ <strong>Proven:</strong> CodeEditor ↔ FastAPI ↔ Python execution works</li>
-            <li>➡️ <strong>Ready for:</strong> Phase 2 - Add LangGraph content generation</li>
-            <li>🔧 <strong>Foundation:</strong> This infrastructure becomes LangGraph tools</li>
-          </ul>
-        </div>
-      </div>
-
-      {/* Technical stack info */}
-      <footer className="tech-stack">
-        <h4>🔧 Phase 1 Stack</h4>
-        <div className="stack-grid">
-          <div className="stack-item">
-            <strong>Frontend:</strong>
-            <ul>
-              <li>React 18</li>
-              <li>Monaco Editor</li>
-              <li>Fetch API</li>
-            </ul>
           </div>
-          <div className="stack-item">
-            <strong>Backend:</strong>
-            <ul>
-              <li>FastAPI</li>
-              <li>Pydantic models</li>
-              <li>subprocess execution</li>
-            </ul>
-          </div>
-          <div className="stack-item">
-            <strong>Security:</strong>
-            <ul>
-              <li>Code sanitization</li>
-              <li>Execution timeouts</li>
-              <li>Limited environment</li>
-            </ul>
-          </div>
-          <div className="stack-item">
-            <strong>Phase 2 Ready:</strong>
-            <ul>
-              <li>LangGraph integration</li>
-              <li>Dynamic content</li>
-              <li>Tool orchestration</li>
-            </ul>
+          
+          {/* Example topics */}
+          <div className="example-topics">
+            <h4>Example topics:</h4>
+            <div className="topic-examples">
+              {[
+                'Python list comprehensions',
+                'Agile project management', 
+                'JavaScript async/await',
+                'Database normalization',
+                'Team leadership skills'
+              ].map(topic => (
+                <button 
+                  key={topic}
+                  onClick={() => setTopicInput(topic)}
+                  className="example-topic"
+                  disabled={loading}
+                >
+                  {topic}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
-      </footer>
+      ) : (
+        // Active module interface
+        <div className="module-interface">
+          {/* Progress header */}
+          <div className="progress-header">
+            <div className="progress-info">
+              <h2>{structuredContent.progress?.domain || 'Learning'} Module</h2>
+              <p>Topic: <strong>{topicInput}</strong></p>
+            </div>
+            <div className="progress-bar-container">
+              <div className="progress-stats">
+                {isModuleComplete() ? (
+                  'Complete!'
+                ) : (
+                  `Step ${getCurrentStep().current} of ${getCurrentStep().total}`
+                )}
+              </div>
+              <div className="progress-bar">
+                <div 
+                  className="progress-fill"
+                  style={{ width: `${getProgressPercentage()}%` }}
+                ></div>
+              </div>
+            </div>
+            <button onClick={resetModule} className="new-topic-button">
+              🆕 New Topic
+            </button>
+          </div>
+
+          {/* Content area */}
+          <div className="content-area">
+            {isModuleComplete() ? (
+              // Module complete
+              <div className="completion-section">
+                <ContentRenderer
+                  structuredContent={structuredContent}
+                  userResponse={userResponse}
+                  setUserResponse={setUserResponse}
+                  onSubmit={submitResponse}
+                  loading={loading}
+                  userId={userId}
+                />
+                <button onClick={resetModule} className="start-new-button">
+                  Start New Topic
+                </button>
+              </div>
+            ) : (
+              // Active content
+              <ContentRenderer
+                structuredContent={structuredContent}
+                userResponse={userResponse}
+                setUserResponse={setUserResponse}
+                onSubmit={submitResponse}
+                loading={loading}
+                userId={userId}
+              />
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Loading overlay */}
+      {loading && (
+        <div className="loading-overlay">
+          <div className="loading-spinner">
+            <div className="spinner"></div>
+            <p>AI is generating your learning content...</p>
+          </div>
+        </div>
+      )}
+
+      {/* Debug info (remove in production) */}
+      {process.env.NODE_ENV === 'development' && structuredContent && (
+        <div className="debug-info">
+          <details>
+            <summary>Debug: Structured Content</summary>
+            <pre>{JSON.stringify(structuredContent, null, 2)}</pre>
+          </details>
+        </div>
+      )}
     </div>
   );
 }

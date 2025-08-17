@@ -1,5 +1,5 @@
 /**
- * CodeEditor.jsx - Updated for LangGraph Integration
+ * CodeEditor.jsx - Professional Version with Clean Button Styling
  * Handles both code testing (Phase 1) and response submission (Phase 2)
  */
 
@@ -166,11 +166,11 @@ const CodeEditor = ({
         <div className="header-info">
           {executionTime !== null && (
             <span className="execution-time">
-              ⏱️ {executionTime}ms
+              {executionTime}ms
             </span>
           )}
           <span className="backend-status">
-            🔗 FastAPI + LangGraph
+            FastAPI + LangGraph
           </span>
         </div>
       </div>
@@ -198,15 +198,15 @@ const CodeEditor = ({
           disabled={isRunning || readOnly}
           className={`run-button ${isRunning ? 'running' : ''}`}
         >
-          {isRunning ? '⏳ Running...' : '▶️ Test Code'}
+          {isRunning ? 'Running...' : 'Test Code'}
         </button>
         
         <button onClick={clearOutput} className="clear-button">
-          🗑️ Clear Output
+          Clear Output
         </button>
         
         <button onClick={resetCode} className="reset-button">
-          🔄 Reset Code
+          Reset Code
         </button>
 
         {/* Submit button for LangGraph integration - NEW */}
@@ -216,7 +216,7 @@ const CodeEditor = ({
             disabled={loading || !code.trim()}
             className="submit-code-button"
           >
-            {loading ? '⏳ Submitting...' : '📤 Submit Solution'}
+            {loading ? 'Submitting...' : 'Submit Solution'}
           </button>
         )}
         
@@ -233,7 +233,7 @@ const CodeEditor = ({
         {/* Success output */}
         {output && (
           <div className="output-box">
-            <h4>✅ Output:</h4>
+            <h4>Output:</h4>
             <pre className="output-content">{output}</pre>
           </div>
         )}
@@ -241,7 +241,7 @@ const CodeEditor = ({
         {/* Error output */}
         {error && (
           <div className="error-box">
-            <h4>❌ Error:</h4>
+            <h4>Error:</h4>
             <pre className="error-content">{error}</pre>
           </div>
         )}
@@ -249,14 +249,14 @@ const CodeEditor = ({
         {/* Running indicator */}
         {isRunning && (
           <div className="running-box">
-            <p>🔄 Executing Python code on FastAPI backend...</p>
+            <p>Executing Python code on FastAPI backend...</p>
           </div>
         )}
 
         {/* LangGraph submission guidance - NEW */}
         {showSubmitButton && !loading && (
           <div className="submission-guidance">
-            <p>💡 <strong>Test your code first</strong>, then submit when ready!</p>
+            <p><strong>Test your code first</strong>, then submit when ready!</p>
           </div>
         )}
       </div>

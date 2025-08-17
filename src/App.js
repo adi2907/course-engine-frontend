@@ -1,6 +1,6 @@
 /**
- * App.js - MVP LangGraph Integration
- * Updated to work with structured backend responses
+ * App.js - DeepCoach Learning Platform
+ * Updated branding and improved user experience
  */
 
 import React, { useState, useEffect } from 'react';
@@ -158,11 +158,11 @@ function App() {
   const getStatusIndicator = () => {
     switch (backendStatus) {
       case 'healthy':
-        return <span className="status healthy">✅ LangGraph Ready</span>;
+        return <span className="status healthy">✅ DeepCoach Ready</span>;
       case 'unhealthy':
-        return <span className="status unhealthy">⚠️ Backend Issues</span>;
+        return <span className="status unhealthy">⚠️ System Issues</span>;
       case 'error':
-        return <span className="status error">❌ Backend Error</span>;
+        return <span className="status error">❌ Connection Error</span>;
       default:
         return <span className="status unknown">🔄 Checking...</span>;
     }
@@ -197,8 +197,8 @@ function App() {
     <div className="App">
       {/* Header */}
       <header className="app-header">
-        <h1>🎓 Mini Course Generator</h1>
-        <p>AI-powered learning modules with LangGraph + OpenRouter</p>
+        <h1>🧠 DeepCoach</h1>
+        <p>Your AI Learning Companion - Master Any Skill, Anytime</p>
         <div className="backend-status">
           {getStatusIndicator()}
           <span className="user-id">User: {userId}</span>
@@ -208,8 +208,8 @@ function App() {
       {/* Backend connection warning */}
       {backendStatus !== 'healthy' && (
         <div className="connection-warning">
-          <h3>⚠️ Backend Connection Issue</h3>
-          <p>Make sure the FastAPI backend is running on port 8000</p>
+          <h3>⚠️ System Connection Issue</h3>
+          <p>Make sure the DeepCoach backend is running on port 8000</p>
           <button onClick={checkBackendHealth} className="retry-button">
             🔄 Retry Connection
           </button>
@@ -228,7 +228,7 @@ function App() {
       {!structuredContent ? (
         // Topic input screen
         <div className="topic-input-section">
-          <h2>What would you like to learn?</h2>
+          <h2>What would you like to master today?</h2>
           <div className="topic-input-container">
             <input
               type="text"
@@ -244,32 +244,36 @@ function App() {
               disabled={loading || !topicInput.trim()}
               className="start-button"
             >
-              {loading ? '🔄 Generating...' : '🚀 Start Learning'}
+              {loading ? 'Creating Your Module...' : 'Start Learning'}
             </button>
           </div>
           
           {/* Example topics */}
-          <div className="example-topics">
-            <h4>Example topics:</h4>
-            <div className="topic-examples">
-              {[
-                'Python list comprehensions',
-                'Agile project management', 
-                'JavaScript async/await',
-                'Database normalization',
-                'Team leadership skills'
-              ].map(topic => (
-                <button 
-                  key={topic}
-                  onClick={() => setTopicInput(topic)}
-                  className="example-topic"
-                  disabled={loading}
-                >
-                  {topic}
-                </button>
-              ))}
+            <div className="example-topics">
+              <h4>Popular learning topics:</h4>
+              <div className="topic-examples">
+                {[
+                  'Python list comprehensions',
+                  'Agile project management', 
+                  'JavaScript async/await',
+                  'Database normalization',
+                  'Team leadership skills',
+                  'Machine learning basics',
+                  'React state management',
+                  'SQL query optimization'
+                ].map((topic, index) => (
+                  <button 
+                    key={index}
+                    onClick={() => setTopicInput(topic)}
+                    className="example-topic"
+                    disabled={loading}
+                    type="button"
+                  >
+                    {topic}
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
         </div>
       ) : (
         // Active module interface
@@ -283,7 +287,7 @@ function App() {
             <div className="progress-bar-container">
               <div className="progress-stats">
                 {isModuleComplete() ? (
-                  'Complete!'
+                  '🎉 Complete!'
                 ) : (
                   `Step ${getCurrentStep().current} of ${getCurrentStep().total}`
                 )}
@@ -296,7 +300,7 @@ function App() {
               </div>
             </div>
             <button onClick={resetModule} className="new-topic-button">
-              🆕 New Topic
+              New Topic
             </button>
           </div>
 
@@ -337,7 +341,7 @@ function App() {
         <div className="loading-overlay">
           <div className="loading-spinner">
             <div className="spinner"></div>
-            <p>AI is generating your learning content...</p>
+            <p>DeepCoach is creating your personalized learning module...</p>
           </div>
         </div>
       )}
