@@ -1,0 +1,1362 @@
+Repository Source Code Contents
+Generated on: Sun Aug 17 06:33:45 IST 2025
+----------------------------------------
+File: ./README.md
+----------------------------------------
+# Getting Started with Create React App
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Available Scripts
+
+In the project directory, you can run:
+
+### `npm start`
+
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
+
+### `npm test`
+
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `npm run build`
+
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+----------------------------------------
+File: ./public/index.html
+----------------------------------------
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+</html>
+
+----------------------------------------
+File: ./llm_repo_digest.sh
+----------------------------------------
+#!/bin/bash
+
+# Get repository name and set up output file
+REPO_NAME=$(basename "$PWD")
+OUTPUT_FILE="${REPO_NAME}_repo_digest.txt"
+
+# Define source code file extensions we want to include
+SOURCE_EXTENSIONS="\.(py|ipynb|js|jsx|ts|css|tsx|vue|java|cpp|hpp|c|h|go|rs|rb|php|cs|scala|kt|swift|m|mm|sh|bash|pl|pm|t|less|html|xml|sql|graphql|md|rst|tex|yaml|yml|json|coffee|dart|r|jl|lua|clj|cljs|ex|exs)$"
+
+# Define common patterns to exclude - simplified but maintaining key exclusions
+EXCLUDE_PATTERNS=(
+    # Version control
+    ".git"
+    "__pycache__"
+    
+    # Data and binary files
+    "*.csv"
+    "*.xlsx"
+    "*.json"
+    "*.log"
+    
+    # Build and environment
+    "node_modules"
+    "docker"
+    "venv"
+    ".env"
+    
+    # IDE and editor files
+    ".vscode"
+    ".idea"
+    "*.swp"
+)
+
+# Helper function to check if a file is binary
+is_binary() {
+    [ ! -f "$1" ] && return 1
+    local mime
+    mime=$(file -b --mime "$1")
+    case "$mime" in
+        *binary*) return 0 ;;
+        *charset=binary*) return 0 ;;
+        *) return 1 ;;
+    esac
+}
+
+# Build the find command arguments with proper pattern handling
+build_prune_args() {
+    local prune_args=()
+    
+    # Start with grouping
+    prune_args+=( "\\(" )
+    
+    # Process exclude patterns array with proper quoting
+    for pat in "${EXCLUDE_PATTERNS[@]}"; do
+        # Add OR operator if not first pattern
+        [[ ${#prune_args[@]} -gt 1 ]] && prune_args+=( "-o" )
+        
+        # Handle wildcards with proper quoting
+        if [[ "$pat" == *[*?]* ]]; then
+            prune_args+=( "-name" "\"$pat\"" )
+        else
+            prune_args+=( "-path" "./$pat" )
+        fi
+    done
+    
+    # Add patterns from .gitignore if it exists
+    if [ -f .gitignore ]; then
+        while IFS= read -r pattern; do
+            # Skip comments and empty lines
+            [[ "$pattern" =~ ^#.*$ || -z "$pattern" ]] && continue
+
+            # Clean up pattern: remove trailing and leading slashes
+            pattern="${pattern%/}"
+            pattern="${pattern#/}"
+            [[ -n "$pattern" ]] || continue
+
+            # Add OR operator
+            prune_args+=( "-o" )
+
+            # Handle wildcards in gitignore patterns
+            if [[ "$pattern" == *[*?]* ]]; then
+                prune_args+=( "-name" "\"$pattern\"" )
+            else
+                prune_args+=( "-path" "./$pattern" )
+            fi
+        done < .gitignore
+    fi
+
+    
+    # Close grouping and add prune
+    prune_args+=( "\\)" "-prune" "-o" )
+    
+    echo "${prune_args[@]}"
+}
+
+# Initialize output file
+> "$OUTPUT_FILE"
+echo "Repository Source Code Contents" >> "$OUTPUT_FILE"
+echo "Generated on: $(date)" >> "$OUTPUT_FILE"
+echo "----------------------------------------" >> "$OUTPUT_FILE"
+
+# Initialize counters
+total_files=0
+included_files=0
+excluded_binary=0
+
+# Build and execute find command
+PRUNE_ARGS=$(build_prune_args)
+echo "Generated find command arguments:" >&2
+echo "$PRUNE_ARGS" >&2
+
+# Process files
+while IFS= read -r -d $'\0' path; do
+    ((total_files++))
+    echo "Processing: $path"
+    
+    if [[ "$path" =~ $SOURCE_EXTENSIONS ]]; then
+        if ! is_binary "$path"; then
+            echo "File: $path" >> "$OUTPUT_FILE"
+            echo "----------------------------------------" >> "$OUTPUT_FILE"
+            cat "$path" >> "$OUTPUT_FILE"
+            echo -e "\n----------------------------------------" >> "$OUTPUT_FILE"
+            ((included_files++))
+        else
+            echo "Skipping binary: $path"
+            ((excluded_binary++))
+        fi
+    else
+        echo "Skipping non-source file: $path"
+    fi
+done < <(eval "find . $PRUNE_ARGS -type f -print0")
+
+# Print summary
+echo -e "\nSummary:"
+echo "Total files found: $total_files"
+echo "Included in output: $included_files"
+echo "Skipped binary files: $excluded_binary"
+echo "Output: $OUTPUT_FILE"
+----------------------------------------
+File: ./src/reportWebVitals.js
+----------------------------------------
+const reportWebVitals = onPerfEntry => {
+  if (onPerfEntry && onPerfEntry instanceof Function) {
+    import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+      getCLS(onPerfEntry);
+      getFID(onPerfEntry);
+      getFCP(onPerfEntry);
+      getLCP(onPerfEntry);
+      getTTFB(onPerfEntry);
+    });
+  }
+};
+
+export default reportWebVitals;
+
+----------------------------------------
+File: ./src/App.css
+----------------------------------------
+/**
+ * App.css - Phase 1 Styling
+ * Clean, professional styling for MVP testing interface
+ */
+
+/* Global styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #f8fafc;
+  color: #2d3748;
+  line-height: 1.6;
+}
+
+.App {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header styling */
+.app-header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 40px;
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
+}
+
+.app-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.app-header p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin-bottom: 20px;
+}
+
+.backend-status {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.status {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.status.healthy {
+  background: rgba(34, 197, 94, 0.2);
+  color: #15803d;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.status.unhealthy {
+  background: rgba(245, 158, 11, 0.2);
+  color: #d97706;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.status.error {
+  background: rgba(239, 68, 68, 0.2);
+  color: #dc2626;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.status.unknown {
+  background: rgba(156, 163, 175, 0.2);
+  color: #6b7280;
+  border: 1px solid rgba(156, 163, 175, 0.3);
+}
+
+.backend-version {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+}
+
+/* Connection warning */
+.connection-warning {
+  background: #fef3c7;
+  border: 1px solid #f59e0b;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.connection-warning h3 {
+  color: #92400e;
+  margin-bottom: 10px;
+}
+
+.connection-warning p {
+  color: #78350f;
+  margin-bottom: 15px;
+}
+
+.connection-warning code {
+  background: #451a03;
+  color: #fbbf24;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-family: 'Monaco', 'Menlo', monospace;
+  display: inline-block;
+  margin: 10px 0;
+}
+
+.retry-button {
+  background: #f59e0b;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.retry-button:hover {
+  background: #d97706;
+}
+
+/* Test selector */
+.test-selector {
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e7eb;
+}
+
+.test-selector h3 {
+  margin-bottom: 20px;
+  color: #1f2937;
+  font-size: 1.3rem;
+}
+
+.scenario-buttons {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.scenario-button {
+  padding: 12px 24px;
+  border: 2px solid #e5e7eb;
+  background: white;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  color: #374151;
+}
+
+.scenario-button:hover {
+  border-color: #4f46e5;
+  background: #f8fafc;
+  transform: translateY(-1px);
+}
+
+.scenario-button.active {
+  border-color: #4f46e5;
+  background: #4f46e5;
+  color: white;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+}
+
+.scenario-description {
+  color: #6b7280;
+  font-style: italic;
+}
+
+/* Editor section */
+.editor-section {
+  margin-bottom: 40px;
+}
+
+/* Code Editor Component Styles */
+.code-editor-container {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+  border: 1px solid #e5e7eb;
+}
+
+.editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 25px;
+  background: #1e293b;
+  color: white;
+  border-bottom: 1px solid #334155;
+}
+
+.editor-header h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.header-info {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.execution-time {
+  background: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+.backend-status {
+  background: rgba(59, 130, 246, 0.2);
+  color: #3b82f6;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+.editor-wrapper {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Editor controls */
+.editor-controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 20px 25px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e5e7eb;
+  flex-wrap: wrap;
+}
+
+.run-button {
+  background: #22c55e;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(34, 197, 94, 0.3);
+}
+
+.run-button:hover:not(:disabled) {
+  background: #16a34a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(34, 197, 94, 0.4);
+}
+
+.run-button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.run-button.running {
+  background: #f59e0b;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.clear-button, .reset-button {
+  background: #6b7280;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.clear-button:hover, .reset-button:hover {
+  background: #4b5563;
+  transform: translateY(-1px);
+}
+
+.keyboard-hint {
+  margin-left: auto;
+  color: #6b7280;
+  font-style: italic;
+  font-size: 0.85rem;
+}
+
+/* Output section */
+.output-section {
+  padding: 25px;
+  min-height: 120px;
+}
+
+.output-box, .error-box {
+  margin-bottom: 20px;
+}
+
+.output-box h4 {
+  margin-bottom: 12px;
+  color: #059669;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.output-content {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  padding: 20px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.9rem;
+  color: #065f46;
+  white-space: pre-wrap;
+  overflow-x: auto;
+  max-height: 300px;
+  overflow-y: auto;
+  line-height: 1.5;
+}
+
+.error-box h4 {
+  margin-bottom: 12px;
+  color: #dc2626;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.error-content {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 20px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.9rem;
+  color: #991b1b;
+  white-space: pre-wrap;
+  overflow-x: auto;
+  max-height: 200px;
+  overflow-y: auto;
+  line-height: 1.5;
+}
+
+.running-box {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  color: #1d4ed8;
+  font-weight: 500;
+}
+
+/* Validation section */
+.validation-section {
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e7eb;
+}
+
+.validation-section h3 {
+  margin-bottom: 25px;
+  color: #1f2937;
+  font-size: 1.4rem;
+}
+
+.checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.checklist label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  padding: 12px;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+  font-weight: 500;
+}
+
+.checklist label:hover {
+  background: #f8fafc;
+}
+
+.checklist input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: #4f46e5;
+}
+
+.next-phase {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 12px;
+  padding: 25px;
+}
+
+.next-phase h4 {
+  color: #166534;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+.next-phase ul {
+  color: #166534;
+  padding-left: 20px;
+}
+
+.next-phase li {
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+/* Tech stack footer */
+.tech-stack {
+  background: #1e293b;
+  color: white;
+  border-radius: 16px;
+  padding: 30px;
+}
+
+.tech-stack h4 {
+  margin-bottom: 20px;
+  color: #e2e8f0;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.stack-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.stack-item {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stack-item strong {
+  color: #a855f7;
+  display: block;
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+}
+
+.stack-item ul {
+  list-style: none;
+  padding: 0;
+}
+
+.stack-item li {
+  margin-bottom: 6px;
+  color: #cbd5e0;
+  padding-left: 15px;
+  position: relative;
+}
+
+.stack-item li::before {
+  content: "•";
+  color: #a855f7;
+  position: absolute;
+  left: 0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .App {
+    padding: 15px;
+  }
+  
+  .app-header h1 {
+    font-size: 2rem;
+  }
+  
+  .scenario-buttons {
+    flex-direction: column;
+  }
+  
+  .editor-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .keyboard-hint {
+    margin-left: 0;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .backend-status {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .header-info {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .stack-grid {
+    grid-template-columns: 1fr;
+  }
+}
+----------------------------------------
+File: ./src/index.js
+----------------------------------------
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
+
+----------------------------------------
+File: ./src/index.css
+----------------------------------------
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+----------------------------------------
+File: ./src/components/CodeEditor.jsx
+----------------------------------------
+/**
+ * CodeEditor.jsx
+ * React component for code editing with FastAPI backend execution
+ * This will be reused when we add LangGraph in Phase 2
+ */
+
+import React, { useState, useRef } from 'react';
+import Editor from '@monaco-editor/react';
+
+const CodeEditor = ({ 
+  initialCode = "# Write your Python code here\nprint('Hello from FastAPI backend!')",
+  title = "Python Code Editor",
+  height = "400px",
+  readOnly = false,
+  onCodeChange = null
+}) => {
+  // State management
+  const [code, setCode] = useState(initialCode);
+  const [output, setOutput] = useState('');
+  const [error, setError] = useState('');
+  const [isRunning, setIsRunning] = useState(false);
+  const [executionTime, setExecutionTime] = useState(null);
+  
+  // Editor reference
+  const editorRef = useRef(null);
+
+  /**
+   * Handle Monaco editor mounting
+   */
+  const handleEditorDidMount = (editor, monaco) => {
+    editorRef.current = editor;
+    
+    // Configure editor
+    editor.updateOptions({
+      fontSize: 14,
+      minimap: { enabled: false },
+      scrollBeyondLastLine: false,
+      automaticLayout: true,
+    });
+
+    // Add keyboard shortcut for running code
+    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+      if (!isRunning) {
+        runCode();
+      }
+    });
+  };
+
+  /**
+   * Handle code changes in the editor
+   */
+  const handleCodeChange = (value) => {
+    const newCode = value || '';
+    setCode(newCode);
+    
+    // Notify parent component if callback provided
+    if (onCodeChange) {
+      onCodeChange(newCode);
+    }
+  };
+
+  /**
+   * Execute code via FastAPI backend
+   */
+  const runCode = async () => {
+    if (!code.trim()) {
+      setError('No code to execute');
+      return;
+    }
+
+    setIsRunning(true);
+    setOutput('');
+    setError('');
+    setExecutionTime(null);
+
+    const startTime = Date.now();
+
+    try {
+      const response = await fetch('/api/execute-code', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          code: code,
+          timeout: 10  // 10 second timeout
+        }),
+      });
+
+      const endTime = Date.now();
+      setExecutionTime(endTime - startTime);
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+
+      const result = await response.json();
+
+      if (result.success) {
+        setOutput(result.output || '(No output)');
+        setError('');
+      } else {
+        setOutput('');
+        setError(result.error || 'Unknown execution error');
+      }
+
+    } catch (err) {
+      const endTime = Date.now();
+      setExecutionTime(endTime - startTime);
+      
+      setOutput('');
+      setError(`Network/Server Error: ${err.message}`);
+    } finally {
+      setIsRunning(false);
+    }
+  };
+
+  /**
+   * Clear output and errors
+   */
+  const clearOutput = () => {
+    setOutput('');
+    setError('');
+    setExecutionTime(null);
+  };
+
+  /**
+   * Reset code to initial state
+   */
+  const resetCode = () => {
+    setCode(initialCode);
+    clearOutput();
+  };
+
+  return (
+    <div className="code-editor-container">
+      {/* Header */}
+      <div className="editor-header">
+        <h3>{title}</h3>
+        <div className="header-info">
+          {executionTime !== null && (
+            <span className="execution-time">
+              ⏱️ {executionTime}ms
+            </span>
+          )}
+          <span className="backend-status">
+            🔗 FastAPI Backend
+          </span>
+        </div>
+      </div>
+
+      {/* Monaco Editor */}
+      <div className="editor-wrapper">
+        <Editor
+          height={height}
+          defaultLanguage="python"
+          value={code}
+          onChange={handleCodeChange}
+          onMount={handleEditorDidMount}
+          options={{
+            readOnly: readOnly,
+            theme: 'vs-dark',
+            automaticLayout: true,
+          }}
+        />
+      </div>
+
+      {/* Control buttons */}
+      <div className="editor-controls">
+        <button 
+          onClick={runCode}
+          disabled={isRunning || readOnly}
+          className={`run-button ${isRunning ? 'running' : ''}`}
+        >
+          {isRunning ? '⏳ Running...' : '▶️ Run Code'}
+        </button>
+        
+        <button onClick={clearOutput} className="clear-button">
+          🗑️ Clear Output
+        </button>
+        
+        <button onClick={resetCode} className="reset-button">
+          🔄 Reset Code
+        </button>
+        
+        <small className="keyboard-hint">
+          Tip: Ctrl+Enter (Cmd+Enter) to run
+        </small>
+      </div>
+
+      {/* Output section */}
+      <div className="output-section">
+        {/* Success output */}
+        {output && (
+          <div className="output-box">
+            <h4>✅ Output:</h4>
+            <pre className="output-content">{output}</pre>
+          </div>
+        )}
+
+        {/* Error output */}
+        {error && (
+          <div className="error-box">
+            <h4>❌ Error:</h4>
+            <pre className="error-content">{error}</pre>
+          </div>
+        )}
+
+        {/* Running indicator */}
+        {isRunning && (
+          <div className="running-box">
+            <p>🐍 Executing Python code on FastAPI backend...</p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default CodeEditor;
+----------------------------------------
+File: ./src/App.test.js
+----------------------------------------
+import { render, screen } from '@testing-library/react';
+import App from './App';
+
+test('renders learn react link', () => {
+  render(<App />);
+  const linkElement = screen.getByText(/learn react/i);
+  expect(linkElement).toBeInTheDocument();
+});
+
+----------------------------------------
+File: ./src/setupTests.js
+----------------------------------------
+// jest-dom adds custom jest matchers for asserting on DOM nodes.
+// allows you to do things like:
+// expect(element).toHaveTextContent(/react/i)
+// learn more: https://github.com/testing-library/jest-dom
+import '@testing-library/jest-dom';
+
+----------------------------------------
+File: ./src/App.js
+----------------------------------------
+/**
+ * App.js
+ * Phase 1 test interface for CodeEditor + FastAPI integration
+ * Tests the infrastructure that will be used with LangGraph
+ */
+
+import React, { useState, useEffect } from 'react';
+import CodeEditor from './components/CodeEditor';
+import './App.css';
+
+function App() {
+  // State for test scenarios and backend status
+  const [currentTest, setCurrentTest] = useState('basic');
+  const [backendStatus, setBackendStatus] = useState('unknown');
+  const [testSamples, setTestSamples] = useState({});
+  const [backendInfo, setBackendInfo] = useState(null);
+
+  // Test backend connectivity on component mount
+  useEffect(() => {
+    checkBackendHealth();
+    loadTestSamples();
+    loadBackendInfo();
+  }, []);
+
+  /**
+   * Check if FastAPI backend is healthy
+   */
+  const checkBackendHealth = async () => {
+    try {
+      const response = await fetch('/api/health');
+      const data = await response.json();
+      
+      if (response.ok && data.status === 'healthy') {
+        setBackendStatus('healthy');
+      } else {
+        setBackendStatus('unhealthy');
+      }
+    } catch (error) {
+      setBackendStatus('error');
+      console.error('Backend health check failed:', error);
+    }
+  };
+
+  /**
+   * Load test samples from backend
+   */
+  const loadTestSamples = async () => {
+    try {
+      const response = await fetch('/api/test-samples');
+      const data = await response.json();
+      setTestSamples(data.samples || {});
+    } catch (error) {
+      console.error('Failed to load test samples:', error);
+      // Fallback samples
+      setTestSamples({
+        basic: {
+          title: "Basic Python",
+          code: "print('Hello, World!')\nx = 5 + 3\nprint(f'5 + 3 = {x}')"
+        }
+      });
+    }
+  };
+
+  /**
+   * Load backend info
+   */
+  const loadBackendInfo = async () => {
+    try {
+      const response = await fetch('/');
+      const data = await response.json();
+      setBackendInfo(data);
+    } catch (error) {
+      console.error('Failed to load backend info:', error);
+    }
+  };
+
+  /**
+   * Get status indicator component
+   */
+  const getStatusIndicator = () => {
+    switch (backendStatus) {
+      case 'healthy':
+        return <span className="status healthy">✅ Backend Healthy</span>;
+      case 'unhealthy':
+        return <span className="status unhealthy">⚠️ Backend Issues</span>;
+      case 'error':
+        return <span className="status error">❌ Backend Error</span>;
+      default:
+        return <span className="status unknown">🔄 Checking...</span>;
+    }
+  };
+
+  return (
+    <div className="App">
+      {/* Header */}
+      <header className="app-header">
+        <h1>🚀 Mini Course Generator - Phase 1</h1>
+        <p>Testing CodeEditor + FastAPI + Python Execution Integration</p>
+        <div className="backend-status">
+          {getStatusIndicator()}
+          {backendInfo && (
+            <span className="backend-version">
+              v{backendInfo.version} | {backendInfo.phase}
+            </span>
+          )}
+        </div>
+      </header>
+
+      {/* Backend connection warning */}
+      {backendStatus !== 'healthy' && (
+        <div className="connection-warning">
+          <h3>⚠️ Backend Connection Issue</h3>
+          <p>
+            Make sure the FastAPI backend is running on port 8000:
+          </p>
+          <code>cd backend && python main.py</code>
+          <button onClick={checkBackendHealth} className="retry-button">
+            🔄 Retry Connection
+          </button>
+        </div>
+      )}
+
+      {/* Test scenario selector */}
+      <div className="test-selector">
+        <h3>Choose Test Scenario:</h3>
+        <div className="scenario-buttons">
+          {Object.entries(testSamples).map(([key, sample]) => (
+            <button
+              key={key}
+              onClick={() => setCurrentTest(key)}
+              className={`scenario-button ${currentTest === key ? 'active' : ''}`}
+            >
+              {sample.title}
+            </button>
+          ))}
+        </div>
+        
+        {testSamples[currentTest] && (
+          <p className="scenario-description">
+            <strong>Testing:</strong> {testSamples[currentTest].title}
+          </p>
+        )}
+      </div>
+
+      {/* Main code editor */}
+      <div className="editor-section">
+        {testSamples[currentTest] && (
+          <CodeEditor
+            key={currentTest} // Force re-render when test changes
+            title={testSamples[currentTest].title}
+            initialCode={testSamples[currentTest].code}
+            height="500px"
+          />
+        )}
+      </div>
+
+      {/* Phase 1 validation checklist */}
+      <div className="validation-section">
+        <h3>🧪 Phase 1 Validation Checklist</h3>
+        <div className="checklist">
+          <label>
+            <input type="checkbox" />
+            Backend health check passes (✅ status above)
+          </label>
+          <label>
+            <input type="checkbox" />
+            Basic Python code executes successfully
+          </label>
+          <label>
+            <input type="checkbox" />
+            Print statements appear in output
+          </label>
+          <label>
+            <input type="checkbox" />
+            Error handling works (try the error test)
+          </label>
+          <label>
+            <input type="checkbox" />
+            Execution timeout prevents infinite loops
+          </label>
+          <label>
+            <input type="checkbox" />
+            Security sanitization blocks dangerous imports
+          </label>
+          <label>
+            <input type="checkbox" />
+            Monaco Editor syntax highlighting works
+          </label>
+          <label>
+            <input type="checkbox" />
+            Ctrl+Enter keyboard shortcut functions
+          </label>
+        </div>
+
+        <div className="next-phase">
+          <h4>✅ After Phase 1 Validation:</h4>
+          <ul>
+            <li>✅ <strong>Proven:</strong> CodeEditor ↔ FastAPI ↔ Python execution works</li>
+            <li>➡️ <strong>Ready for:</strong> Phase 2 - Add LangGraph content generation</li>
+            <li>🔧 <strong>Foundation:</strong> This infrastructure becomes LangGraph tools</li>
+          </ul>
+        </div>
+      </div>
+
+      {/* Technical stack info */}
+      <footer className="tech-stack">
+        <h4>🔧 Phase 1 Stack</h4>
+        <div className="stack-grid">
+          <div className="stack-item">
+            <strong>Frontend:</strong>
+            <ul>
+              <li>React 18</li>
+              <li>Monaco Editor</li>
+              <li>Fetch API</li>
+            </ul>
+          </div>
+          <div className="stack-item">
+            <strong>Backend:</strong>
+            <ul>
+              <li>FastAPI</li>
+              <li>Pydantic models</li>
+              <li>subprocess execution</li>
+            </ul>
+          </div>
+          <div className="stack-item">
+            <strong>Security:</strong>
+            <ul>
+              <li>Code sanitization</li>
+              <li>Execution timeouts</li>
+              <li>Limited environment</li>
+            </ul>
+          </div>
+          <div className="stack-item">
+            <strong>Phase 2 Ready:</strong>
+            <ul>
+              <li>LangGraph integration</li>
+              <li>Dynamic content</li>
+              <li>Tool orchestration</li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+export default App;
+----------------------------------------
