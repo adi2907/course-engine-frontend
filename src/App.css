@@ -1399,3 +1399,288 @@ button {
     gap: 10px;
   }
 }
+
+/* Tab Navigation */
+.input-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 30px;
+  background: #f1f5f9;
+  border-radius: 12px;
+  padding: 6px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.tab-button:hover:not(:disabled) {
+  color: #374151;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.tab-button.active {
+  background: white;
+  color: #4f46e5;
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.15);
+  font-weight: 600;
+}
+
+.tab-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Tab Content */
+.tab-content {
+  min-height: 300px;
+}
+
+/* PDF Tab */
+.pdf-tab {
+  padding: 20px 0;
+}
+
+.upload-area {
+  border: 3px dashed #d1d5db;
+  border-radius: 16px;
+  padding: 40px 20px;
+  max-width: 500px;
+  margin: 0 auto;
+  transition: all 0.2s ease;
+}
+
+.upload-area:hover {
+  border-color: #9ca3af;
+  background: rgba(249, 250, 251, 0.5);
+}
+
+.upload-icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.upload-area h3 {
+  color: #374151;
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+}
+
+.upload-area p {
+  color: #6b7280;
+  margin-bottom: 25px;
+  font-size: 1rem;
+}
+
+.upload-button {
+  display: inline-block;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: white;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.25);
+}
+
+.upload-button:hover {
+  background: linear-gradient(135deg, #4338ca, #6d28d9);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.35);
+}
+
+.uploaded-file {
+  margin-top: 15px;
+  padding: 10px 15px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  color: #166534;
+  font-size: 0.9rem;
+}
+
+/* YouTube Tab */
+.youtube-tab {
+  padding: 20px 0;
+}
+
+.youtube-input-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.youtube-icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.youtube-input-container h3 {
+  color: #374151;
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+}
+
+.youtube-input-container p {
+  color: #6b7280;
+  margin-bottom: 25px;
+  font-size: 1rem;
+}
+
+.youtube-input {
+  width: 100%;
+  padding: 16px 20px;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  transition: border-color 0.2s ease;
+}
+
+.youtube-input:focus {
+  outline: none;
+  border-color: #ef4444;
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+}
+
+.youtube-example {
+  margin-top: 20px;
+  padding: 15px;
+  background: #fef3c7;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.example-url {
+  background: none;
+  border: none;
+  color: #1d4ed8;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: inherit;
+  padding: 0;
+  margin-left: 5px;
+}
+
+.example-url:hover {
+  color: #1e40af;
+}
+
+/* Demo Notes */
+.demo-note {
+  margin-top: 15px;
+  padding: 10px 15px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  color: #1e40af;
+  font-size: 0.85rem;
+}
+
+/* Processing States */
+.processing-content {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.processing-spinner {
+  margin-bottom: 25px;
+}
+
+.processing-content h3 {
+  color: #374151;
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+.processing-content p {
+  color: #6b7280;
+  font-size: 1.1rem;
+}
+
+.extracted-topic {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.success-icon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.extracted-topic h3 {
+  color: #059669;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.detected-topic {
+  background: #f0fdf4;
+  border: 2px solid #bbf7d0;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 500px;
+}
+
+.detected-topic .label {
+  display: block;
+  color: #166534;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detected-topic .topic {
+  display: block;
+  color: #059669;
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.extracted-topic p {
+  color: #6b7280;
+  font-size: 1rem;
+  margin-top: 15px;
+}
+
+/* UPDATE the responsive section by adding these rules */
+@media (max-width: 768px) {
+  /* Add these to your existing @media rules */
+  
+  .input-tabs {
+    max-width: 100%;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .tab-button {
+    padding: 14px 20px;
+    font-size: 1rem;
+  }
+  
+  .upload-area {
+    padding: 30px 15px;
+  }
+  
+  .youtube-input-container {
+    max-width: 100%;
+  }
+}

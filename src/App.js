@@ -5,6 +5,7 @@
 
 import React, { useState, useEffect } from 'react';
 import ContentRenderer from './components/ContentRenderer';
+import TopicInputSection from './components/TopicInputSection';
 import './App.css';
 
 // Generate random user ID
@@ -48,8 +49,8 @@ function App() {
   /**
    * Start a new learning module
    */
-  const startModule = async () => {
-    if (!topicInput.trim()) {
+  const startModule = async (topic = topicInput) => {
+    if (!topic || !topic.trim()) {
       setError('Please enter a topic to learn');
       return;
     }
@@ -65,7 +66,7 @@ function App() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          topic: topicInput.trim(),
+          topic: topic.trim(),
           user_id: userId
         }),
       });
@@ -226,55 +227,11 @@ function App() {
 
       {/* Main content */}
       {!structuredContent ? (
-        // Topic input screen
-        <div className="topic-input-section">
-          <h2>What would you like to master today?</h2>
-          <div className="topic-input-container">
-            <input
-              type="text"
-              value={topicInput}
-              onChange={(e) => setTopicInput(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && !loading && startModule()}
-              placeholder="e.g., Python functions, Project management, React hooks..."
-              className="topic-input"
-              disabled={loading}
-            />
-            <button 
-              onClick={startModule}
-              disabled={loading || !topicInput.trim()}
-              className="start-button"
-            >
-              {loading ? 'Creating Your Module...' : 'Start Learning'}
-            </button>
-          </div>
-          
-          {/* Example topics */}
-            <div className="example-topics">
-              <h4>Popular learning topics:</h4>
-              <div className="topic-examples">
-                {[
-                  'Python list comprehensions',
-                  'Agile project management', 
-                  'JavaScript async/await',
-                  'Database normalization',
-                  'Team leadership skills',
-                  'Machine learning basics',
-                  'React state management',
-                  'SQL query optimization'
-                ].map((topic, index) => (
-                  <button 
-                    key={index}
-                    onClick={() => setTopicInput(topic)}
-                    className="example-topic"
-                    disabled={loading}
-                    type="button"
-                  >
-                    {topic}
-                  </button>
-                ))}
-              </div>
-            </div>
-        </div>
+        // Topic input screen with tabs
+        <TopicInputSection 
+          loading={loading}
+          onStartModule={startModule}
+        />
       ) : (
         // Active module interface
         <div className="module-interface">

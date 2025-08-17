@@ -1,5 +1,5 @@
 Repository Source Code Contents
-Generated on: Sun Aug 17 23:42:56 IST 2025
+Generated on: Mon Aug 18 01:22:37 IST 2025
 ----------------------------------------
 File: ./README.md
 ----------------------------------------
@@ -283,8 +283,8 @@ export default reportWebVitals;
 File: ./src/App.css
 ----------------------------------------
 /**
- * App.css - MVP Styling for LangGraph Integration
- * Clean, professional styling for learning interface
+ * App.css - Enhanced Styling for DeepCoach
+ * Better typography, containers, and visual hierarchy
  */
 
 /* Global styles */
@@ -300,9 +300,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #f8fafc;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: #2d3748;
   line-height: 1.6;
+  font-size: 16px; /* Base font size */
 }
 
 .App {
@@ -314,24 +315,32 @@ body {
 /* Header styling */
 .app-header {
   text-align: center;
-  margin-bottom: 30px;
-  padding: 40px;
-  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-  color: white;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
+  margin-bottom: 40px;
+  padding: 50px 40px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #1a202c;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
 }
 
 .app-header h1 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-  font-weight: 700;
+  font-size: 3.5rem;
+  margin-bottom: 15px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
 }
 
 .app-header p {
-  font-size: 1.2rem;
-  opacity: 0.9;
-  margin-bottom: 20px;
+  font-size: 1.4rem;
+  opacity: 0.8;
+  margin-bottom: 25px;
+  font-weight: 500;
+  color: #4a5568;
 }
 
 .backend-status {
@@ -340,605 +349,659 @@ body {
   gap: 20px;
   align-items: center;
   flex-wrap: wrap;
+  margin-top: 20px;
 }
 
 .status {
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-size: 0.9rem;
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-size: 1rem;
   font-weight: 600;
 }
 
 .status.healthy {
-  background: rgba(34, 197, 94, 0.2);
-  color: #15803d;
-  border: 1px solid rgba(34, 197, 94, 0.3);
+  background: #22c55e;
+  color: white;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
 }
 
 .status.unhealthy {
-  background: rgba(245, 158, 11, 0.2);
-  color: #d97706;
-  border: 1px solid rgba(245, 158, 11, 0.3);
+  background: #f59e0b;
+  color: white;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
 }
 
 .status.error {
-  background: rgba(239, 68, 68, 0.2);
-  color: #dc2626;
-  border: 1px solid rgba(239, 68, 68, 0.3);
+  background: #ef4444;
+  color: white;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
 }
 
 .status.unknown {
-  background: rgba(156, 163, 175, 0.2);
-  color: #6b7280;
-  border: 1px solid rgba(156, 163, 175, 0.3);
+  background: #6b7280;
+  color: white;
+  box-shadow: 0 4px 12px rgba(107, 114, 128, 0.3);
 }
 
 .user-id {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 4px 12px;
-  border-radius: 12px;
-  font-size: 0.85rem;
+  background: #6366f1;
+  color: white;
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
 }
 
 /* Connection warning */
 .connection-warning {
-  background: #fef3c7;
-  border: 1px solid #f59e0b;
-  border-radius: 12px;
-  padding: 20px;
+  background: rgba(254, 243, 199, 0.95);
+  border: 2px solid #f59e0b;
+  border-radius: 16px;
+  padding: 25px;
   margin-bottom: 30px;
   text-align: center;
+  backdrop-filter: blur(10px);
 }
 
 .connection-warning h3 {
   color: #92400e;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  font-size: 1.3rem;
 }
 
 .connection-warning p {
   color: #78350f;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
 }
 
+/* Retry Button */
 .retry-button {
-  background: #f59e0b;
+  background: #dc2626;
   color: white;
   border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
+  padding: 12px 24px;
+  border-radius: 8px;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.2);
+  letter-spacing: 0.3px;
 }
 
 .retry-button:hover {
-  background: #d97706;
+  background: #b91c1c;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
 }
 
 /* Error banner */
 .error-banner {
-  background: #fee2e2;
-  border: 1px solid #fca5a5;
-  border-radius: 12px;
-  padding: 15px;
-  margin-bottom: 20px;
+  background: rgba(254, 242, 242, 0.95);
+  border: 2px solid #f87171;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 25px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  backdrop-filter: blur(10px);
 }
 
 .error-banner p {
   color: #dc2626;
   margin: 0;
+  font-size: 1.1rem;
+  font-weight: 500;
 }
 
-.close-error {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  color: #dc2626;
-  cursor: pointer;
-  padding: 0 5px;
-}
 
 /* Topic input section */
 .topic-input-section {
-  background: white;
-  border-radius: 16px;
-  padding: 40px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 50px 40px;
   text-align: center;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e5e7eb;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
 }
 
 .topic-input-section h2 {
   margin-bottom: 30px;
   color: #1f2937;
-  font-size: 2rem;
+  font-size: 2.2rem;
+  font-weight: 700;
 }
 
 .topic-input-container {
   display: flex;
   gap: 15px;
-  margin-bottom: 30px;
-  max-width: 600px;
+  margin-bottom: 35px;
+  max-width: 700px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .topic-input {
   flex: 1;
-  padding: 15px;
+  padding: 18px 20px;
   border: 2px solid #e5e7eb;
   border-radius: 12px;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   transition: border-color 0.2s ease;
 }
 
 .topic-input:focus {
   outline: none;
-  border-color: #4f46e5;
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+  border-color: #667eea;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
 }
 
+/* Start Learning Button */
 .start-button {
-  background: #4f46e5;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
   color: white;
   border: none;
-  padding: 15px 30px;
-  border-radius: 12px;
+  padding: 16px 32px;
+  border-radius: 8px;
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
   white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.25);
+  letter-spacing: 0.5px;
+  text-transform: none;
 }
 
 .start-button:hover:not(:disabled) {
-  background: #4338ca;
+  background: linear-gradient(135deg, #4338ca, #6d28d9);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.35);
 }
 
 .start-button:disabled {
   background: #9ca3af;
   cursor: not-allowed;
   transform: none;
+  box-shadow: 0 2px 8px rgba(156, 163, 175, 0.2);
 }
 
-/* Example topics */
-.example-topics {
-  margin-top: 30px;
-}
-
-.example-topics h4 {
-  margin-bottom: 15px;
-  color: #6b7280;
-}
-
-.topic-examples {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.example-topic {
-  background: #f3f4f6;
-  border: 1px solid #d1d5db;
-  border-radius: 20px;
-  padding: 8px 16px;
-  font-size: 0.9rem;
+/* Start New Button (completion screen) */
+.start-new-button {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: white;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.25);
+  letter-spacing: 0.5px;
 }
 
-.example-topic:hover:not(:disabled) {
-  background: #e5e7eb;
-  border-color: #9ca3af;
+.start-new-button:hover {
+  background: linear-gradient(135deg, #4338ca, #6d28d9);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.35);
 }
 
-.example-topic:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-/* Module interface */
-.module-interface {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
 
 /* Progress header */
 .progress-header {
-  background: white;
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 16px;
-  padding: 25px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e5e7eb;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 25px;
+  backdrop-filter: blur(10px);
 }
 
 .progress-info h2 {
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   color: #1f2937;
+  font-size: 1.8rem;
+  font-weight: 700;
 }
 
 .progress-info p {
   color: #6b7280;
   margin: 0;
+  font-size: 1.1rem;
+  font-weight: 500;
 }
 
 .progress-bar-container {
   flex: 1;
-  max-width: 300px;
+  max-width: 350px;
+  margin: 0 20px;
 }
 
 .progress-stats {
   text-align: center;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   font-weight: 600;
   color: #374151;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .progress-bar {
   background: #e5e7eb;
-  border-radius: 10px;
-  height: 8px;
+  border-radius: 12px;
+  height: 12px;
   overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .progress-fill {
-  background: linear-gradient(90deg, #4f46e5, #7c3aed);
+  background: linear-gradient(90deg, #667eea, #764ba2);
   height: 100%;
-  border-radius: 10px;
+  border-radius: 12px;
   transition: width 0.3s ease;
+  position: relative;
 }
 
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* New Topic Button */
 .new-topic-button {
-  background: #6b7280;
+  background: #374151;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 12px 24px;
   border-radius: 8px;
   cursor: pointer;
-  font-weight: 500;
-  transition: background 0.2s ease;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(55, 65, 81, 0.2);
+  letter-spacing: 0.3px;
 }
 
 .new-topic-button:hover {
-  background: #4b5563;
+  background: #111827;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(55, 65, 81, 0.3);
 }
 
 /* Content area */
 .content-area {
-  background: white;
-  border-radius: 16px;
-  padding: 30px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e5e7eb;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
 }
 
 /* Content sections */
 .content-section h3 {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   color: #1f2937;
-  font-size: 1.5rem;
+  font-size: 2.2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
-.explanation-text p,
-.scenario-description p,
-.exercise-description p,
-.quiz-questions p {
+/* EXPLANATION CONTENT STYLING */
+.explanation-overview {
+  background: linear-gradient(135deg, #ebf8ff, #f0fff4);
+  border: 2px solid #3182ce;
+  border-radius: 15px;
+  padding: 25px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 25px rgba(49, 130, 206, 0.1);
+}
+
+.explanation-overview strong {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #2b6cb0;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.explanation-overview p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #2d3748;
+  margin: 0;
+}
+
+.key-concepts {
+  background: linear-gradient(135deg, #fef5e7, #f7fafc);
+  border: 2px solid #ed8936;
+  border-radius: 15px;
+  padding: 25px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 25px rgba(237, 137, 54, 0.1);
+}
+
+.key-concepts h4 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #c05621;
   margin-bottom: 15px;
+}
+
+.key-concepts ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.key-concepts li {
+  font-size: 1.05rem;
+  padding: 8px 0;
+  color: #2d3748;
+  position: relative;
+  padding-left: 25px;
+}
+
+.key-concepts li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #38a169;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.detailed-explanation {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #2d3748;
+  margin-bottom: 30px;
+}
+
+.detailed-explanation p {
+  margin-bottom: 20px;
+}
+
+.examples-section {
+  background: linear-gradient(135deg, #fffbf0, #fef5e7);
+  border: 2px solid #f6ad55;
+  border-radius: 15px;
+  padding: 25px;
+  margin: 25px 0;
+  box-shadow: 0 8px 25px rgba(246, 173, 85, 0.1);
+}
+
+.examples-section h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #c05621;
+  margin-bottom: 15px;
+}
+
+.examples-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.examples-section li {
+  font-size: 1.05rem;
+  padding: 8px 0;
+  color: #2d3748;
+  position: relative;
+  padding-left: 25px;
+}
+
+.examples-section li::before {
+  content: '💡';
+  position: absolute;
+  left: 0;
+  font-size: 1.1rem;
+}
+
+.why-matters, .next-steps {
+  border-radius: 15px;
+  padding: 25px;
+  margin: 25px 0;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.why-matters {
+  background: linear-gradient(135deg, #f0fff4, #ebf8ff);
+  border: 2px solid #48bb78;
+}
+
+.next-steps {
+  background: linear-gradient(135deg, #ebf4ff, #e6fffa);
+  border: 2px solid #4299e1;
+}
+
+.why-matters h4, .next-steps h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #1a202c;
+}
+
+.why-matters p, .next-steps p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #2d3748;
+  margin: 0;
+}
+
+/* CODE EXERCISE STYLING */
+.exercise-description {
+  background: linear-gradient(135deg, #eff6ff, #f0f9ff);
+  border: 2px solid #3b82f6;
+  border-radius: 15px;
+  padding: 25px;
+  margin-bottom: 25px;
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.1);
+}
+
+.exercise-description strong {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.exercise-description p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #2d3748;
+  margin: 0;
+}
+
+.learning-objectives, .exercise-instructions {
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 15px;
+  padding: 25px;
+  margin: 20px 0;
+}
+
+.learning-objectives h4, .exercise-instructions h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 15px;
+}
+
+.learning-objectives ul, .exercise-instructions ol {
+  font-size: 1.05rem;
   line-height: 1.6;
-  color: #374151;
+  color: #2d3748;
+  padding-left: 20px;
+}
+
+.learning-objectives li, .exercise-instructions li {
+  margin-bottom: 8px;
+}
+
+.expected-output {
+  margin: 20px 0;
+}
+
+.expected-output h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 10px;
+}
+
+.output-example {
+  background: #1a202c;
+  color: #e2e8f0;
+  border-radius: 12px;
+  padding: 20px;
+  font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+  font-size: 1rem;
+  overflow-x: auto;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.test-cases {
+  margin: 20px 0;
+}
+
+.test-cases h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 15px;
+}
+
+.test-case {
+  background: #fef3c7;
+  border: 2px solid #fbbf24;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 10px 0;
+  font-family: 'Monaco', 'Menlo', monospace;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 15px rgba(251, 191, 36, 0.1);
+}
+
+.hints-section {
+  background: linear-gradient(135deg, #f0f9ff, #eff6ff);
+  border: 2px solid #60a5fa;
+  border-radius: 15px;
+  padding: 25px;
+  margin: 20px 0;
+  box-shadow: 0 8px 25px rgba(96, 165, 250, 0.1);
+}
+
+.hints-section h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  margin-bottom: 15px;
+}
+
+.hints-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.hints-section li {
+  font-size: 1.05rem;
+  padding: 8px 0;
+  color: #2d3748;
+  position: relative;
+  padding-left: 25px;
+}
+
+.hints-section li::before {
+  content: '💡';
+  position: absolute;
+  left: 0;
+  font-size: 1.1rem;
 }
 
 /* Response area */
 .response-area {
-  margin-top: 30px;
-  padding-top: 20px;
-  border-top: 1px solid #e5e7eb;
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 2px solid #e2e8f0;
 }
 
 .response-area h4 {
   margin-bottom: 15px;
   color: #374151;
+  font-size: 1.3rem;
+  font-weight: 700;
 }
 
 .response-textarea {
   width: 100%;
-  padding: 15px;
-  border: 2px solid #e5e7eb;
-  border-radius: 8px;
-  font-size: 1rem;
+  padding: 20px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 1.05rem;
   font-family: inherit;
   resize: vertical;
-  transition: border-color 0.2s ease;
+  transition: all 0.2s ease;
+  background: #f7fafc;
+  line-height: 1.6;
 }
 
 .response-textarea:focus {
   outline: none;
-  border-color: #4f46e5;
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+  border-color: #667eea;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+  background: white;
 }
 
+/* Continue/Submit Button */
 .submit-button {
-  background: #22c55e;
+  background: linear-gradient(135deg, #059669, #047857);
   color: white;
   border: none;
-  padding: 12px 24px;
+  padding: 14px 28px;
   border-radius: 8px;
   font-weight: 600;
+  font-size: 1rem;
   cursor: pointer;
-  margin-top: 15px;
+  margin-top: 16px;
   transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.25);
+  letter-spacing: 0.3px;
 }
 
 .submit-button:hover:not(:disabled) {
-  background: #16a34a;
+  background: linear-gradient(135deg, #047857, #065f46);
   transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(34, 197, 94, 0.3);
+  box-shadow: 0 6px 20px rgba(5, 150, 105, 0.35);
 }
 
 .submit-button:disabled {
   background: #9ca3af;
   cursor: not-allowed;
   transform: none;
-}
-
-/* Code editor enhancements */
-.code-editor-container {
-  background: white;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
-  border: 1px solid #e5e7eb;
-  margin-top: 20px;
-}
-
-.editor-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 25px;
-  background: #1e293b;
-  color: white;
-  border-bottom: 1px solid #334155;
-}
-
-.editor-header h3 {
-  margin: 0;
-  font-size: 1.3rem;
-  font-weight: 600;
-}
-
-.header-info {
-  display: flex;
-  gap: 15px;
-  align-items: center;
-  font-size: 0.9rem;
-}
-
-.execution-time {
-  background: rgba(34, 197, 94, 0.2);
-  color: #22c55e;
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-weight: 500;
-}
-
-.backend-status {
-  background: rgba(59, 130, 246, 0.2);
-  color: #3b82f6;
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-weight: 500;
-}
-
-.editor-wrapper {
-  border-bottom: 1px solid #e5e7eb;
-}
-
-.editor-controls {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  padding: 20px 25px;
-  background: #f8fafc;
-  border-bottom: 1px solid #e5e7eb;
-  flex-wrap: wrap;
-}
-
-.run-button {
-  background: #3b82f6;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.2s ease;
-}
-
-.run-button:hover:not(:disabled) {
-  background: #2563eb;
-  transform: translateY(-1px);
-}
-
-.run-button:disabled {
-  background: #9ca3af;
-  cursor: not-allowed;
-}
-
-.run-button.running {
-  background: #f59e0b;
-  animation: pulse 1.5s infinite;
-}
-
-.submit-code-button {
-  background: #22c55e;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.2s ease;
-  margin-left: auto;
-}
-
-.submit-code-button:hover:not(:disabled) {
-  background: #16a34a;
-  transform: translateY(-1px);
-}
-
-.submit-code-button:disabled {
-  background: #9ca3af;
-  cursor: not-allowed;
-}
-
-.clear-button, .reset-button {
-  background: #6b7280;
-  color: white;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 0.2s ease;
-}
-
-.clear-button:hover, .reset-button:hover {
-  background: #4b5563;
-}
-
-.keyboard-hint {
-  color: #6b7280;
-  font-style: italic;
-  font-size: 0.85rem;
-}
-
-.output-section {
-  padding: 25px;
-}
-
-.output-box, .error-box {
-  margin-bottom: 20px;
-}
-
-.output-box h4 {
-  margin-bottom: 12px;
-  color: #059669;
-  font-size: 1.1rem;
-  font-weight: 600;
-}
-
-.output-content {
-  background: #f0fdf4;
-  border: 1px solid #bbf7d0;
-  border-radius: 8px;
-  padding: 20px;
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-  font-size: 0.9rem;
-  color: #065f46;
-  white-space: pre-wrap;
-  overflow-x: auto;
-  max-height: 300px;
-  overflow-y: auto;
-  line-height: 1.5;
-}
-
-.error-box h4 {
-  margin-bottom: 12px;
-  color: #dc2626;
-  font-size: 1.1rem;
-  font-weight: 600;
-}
-
-.error-content {
-  background: #fef2f2;
-  border: 1px solid #fecaca;
-  border-radius: 8px;
-  padding: 20px;
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-  font-size: 0.9rem;
-  color: #991b1b;
-  white-space: pre-wrap;
-  overflow-x: auto;
-  max-height: 200px;
-  overflow-y: auto;
-  line-height: 1.5;
-}
-
-.running-box {
-  background: #eff6ff;
-  border: 1px solid #bfdbfe;
-  border-radius: 8px;
-  padding: 20px;
-  text-align: center;
-  color: #1d4ed8;
-  font-weight: 500;
-}
-
-.submission-guidance {
-  background: #f0f9ff;
-  border: 1px solid #bae6fd;
-  border-radius: 8px;
-  padding: 15px;
-  margin-top: 15px;
-}
-
-.submission-guidance p {
-  color: #0369a1;
-  margin: 0;
-}
-
-/* Completion section */
-.completion-section {
-  text-align: center;
-  padding: 40px 20px;
-}
-
-.completion-section h3 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #059669;
-}
-
-.completion-content {
-  background: #f0fdf4;
-  border: 1px solid #bbf7d0;
-  border-radius: 12px;
-  padding: 30px;
-  margin-bottom: 30px;
-  white-space: pre-wrap;
-  line-height: 1.6;
-  color: #065f46;
-}
-
-.start-new-button {
-  background: #4f46e5;
-  color: white;
-  border: none;
-  padding: 15px 30px;
-  border-radius: 12px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.start-new-button:hover {
-  background: #4338ca;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
+  box-shadow: 0 2px 8px rgba(156, 163, 175, 0.2);
 }
 
 /* Loading overlay */
@@ -948,256 +1011,41 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  backdrop-filter: blur(5px);
 }
 
 .loading-spinner {
   background: white;
-  border-radius: 16px;
-  padding: 40px;
+  border-radius: 20px;
+  padding: 50px;
   text-align: center;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 .spinner {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border: 4px solid #e5e7eb;
-  border-top: 4px solid #4f46e5;
+  border-top: 4px solid #667eea;
   border-radius: 50%;
   animation: spin 1s linear infinite;
-  margin: 0 auto 20px;
+  margin: 0 auto 25px;
+}
+
+.loading-spinner p {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #374151;
 }
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
-}
-
-/* Content-specific styling */
-.explanation-overview {
-  background: #f0f9ff;
-  border: 1px solid #bae6fd;
-  border-radius: 8px;
-  padding: 15px;
-  margin-bottom: 20px;
-}
-
-.key-concepts ul {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  padding: 15px;
-  margin-bottom: 20px;
-}
-
-.examples-section {
-  background: #fefce8;
-  border: 1px solid #fde047;
-  border-radius: 8px;
-  padding: 15px;
-  margin: 20px 0;
-}
-
-.why-matters, .next-steps {
-  margin: 20px 0;
-  padding: 15px;
-  background: #f0fdf4;
-  border-left: 4px solid #22c55e;
-  border-radius: 0 8px 8px 0;
-}
-
-.exercise-description {
-  background: #eff6ff;
-  border: 1px solid #bfdbfe;
-  border-radius: 8px;
-  padding: 15px;
-  margin-bottom: 20px;
-}
-
-.learning-objectives, .exercise-instructions {
-  margin: 15px 0;
-}
-
-.learning-objectives ul, .exercise-instructions ol {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  padding: 15px;
-}
-
-.expected-output {
-  margin: 15px 0;
-}
-
-.output-example {
-  background: #f3f4f6;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  padding: 10px;
-  font-family: 'Monaco', 'Menlo', monospace;
-  font-size: 0.9rem;
-}
-
-.test-cases {
-  margin: 15px 0;
-}
-
-.test-case {
-  background: #fef3c7;
-  border: 1px solid #fbbf24;
-  border-radius: 6px;
-  padding: 10px;
-  margin: 5px 0;
-  font-family: 'Monaco', 'Menlo', monospace;
-  font-size: 0.9rem;
-}
-
-.hints-section {
-  background: #f0f9ff;
-  border: 1px solid #bae6fd;
-  border-radius: 8px;
-  padding: 15px;
-  margin: 15px 0;
-}
-
-.hints-section ul {
-  margin: 10px 0 0 0;
-}
-
-.scenario-context, .situation, .your-role, .success-criteria {
-  margin: 15px 0;
-  padding: 15px;
-  background: #f8fafc;
-  border-left: 4px solid #6366f1;
-  border-radius: 0 8px 8px 0;
-}
-
-.characters {
-  margin: 15px 0;
-}
-
-.character {
-  background: #fef7ff;
-  border: 1px solid #e879f9;
-  border-radius: 8px;
-  padding: 10px;
-  margin: 5px 0;
-}
-
-.decision-points, .considerations {
-  margin: 15px 0;
-}
-
-.decision-points ul, .considerations ul {
-  background: #fefce8;
-  border: 1px solid #fde047;
-  border-radius: 8px;
-  padding: 15px;
-}
-
-.quiz-instructions {
-  background: #f0f9ff;
-  border: 1px solid #bae6fd;
-  border-radius: 8px;
-  padding: 15px;
-  margin-bottom: 20px;
-}
-
-.quiz-question {
-  background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  padding: 20px;
-  margin: 15px 0;
-}
-
-.quiz-question h4 {
-  margin-bottom: 10px;
-  color: #374151;
-}
-
-.quiz-options {
-  margin-top: 15px;
-}
-
-.quiz-option {
-  display: block;
-  padding: 8px 12px;
-  margin: 5px 0;
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-
-.quiz-option:hover {
-  background: #f3f4f6;
-}
-
-.quiz-option input {
-  margin-right: 10px;
-}
-
-.completion-section {
-  text-align: center;
-  padding: 40px 20px;
-}
-
-.completion-message {
-  background: #f0fdf4;
-  border: 1px solid #bbf7d0;
-  border-radius: 12px;
-  padding: 30px;
-  margin-bottom: 20px;
-  font-size: 1.2rem;
-  color: #065f46;
-}
-
-.completion-summary {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  padding: 25px;
-  margin-bottom: 30px;
-  text-align: left;
-  line-height: 1.6;
-}
-
-.debug-info {
-  margin-top: 30px;
-  padding: 20px;
-  background: #1f2937;
-  color: #e5e7eb;
-  border-radius: 8px;
-  font-family: 'Monaco', 'Menlo', monospace;
-  font-size: 0.8rem;
-}
-
-.debug-info summary {
-  cursor: pointer;
-  padding: 10px;
-  background: #374151;
-  border-radius: 4px;
-  margin-bottom: 10px;
-}
-
-.debug-info pre {
-  max-height: 300px;
-  overflow-y: auto;
-  padding: 10px;
-  background: #111827;
-  border-radius: 4px;
 }
 
 /* Responsive design */
@@ -1207,7 +1055,11 @@ body {
   }
   
   .app-header h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
+  }
+  
+  .app-header p {
+    font-size: 1.2rem;
   }
   
   .topic-input-container {
@@ -1219,31 +1071,616 @@ body {
     align-items: stretch;
   }
   
-  .editor-controls {
-    flex-direction: column;
-    align-items: stretch;
+  .content-area {
+    padding: 25px;
   }
   
-  .keyboard-hint {
-    text-align: center;
+  .content-section h3 {
+    font-size: 1.8rem;
   }
   
   .backend-status {
     flex-direction: column;
     gap: 10px;
   }
+}
+
+/* Inline Code Blocks within Content */
+.inline-code-block {
+  background: #2d3748;
+  border: 1px solid #4a5568;
+  border-radius: 8px;
+  margin: 20px 0;
+  overflow: hidden;
+}
+
+.inline-code-block .code-content {
+  padding: 16px 20px;
+  font-family: 'Monaco', 'Menlo', 'Consolas', 'Source Code Pro', monospace;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #e2e8f0;
+  background: #2d3748;
+  margin: 0;
+  overflow-x: auto;
+  white-space: pre;
+  border: none;
+}
+
+.inline-code-block .code-content code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  font-size: inherit;
+  border: none;
+}
+
+/* Remove the complex header styling */
+.inline-code-block .code-header {
+  display: none;
+}
+
+/* Simplified Output Example Container */
+.output-example-container {
+  background: #1a202c;
+  border: 1px solid #2d3748;
+  border-radius: 8px;
+  margin: 15px 0;
+}
+
+.output-example-container .code-header {
+  display: none;
+}
+
+.output-example-container .output-example {
+  background: #1a202c;
+  color: #68d391;
+  border: none;
+  border-radius: 8px;
+  padding: 16px 20px;
+  font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+  font-size: 0.95rem;
+  margin: 0;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+/* Keep inline code simple */
+.inline-code, code {
+  background: #f1f5f9;
+  color: #1e293b;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Monaco', 'Menlo', 'Consolas', 'Source Code Pro', monospace;
+  font-size: 0.9em;
+  border: 1px solid #e2e8f0;
+}
+
+
+/* Formatted Content Container */
+.formatted-content {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #2d3748;
+}
+
+.formatted-content p {
+  margin-bottom: 16px;
+}
+
+/* Enhanced Labels for Better Structure */
+.overview-label, .exercise-label {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #2b6cb0;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.exercise-label {
+  color: #1d4ed8;
+}
+
+.overview-text, .exercise-text {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #2d3748;
+}
+
+/* Enhanced Output Example Container */
+.output-example-container {
+  background: #1a202c;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  margin: 15px 0;
+}
+
+.output-example-container .code-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: #2d3748;
+  border-bottom: 1px solid #4a5568;
+}
+
+.output-example-container .output-example {
+  background: #1a202c;
+  color: #22c55e;
+  border: none;
+  border-radius: 0;
+  padding: 16px;
+  font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+  font-size: 0.95rem;
+  margin: 0;
+  box-shadow: none;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+
+/* Enhanced Test Cases */
+.test-case {
+  background: linear-gradient(135deg, #fef3c7, #fef7cd);
+  border: 2px solid #fbbf24;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 10px 0;
+  font-size: 1rem;
+  box-shadow: 0 4px 15px rgba(251, 191, 36, 0.1);
+}
+
+.test-case .inline-code {
+  background: #f59e0b;
+  color: white;
+  border: none;
+  font-weight: 600;
+}
+
+/* Improved Section Headers with Icons */
+.learning-objectives h4,
+.exercise-instructions h4,
+.expected-output h4,
+.test-cases h4,
+.hints-section h4 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 15px;
+}
+
+/* Enhanced Content Boxes with Better Labels */
+.explanation-overview, .exercise-description {
+  position: relative;
+}
+
+.key-concepts-box .key-concepts-title,
+.examples-box h4,
+.why-matters-box h4,
+.next-steps-box h4 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+/* Character Cards Enhancement */
+.character {
+  background: linear-gradient(135deg, #fef7ff, #f3e8ff);
+  border: 2px solid #c084fc;
+  border-radius: 12px;
+  padding: 15px;
+  margin: 8px 0;
+  box-shadow: 0 4px 15px rgba(192, 132, 252, 0.1);
+}
+
+.character strong {
+  color: #7c3aed;
+  font-size: 1.1rem;
+}
+
+/* Quiz Question Enhancement */
+.quiz-question {
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 25px;
+  margin: 20px 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.quiz-question h4 {
+  color: #1e293b;
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quiz-option {
+  display: block;
+  padding: 12px 15px;
+  margin: 8px 0;
+  background: #ffffff;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1.05rem;
+}
+
+.quiz-option:hover {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+  transform: translateX(4px);
+}
+
+.quiz-option input {
+  margin-right: 12px;
+  transform: scale(1.2);
+}
+
+/* Responsive adjustments for code blocks */
+@media (max-width: 768px) {
+  .inline-code-block .code-content {
+    font-size: 0.85rem;
+    padding: 15px;
+  }
+  
+  .inline-code-block .code-header {
+    padding: 12px 15px;
+  }
+  
+  .formatted-content {
+    font-size: 1.05rem;
+  }
+}
+
+/* Example topics section */
+.example-topics {
+  margin-top: 35px;
+  text-align: center;
+}
+
+.example-topics h4 {
+  margin-bottom: 20px;
+  color: #4a5568;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.topic-examples {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Example Topic Buttons */
+.example-topic {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.example-topic:hover:not(:disabled) {
+  background: #4f46e5;
+  color: white;
+  border-color: #4f46e5;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+}
+
+.example-topic:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #f1f5f9;
+  color: #94a3b8;
+}
+
+/* Responsive design for example topics */
+@media (max-width: 768px) {
+  .topic-examples {
+    gap: 8px;
+  }
+  
+  .example-topic {
+    font-size: 0.9rem;
+    padding: 8px 14px;
+    min-height: 36px;
+  }
+}
+
+/* Code Editor Buttons */
+.run-button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+}
+
+.run-button:hover:not(:disabled) {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.run-button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.run-button.running {
+  background: #f59e0b;
+  animation: pulse 1.5s infinite;
+}
+
+.submit-code-button {
+  background: #059669;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  margin-left: auto;
+  box-shadow: 0 2px 8px rgba(5, 150, 105, 0.2);
+}
+
+.submit-code-button:hover:not(:disabled) {
+  background: #047857;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+}
+
+.submit-code-button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.clear-button, .reset-button {
+  background: #6b7280;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(107, 114, 128, 0.2);
+}
+
+.clear-button:hover, .reset-button:hover {
+  background: #4b5563;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(107, 114, 128, 0.3);
+}
+
+/* Close error button */
+.close-error {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #dc2626;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.close-error:hover {
+  background: rgba(220, 38, 38, 0.1);
+}
+
+/* Remove any button focus outlines and add clean focus states */
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+/* Ensure all buttons have consistent typography */
+button {
+  font-family: inherit;
+  letter-spacing: 0.025em;
+}
+
+/* Code Editor Container */
+.code-editor-container {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+  border: 1px solid #e5e7eb;
+  margin-top: 20px;
+}
+
+.editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.editor-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.header-info {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+.execution-time {
+  background: rgba(34, 197, 94, 0.1);
+  color: #059669;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.backend-status {
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.editor-wrapper {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.editor-controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 16px 20px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e5e7eb;
+  flex-wrap: wrap;
+}
+
+.keyboard-hint {
+  color: #6b7280;
+  font-style: italic;
+  font-size: 0.8rem;
+  margin-left: auto;
+}
+
+.output-section {
+  padding: 20px;
+}
+
+.output-box, .error-box {
+  margin-bottom: 16px;
+}
+
+.output-box h4 {
+  margin-bottom: 8px;
+  color: #059669;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.output-content {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 6px;
+  padding: 16px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.9rem;
+  color: #065f46;
+  white-space: pre-wrap;
+  overflow-x: auto;
+  max-height: 300px;
+  overflow-y: auto;
+  line-height: 1.4;
+}
+
+.error-box h4 {
+  margin-bottom: 8px;
+  color: #dc2626;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.error-content {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  padding: 16px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.9rem;
+  color: #991b1b;
+  white-space: pre-wrap;
+  overflow-x: auto;
+  max-height: 200px;
+  overflow-y: auto;
+  line-height: 1.4;
+}
+
+.running-box {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 6px;
+  padding: 16px;
+  text-align: center;
+  color: #1d4ed8;
+  font-weight: 500;
+}
+
+.submission-guidance {
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 6px;
+  padding: 12px;
+  margin-top: 12px;
+}
+
+.submission-guidance p {
+  color: #0369a1;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Responsive design for code editor */
+@media (max-width: 768px) {
+  .editor-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  
+  .keyboard-hint {
+    text-align: center;
+    margin-left: 0;
+    margin-top: 8px;
+  }
   
   .header-info {
     flex-direction: column;
     gap: 8px;
+    align-items: flex-end;
   }
-
-  .characters, .quiz-question {
-    padding: 15px;
-  }
-
-  .completion-section {
-    padding: 20px 10px;
+  
+  .editor-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
   }
 }
 ----------------------------------------
@@ -1288,7 +1725,7 @@ code {
 File: ./src/components/ContentRenderer.jsx
 ----------------------------------------
 /**
- * ContentRenderer.jsx - Updated for Structured Backend Data
+ * ContentRenderer.jsx - Professional Version with Clean Styling
  * Renders different content types from LangGraph structured responses
  */
 
@@ -1320,19 +1757,79 @@ const ContentRenderer = ({
     }
   };
 
+  /**
+   * Parse text content and render code blocks simply
+   */
+  const renderFormattedContent = (content) => {
+    if (!content) return null;
+
+    // Split content by code blocks (looking for ```python or ``` patterns)
+    const parts = content.split(/(```[\s\S]*?```)/g);
+    
+    return parts.map((part, index) => {
+      // Check if this part is a code block
+      if (part.startsWith('```')) {
+        // Extract the code content (remove ``` markers)
+        const codeContent = part.replace(/```(\w+)?\n?/g, '').replace(/```$/g, '');
+        
+        return (
+          <div key={index} className="inline-code-block">
+            <pre className="code-content">
+              <code>{codeContent}</code>
+            </pre>
+          </div>
+        );
+      } else {
+        // Regular text content - convert newlines to <br> and handle inline code
+        const textWithLineBreaks = part
+          .split('\n')
+          .map((line, lineIndex) => (
+            <span key={lineIndex}>
+              {line}
+              {lineIndex < part.split('\n').length - 1 && <br />}
+            </span>
+          ));
+        
+        return <span key={index}>{textWithLineBreaks}</span>;
+      }
+    });
+  };
+
+  /**
+   * Render inline code snippets (single backticks)
+   */
+  const renderInlineCode = (text) => {
+    if (!text) return null;
+    
+    const parts = text.split(/(`[^`]+`)/g);
+    
+    return parts.map((part, index) => {
+      if (part.startsWith('`') && part.endsWith('`')) {
+        const codeContent = part.slice(1, -1); // Remove backticks
+        return (
+          <code key={index} className="inline-code">
+            {codeContent}
+          </code>
+        );
+      }
+      return part;
+    });
+  };
+
   switch (content_type) {
     case 'explanation':
       return (
         <div className="content-section explanation-content">
-          <h3>📚 {data.title}</h3>
+          <h3>Mastering {data.title?.replace(/^(📚\s*)?/g, '')}</h3>
           
           <div className="explanation-overview">
-            <p><strong>Overview:</strong> {data.overview}</p>
+            <div className="overview-label">Overview:</div>
+            <div className="overview-text">{data.overview}</div>
           </div>
 
-          <div className="key-concepts">
-            <h4>Key Concepts:</h4>
-            <ul>
+          <div className="key-concepts-box">
+            <div className="key-concepts-title">Key Concepts:</div>
+            <ul className="key-concepts-list">
               {data.key_concepts?.map((concept, index) => (
                 <li key={index}>{concept}</li>
               ))}
@@ -1340,26 +1837,28 @@ const ContentRenderer = ({
           </div>
 
           <div className="detailed-explanation">
-            <div dangerouslySetInnerHTML={{ __html: data.detailed_explanation?.replace(/\n/g, '<br />') }} />
+            <div className="formatted-content">
+              {renderFormattedContent(data.detailed_explanation)}
+            </div>
           </div>
 
           {data.examples && data.examples.length > 0 && (
-            <div className="examples-section">
+            <div className="examples-box">
               <h4>Examples:</h4>
               <ul>
                 {data.examples.map((example, index) => (
-                  <li key={index}>{example}</li>
+                  <li key={index}>{renderInlineCode(example)}</li>
                 ))}
               </ul>
             </div>
           )}
 
-          <div className="why-matters">
+          <div className="why-matters-box">
             <h4>Why This Matters:</h4>
             <p>{data.why_it_matters}</p>
           </div>
 
-          <div className="next-steps">
+          <div className="next-steps-box">
             <h4>Next Steps:</h4>
             <p>{data.next_steps}</p>
           </div>
@@ -1379,7 +1878,7 @@ const ContentRenderer = ({
               disabled={loading || !userResponse.trim()}
               className="submit-button"
             >
-              {loading ? '⏳ Processing...' : '➡️ Continue'}
+              {loading ? 'Processing...' : 'Continue'}
             </button>
           </div>
         </div>
@@ -1388,10 +1887,11 @@ const ContentRenderer = ({
     case 'code_exercise':
       return (
         <div className="content-section code-exercise-content">
-          <h3>💻 {data.title}</h3>
+          <h3>Coding Exercise: {data.title?.replace(/^(💻\s*)?/g, '')}</h3>
           
           <div className="exercise-description">
-            <p><strong>Problem:</strong> {data.problem_description}</p>
+            <div className="exercise-label">Problem:</div>
+            <div className="exercise-text">{data.problem_description}</div>
           </div>
 
           <div className="learning-objectives">
@@ -1415,7 +1915,9 @@ const ContentRenderer = ({
           {data.expected_output && (
             <div className="expected-output">
               <h4>Expected Output:</h4>
-              <pre className="output-example">{data.expected_output}</pre>
+              <div className="output-example-container">
+                <pre className="output-example">{data.expected_output}</pre>
+              </div>
             </div>
           )}
 
@@ -1424,7 +1926,7 @@ const ContentRenderer = ({
               <h4>Test Cases:</h4>
               {data.test_cases.map((testCase, index) => (
                 <div key={index} className="test-case">
-                  <strong>Input:</strong> {testCase.input} → <strong>Output:</strong> {testCase.output}
+                  <strong>Input:</strong> <code className="inline-code">{testCase.input}</code> → <strong>Output:</strong> <code className="inline-code">{testCase.output}</code>
                 </div>
               ))}
             </div>
@@ -1432,7 +1934,7 @@ const ContentRenderer = ({
 
           {data.hints && data.hints.length > 0 && (
             <div className="hints-section">
-              <h4>💡 Hints:</h4>
+              <h4>Hints:</h4>
               <ul>
                 {data.hints.map((hint, index) => (
                   <li key={index}>{hint}</li>
@@ -1459,7 +1961,7 @@ const ContentRenderer = ({
     case 'scenario':
       return (
         <div className="content-section scenario-content">
-          <h3>🎭 {data.title}</h3>
+          <h3>Business Scenario: {data.title?.replace(/^(🎭\s*)?/g, '')}</h3>
           
           <div className="scenario-context">
             <h4>Context:</h4>
@@ -1525,7 +2027,7 @@ const ContentRenderer = ({
               disabled={loading || !userResponse.trim()}
               className="submit-button"
             >
-              {loading ? '⏳ Evaluating...' : '📋 Submit Response'}
+              {loading ? 'Evaluating...' : 'Submit Response'}
             </button>
           </div>
         </div>
@@ -1534,7 +2036,7 @@ const ContentRenderer = ({
     case 'quiz':
       return (
         <div className="content-section quiz-content">
-          <h3>❓ {data.title}</h3>
+          <h3>Knowledge Check: {data.title?.replace(/^(❓\s*)?/g, '')}</h3>
           
           <div className="quiz-instructions">
             <p>{data.instructions}</p>
@@ -1577,7 +2079,7 @@ const ContentRenderer = ({
               disabled={loading}
               className="submit-button"
             >
-              {loading ? '⏳ Checking...' : '✅ Submit Answers'}
+              {loading ? 'Checking...' : 'Submit Answers'}
             </button>
           </div>
         </div>
@@ -1586,14 +2088,16 @@ const ContentRenderer = ({
     case 'completion':
       return (
         <div className="content-section completion-content">
-          <h3>🎉 {data.title}</h3>
+          <h3>Module Complete: {data.title?.replace(/^(🎉\s*)?/g, '')}</h3>
           <div className="completion-message">
             <p>{data.message}</p>
           </div>
           {data.summary && (
             <div className="completion-summary">
               <h4>Summary:</h4>
-              <div dangerouslySetInnerHTML={{ __html: data.summary.replace(/\n/g, '<br />') }} />
+              <div className="formatted-content">
+                {renderFormattedContent(data.summary)}
+              </div>
             </div>
           )}
         </div>
@@ -1602,7 +2106,7 @@ const ContentRenderer = ({
     default:
       return (
         <div className="content-section unknown-content">
-          <h3>❓ Unknown Content Type: {content_type}</h3>
+          <h3>Unknown Content Type: {content_type}</h3>
           <pre>{JSON.stringify(data, null, 2)}</pre>
           
           <div className="response-area">
@@ -1619,7 +2123,7 @@ const ContentRenderer = ({
               disabled={loading || !userResponse.trim()}
               className="submit-button"
             >
-              {loading ? '⏳ Processing...' : '➡️ Continue'}
+              {loading ? 'Processing...' : 'Continue'}
             </button>
           </div>
         </div>
@@ -1632,7 +2136,7 @@ export default ContentRenderer;
 File: ./src/components/CodeEditor.jsx
 ----------------------------------------
 /**
- * CodeEditor.jsx - Updated for LangGraph Integration
+ * CodeEditor.jsx - Professional Version with Clean Button Styling
  * Handles both code testing (Phase 1) and response submission (Phase 2)
  */
 
@@ -1799,11 +2303,11 @@ const CodeEditor = ({
         <div className="header-info">
           {executionTime !== null && (
             <span className="execution-time">
-              ⏱️ {executionTime}ms
+              {executionTime}ms
             </span>
           )}
           <span className="backend-status">
-            🔗 FastAPI + LangGraph
+            FastAPI + LangGraph
           </span>
         </div>
       </div>
@@ -1831,15 +2335,15 @@ const CodeEditor = ({
           disabled={isRunning || readOnly}
           className={`run-button ${isRunning ? 'running' : ''}`}
         >
-          {isRunning ? '⏳ Running...' : '▶️ Test Code'}
+          {isRunning ? 'Running...' : 'Test Code'}
         </button>
         
         <button onClick={clearOutput} className="clear-button">
-          🗑️ Clear Output
+          Clear Output
         </button>
         
         <button onClick={resetCode} className="reset-button">
-          🔄 Reset Code
+          Reset Code
         </button>
 
         {/* Submit button for LangGraph integration - NEW */}
@@ -1849,7 +2353,7 @@ const CodeEditor = ({
             disabled={loading || !code.trim()}
             className="submit-code-button"
           >
-            {loading ? '⏳ Submitting...' : '📤 Submit Solution'}
+            {loading ? 'Submitting...' : 'Submit Solution'}
           </button>
         )}
         
@@ -1866,7 +2370,7 @@ const CodeEditor = ({
         {/* Success output */}
         {output && (
           <div className="output-box">
-            <h4>✅ Output:</h4>
+            <h4>Output:</h4>
             <pre className="output-content">{output}</pre>
           </div>
         )}
@@ -1874,7 +2378,7 @@ const CodeEditor = ({
         {/* Error output */}
         {error && (
           <div className="error-box">
-            <h4>❌ Error:</h4>
+            <h4>Error:</h4>
             <pre className="error-content">{error}</pre>
           </div>
         )}
@@ -1882,14 +2386,14 @@ const CodeEditor = ({
         {/* Running indicator */}
         {isRunning && (
           <div className="running-box">
-            <p>🔄 Executing Python code on FastAPI backend...</p>
+            <p>Executing Python code on FastAPI backend...</p>
           </div>
         )}
 
         {/* LangGraph submission guidance - NEW */}
         {showSubmitButton && !loading && (
           <div className="submission-guidance">
-            <p>💡 <strong>Test your code first</strong>, then submit when ready!</p>
+            <p><strong>Test your code first</strong>, then submit when ready!</p>
           </div>
         )}
       </div>
@@ -1923,8 +2427,8 @@ import '@testing-library/jest-dom';
 File: ./src/App.js
 ----------------------------------------
 /**
- * App.js - MVP LangGraph Integration
- * Updated to work with structured backend responses
+ * App.js - DeepCoach Learning Platform
+ * Updated branding and improved user experience
  */
 
 import React, { useState, useEffect } from 'react';
@@ -2082,11 +2586,11 @@ function App() {
   const getStatusIndicator = () => {
     switch (backendStatus) {
       case 'healthy':
-        return <span className="status healthy">✅ LangGraph Ready</span>;
+        return <span className="status healthy">✅ DeepCoach Ready</span>;
       case 'unhealthy':
-        return <span className="status unhealthy">⚠️ Backend Issues</span>;
+        return <span className="status unhealthy">⚠️ System Issues</span>;
       case 'error':
-        return <span className="status error">❌ Backend Error</span>;
+        return <span className="status error">❌ Connection Error</span>;
       default:
         return <span className="status unknown">🔄 Checking...</span>;
     }
@@ -2121,8 +2625,8 @@ function App() {
     <div className="App">
       {/* Header */}
       <header className="app-header">
-        <h1>🎓 Mini Course Generator</h1>
-        <p>AI-powered learning modules with LangGraph + OpenRouter</p>
+        <h1>🧠 DeepCoach</h1>
+        <p>Your AI Learning Companion - Master Any Skill, Anytime</p>
         <div className="backend-status">
           {getStatusIndicator()}
           <span className="user-id">User: {userId}</span>
@@ -2132,8 +2636,8 @@ function App() {
       {/* Backend connection warning */}
       {backendStatus !== 'healthy' && (
         <div className="connection-warning">
-          <h3>⚠️ Backend Connection Issue</h3>
-          <p>Make sure the FastAPI backend is running on port 8000</p>
+          <h3>⚠️ System Connection Issue</h3>
+          <p>Make sure the DeepCoach backend is running on port 8000</p>
           <button onClick={checkBackendHealth} className="retry-button">
             🔄 Retry Connection
           </button>
@@ -2152,7 +2656,7 @@ function App() {
       {!structuredContent ? (
         // Topic input screen
         <div className="topic-input-section">
-          <h2>What would you like to learn?</h2>
+          <h2>What would you like to master today?</h2>
           <div className="topic-input-container">
             <input
               type="text"
@@ -2168,32 +2672,36 @@ function App() {
               disabled={loading || !topicInput.trim()}
               className="start-button"
             >
-              {loading ? '🔄 Generating...' : '🚀 Start Learning'}
+              {loading ? 'Creating Your Module...' : 'Start Learning'}
             </button>
           </div>
           
           {/* Example topics */}
-          <div className="example-topics">
-            <h4>Example topics:</h4>
-            <div className="topic-examples">
-              {[
-                'Python list comprehensions',
-                'Agile project management', 
-                'JavaScript async/await',
-                'Database normalization',
-                'Team leadership skills'
-              ].map(topic => (
-                <button 
-                  key={topic}
-                  onClick={() => setTopicInput(topic)}
-                  className="example-topic"
-                  disabled={loading}
-                >
-                  {topic}
-                </button>
-              ))}
+            <div className="example-topics">
+              <h4>Popular learning topics:</h4>
+              <div className="topic-examples">
+                {[
+                  'Python list comprehensions',
+                  'Agile project management', 
+                  'JavaScript async/await',
+                  'Database normalization',
+                  'Team leadership skills',
+                  'Machine learning basics',
+                  'React state management',
+                  'SQL query optimization'
+                ].map((topic, index) => (
+                  <button 
+                    key={index}
+                    onClick={() => setTopicInput(topic)}
+                    className="example-topic"
+                    disabled={loading}
+                    type="button"
+                  >
+                    {topic}
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
         </div>
       ) : (
         // Active module interface
@@ -2207,7 +2715,7 @@ function App() {
             <div className="progress-bar-container">
               <div className="progress-stats">
                 {isModuleComplete() ? (
-                  'Complete!'
+                  '🎉 Complete!'
                 ) : (
                   `Step ${getCurrentStep().current} of ${getCurrentStep().total}`
                 )}
@@ -2220,7 +2728,7 @@ function App() {
               </div>
             </div>
             <button onClick={resetModule} className="new-topic-button">
-              🆕 New Topic
+              New Topic
             </button>
           </div>
 
@@ -2261,7 +2769,7 @@ function App() {
         <div className="loading-overlay">
           <div className="loading-spinner">
             <div className="spinner"></div>
-            <p>AI is generating your learning content...</p>
+            <p>DeepCoach is creating your personalized learning module...</p>
           </div>
         </div>
       )}
