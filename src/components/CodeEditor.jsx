@@ -5,6 +5,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import Editor from '@monaco-editor/react';
+const API_BASE_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
 
 const CodeEditor = ({ 
   initialCode = "# Write your Python code here\nprint('Hello from FastAPI backend!')",
@@ -93,7 +94,7 @@ const CodeEditor = ({
     const startTime = Date.now();
 
     try {
-      const response = await fetch('/api/execute-code', {
+      const response = await fetch(`${API_BASE_URL}/api/execute-code`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,5 +1,5 @@
 Repository Source Code Contents
-Generated on: Mon Aug 18 16:47:35 IST 2025
+Generated on: Tue Aug 19 12:47:54 IST 2025
 ----------------------------------------
 File: ./README.md
 ----------------------------------------
@@ -283,7 +283,7 @@ export default reportWebVitals;
 File: ./src/App.css
 ----------------------------------------
 /**
- * App.css - Enhanced Styling for DeepCoach
+ * App.css - Enhanced Styling for DeepCoach (Cleaned Version)
  * Better typography, containers, and visual hierarchy
  */
 
@@ -303,7 +303,7 @@ body {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: #2d3748;
   line-height: 1.6;
-  font-size: 16px; /* Base font size */
+  font-size: 16px;
 }
 
 .App {
@@ -416,27 +416,6 @@ body {
   font-size: 1.1rem;
 }
 
-/* Retry Button */
-.retry-button {
-  background: #dc2626;
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 1rem;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.2);
-  letter-spacing: 0.3px;
-}
-
-.retry-button:hover {
-  background: #b91c1c;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
-}
-
 /* Error banner */
 .error-banner {
   background: rgba(254, 242, 242, 0.95);
@@ -456,7 +435,6 @@ body {
   font-size: 1.1rem;
   font-weight: 500;
 }
-
 
 /* Topic input section */
 .topic-input-section {
@@ -499,8 +477,190 @@ body {
   box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
 }
 
-/* Start Learning Button */
-.start-button {
+.topic-input::placeholder {
+  color: #9ca3af;
+  font-style: italic;
+}
+
+/* Trending Topics Section */
+.trending-topics {
+  margin-top: 50px;
+  text-align: left;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.trending-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.trending-header h4 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.trending-header p {
+  font-size: 1.1rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.trending-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.trending-topic-card {
+  background: linear-gradient(135deg, #ffffff, #f8fafc);
+  border: 2px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.trending-topic-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.trending-topic-card:hover {
+  border-color: #667eea;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(102, 126, 234, 0.15);
+}
+
+.trending-topic-card:hover::before {
+  opacity: 1;
+}
+
+.trending-topic-card:active {
+  transform: translateY(-2px);
+}
+
+.trending-topic-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  gap: 15px;
+}
+
+.trending-topic-header h5 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+  line-height: 1.3;
+  flex: 1;
+}
+
+.topic-category {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.topic-description {
+  color: #4b5563;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+.topic-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.estimated-time {
+  color: #6b7280;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.start-indicator {
+  color: #667eea;
+  font-size: 0.9rem;
+  font-weight: 600;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+}
+
+.trending-topic-card:hover .start-indicator {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Category-specific styling */
+.trending-topic-card:nth-child(8n+1) .topic-category {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.trending-topic-card:nth-child(8n+2) .topic-category {
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.trending-topic-card:nth-child(8n+3) .topic-category {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+.trending-topic-card:nth-child(8n+4) .topic-category {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+}
+
+.trending-topic-card:nth-child(8n+5) .topic-category {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.trending-topic-card:nth-child(8n+6) .topic-category {
+  background: linear-gradient(135deg, #06b6d4, #0891b2);
+}
+
+.trending-topic-card:nth-child(8n+7) .topic-category {
+  background: linear-gradient(135deg, #84cc16, #65a30d);
+}
+
+.trending-topic-card:nth-child(8n+8) .topic-category {
+  background: linear-gradient(135deg, #f97316, #ea580c);
+}
+
+/* Button Styles */
+.start-button, .start-new-button {
   background: linear-gradient(135deg, #4f46e5, #7c3aed);
   color: white;
   border: none;
@@ -516,7 +676,7 @@ body {
   text-transform: none;
 }
 
-.start-button:hover:not(:disabled) {
+.start-button:hover:not(:disabled), .start-new-button:hover {
   background: linear-gradient(135deg, #4338ca, #6d28d9);
   transform: translateY(-1px);
   box-shadow: 0 6px 20px rgba(79, 70, 229, 0.35);
@@ -529,27 +689,88 @@ body {
   box-shadow: 0 2px 8px rgba(156, 163, 175, 0.2);
 }
 
-/* Start New Button (completion screen) */
-.start-new-button {
-  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+.retry-button {
+  background: #dc2626;
   color: white;
   border: none;
-  padding: 16px 32px;
+  padding: 12px 24px;
   border-radius: 8px;
-  font-size: 1.1rem;
-  font-weight: 600;
   cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
   transition: all 0.2s ease;
-  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.25);
-  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.2);
+  letter-spacing: 0.3px;
 }
 
-.start-new-button:hover {
-  background: linear-gradient(135deg, #4338ca, #6d28d9);
+.retry-button:hover {
+  background: #b91c1c;
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.35);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
 }
 
+.new-topic-button {
+  background: #374151;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(55, 65, 81, 0.2);
+  letter-spacing: 0.3px;
+}
+
+.new-topic-button:hover {
+  background: #111827;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(55, 65, 81, 0.3);
+}
+
+.submit-button {
+  background: linear-gradient(135deg, #059669, #047857);
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 16px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.25);
+  letter-spacing: 0.3px;
+}
+
+.submit-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #047857, #065f46);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(5, 150, 105, 0.35);
+}
+
+.submit-button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 2px 8px rgba(156, 163, 175, 0.2);
+}
+
+.close-error {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #dc2626;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.close-error:hover {
+  background: rgba(220, 38, 38, 0.1);
+}
 
 /* Progress header */
 .progress-header {
@@ -625,27 +846,6 @@ body {
   100% { transform: translateX(100%); }
 }
 
-/* New Topic Button */
-.new-topic-button {
-  background: #374151;
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 0.95rem;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 8px rgba(55, 65, 81, 0.2);
-  letter-spacing: 0.3px;
-}
-
-.new-topic-button:hover {
-  background: #111827;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(55, 65, 81, 0.3);
-}
-
 /* Content area */
 .content-area {
   background: rgba(255, 255, 255, 0.95);
@@ -655,7 +855,6 @@ body {
   backdrop-filter: blur(10px);
 }
 
-/* Content sections */
 .content-section h3 {
   margin-bottom: 25px;
   color: #1f2937;
@@ -676,7 +875,7 @@ body {
   box-shadow: 0 8px 25px rgba(49, 130, 206, 0.1);
 }
 
-.explanation-overview strong {
+.overview-label, .exercise-label {
   font-size: 1.2rem;
   font-weight: 700;
   color: #2b6cb0;
@@ -684,11 +883,26 @@ body {
   margin-bottom: 10px;
 }
 
-.explanation-overview p {
+.exercise-label {
+  color: #1d4ed8;
+}
+
+.overview-text, .exercise-text {
   font-size: 1.1rem;
   line-height: 1.7;
   color: #2d3748;
-  margin: 0;
+}
+
+.key-concepts-box .key-concepts-title,
+.examples-box h4,
+.why-matters-box h4,
+.next-steps-box h4 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 15px;
 }
 
 .key-concepts {
@@ -741,7 +955,17 @@ body {
   margin-bottom: 20px;
 }
 
-.examples-section {
+.formatted-content {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #2d3748;
+}
+
+.formatted-content p {
+  margin-bottom: 16px;
+}
+
+.examples-section, .examples-box {
   background: linear-gradient(135deg, #fffbf0, #fef5e7);
   border: 2px solid #f6ad55;
   border-radius: 15px;
@@ -750,20 +974,20 @@ body {
   box-shadow: 0 8px 25px rgba(246, 173, 85, 0.1);
 }
 
-.examples-section h4 {
+.examples-section h4, .examples-box h4 {
   font-size: 1.2rem;
   font-weight: 700;
   color: #c05621;
   margin-bottom: 15px;
 }
 
-.examples-section ul {
+.examples-section ul, .examples-box ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.examples-section li {
+.examples-section li, .examples-box li {
   font-size: 1.05rem;
   padding: 8px 0;
   color: #2d3748;
@@ -771,38 +995,41 @@ body {
   padding-left: 25px;
 }
 
-.examples-section li::before {
+.examples-section li::before, .examples-box li::before {
   content: '💡';
   position: absolute;
   left: 0;
   font-size: 1.1rem;
 }
 
-.why-matters, .next-steps {
+.why-matters, .why-matters-box {
+  background: linear-gradient(135deg, #f0fff4, #ebf8ff);
+  border: 2px solid #48bb78;
   border-radius: 15px;
   padding: 25px;
   margin: 25px 0;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
-.why-matters {
-  background: linear-gradient(135deg, #f0fff4, #ebf8ff);
-  border: 2px solid #48bb78;
-}
-
-.next-steps {
+.next-steps, .next-steps-box {
   background: linear-gradient(135deg, #ebf4ff, #e6fffa);
   border: 2px solid #4299e1;
+  border-radius: 15px;
+  padding: 25px;
+  margin: 25px 0;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
-.why-matters h4, .next-steps h4 {
+.why-matters h4, .next-steps h4,
+.why-matters-box h4, .next-steps-box h4 {
   font-size: 1.2rem;
   font-weight: 700;
   margin-bottom: 15px;
   color: #1a202c;
 }
 
-.why-matters p, .next-steps p {
+.why-matters p, .next-steps p,
+.why-matters-box p, .next-steps-box p {
   font-size: 1.05rem;
   line-height: 1.7;
   color: #2d3748;
@@ -819,21 +1046,6 @@ body {
   box-shadow: 0 8px 25px rgba(59, 130, 246, 0.1);
 }
 
-.exercise-description strong {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #1d4ed8;
-  display: block;
-  margin-bottom: 10px;
-}
-
-.exercise-description p {
-  font-size: 1.1rem;
-  line-height: 1.7;
-  color: #2d3748;
-  margin: 0;
-}
-
 .learning-objectives, .exercise-instructions {
   background: #f8fafc;
   border: 2px solid #e2e8f0;
@@ -842,7 +1054,11 @@ body {
   margin: 20px 0;
 }
 
-.learning-objectives h4, .exercise-instructions h4 {
+.learning-objectives h4, .exercise-instructions h4,
+.expected-output h4, .test-cases h4, .hints-section h4 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 1.2rem;
   font-weight: 700;
   color: #1a202c;
@@ -864,44 +1080,25 @@ body {
   margin: 20px 0;
 }
 
-.expected-output h4 {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #1a202c;
-  margin-bottom: 10px;
-}
-
-.output-example {
-  background: #1a202c;
-  color: #e2e8f0;
-  border-radius: 12px;
-  padding: 20px;
-  font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
-  font-size: 1rem;
-  overflow-x: auto;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-}
-
 .test-cases {
   margin: 20px 0;
 }
 
-.test-cases h4 {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #1a202c;
-  margin-bottom: 15px;
-}
-
 .test-case {
-  background: #fef3c7;
+  background: linear-gradient(135deg, #fef3c7, #fef7cd);
   border: 2px solid #fbbf24;
   border-radius: 10px;
   padding: 15px;
   margin: 10px 0;
-  font-family: 'Monaco', 'Menlo', monospace;
-  font-size: 0.95rem;
+  font-size: 1rem;
   box-shadow: 0 4px 15px rgba(251, 191, 36, 0.1);
+}
+
+.test-case .inline-code {
+  background: #f59e0b;
+  color: white;
+  border: none;
+  font-weight: 600;
 }
 
 .hints-section {
@@ -911,13 +1108,6 @@ body {
   padding: 25px;
   margin: 20px 0;
   box-shadow: 0 8px 25px rgba(96, 165, 250, 0.1);
-}
-
-.hints-section h4 {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #1d4ed8;
-  margin-bottom: 15px;
 }
 
 .hints-section ul {
@@ -939,6 +1129,77 @@ body {
   position: absolute;
   left: 0;
   font-size: 1.1rem;
+}
+
+/* Code and Output Styling */
+.inline-code-block {
+  background: #2d3748;
+  border: 1px solid #4a5568;
+  border-radius: 8px;
+  margin: 20px 0;
+  overflow: hidden;
+}
+
+.inline-code-block .code-content {
+  padding: 16px 20px;
+  font-family: 'Monaco', 'Menlo', 'Consolas', 'Source Code Pro', monospace;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #e2e8f0;
+  background: #2d3748;
+  margin: 0;
+  overflow-x: auto;
+  white-space: pre;
+  border: none;
+}
+
+.inline-code-block .code-content code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  font-size: inherit;
+  border: none;
+}
+
+.output-example-container {
+  background: #1a202c;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  margin: 15px 0;
+}
+
+.output-example-container .code-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: #2d3748;
+  border-bottom: 1px solid #4a5568;
+}
+
+.output-example, .output-example-container .output-example {
+  background: #1a202c;
+  color: #22c55e;
+  border: none;
+  border-radius: 8px;
+  padding: 16px 20px;
+  font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+  font-size: 0.95rem;
+  margin: 0;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+
+.inline-code, code {
+  background: #f1f5f9;
+  color: #1e293b;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Monaco', 'Menlo', 'Consolas', 'Source Code Pro', monospace;
+  font-size: 0.9em;
+  border: 1px solid #e2e8f0;
 }
 
 /* Response area */
@@ -975,33 +1236,61 @@ body {
   background: white;
 }
 
-/* Continue/Submit Button */
-.submit-button {
-  background: linear-gradient(135deg, #059669, #047857);
-  color: white;
-  border: none;
-  padding: 14px 28px;
+/* Character Cards */
+.character {
+  background: linear-gradient(135deg, #fef7ff, #f3e8ff);
+  border: 2px solid #c084fc;
+  border-radius: 12px;
+  padding: 15px;
+  margin: 8px 0;
+  box-shadow: 0 4px 15px rgba(192, 132, 252, 0.1);
+}
+
+.character strong {
+  color: #7c3aed;
+  font-size: 1.1rem;
+}
+
+/* Quiz Questions */
+.quiz-question {
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 25px;
+  margin: 20px 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.quiz-question h4 {
+  color: #1e293b;
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quiz-option {
+  display: block;
+  padding: 12px 15px;
+  margin: 8px 0;
+  background: #ffffff;
+  border: 2px solid #e5e7eb;
   border-radius: 8px;
-  font-weight: 600;
-  font-size: 1rem;
   cursor: pointer;
-  margin-top: 16px;
   transition: all 0.2s ease;
-  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.25);
-  letter-spacing: 0.3px;
+  font-size: 1.05rem;
 }
 
-.submit-button:hover:not(:disabled) {
-  background: linear-gradient(135deg, #047857, #065f46);
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(5, 150, 105, 0.35);
+.quiz-option:hover {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+  transform: translateX(4px);
 }
 
-.submit-button:disabled {
-  background: #9ca3af;
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: 0 2px 8px rgba(156, 163, 175, 0.2);
+.quiz-option input {
+  margin-right: 12px;
+  transform: scale(1.2);
 }
 
 /* Loading overlay */
@@ -1048,470 +1337,7 @@ body {
   100% { transform: rotate(360deg); }
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-  .App {
-    padding: 15px;
-  }
-  
-  .app-header h1 {
-    font-size: 2.5rem;
-  }
-  
-  .app-header p {
-    font-size: 1.2rem;
-  }
-  
-  .topic-input-container {
-    flex-direction: column;
-  }
-  
-  .progress-header {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  
-  .content-area {
-    padding: 25px;
-  }
-  
-  .content-section h3 {
-    font-size: 1.8rem;
-  }
-  
-  .backend-status {
-    flex-direction: column;
-    gap: 10px;
-  }
-}
-
-/* Inline Code Blocks within Content */
-.inline-code-block {
-  background: #2d3748;
-  border: 1px solid #4a5568;
-  border-radius: 8px;
-  margin: 20px 0;
-  overflow: hidden;
-}
-
-.inline-code-block .code-content {
-  padding: 16px 20px;
-  font-family: 'Monaco', 'Menlo', 'Consolas', 'Source Code Pro', monospace;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  color: #e2e8f0;
-  background: #2d3748;
-  margin: 0;
-  overflow-x: auto;
-  white-space: pre;
-  border: none;
-}
-
-.inline-code-block .code-content code {
-  background: none;
-  color: inherit;
-  padding: 0;
-  font-size: inherit;
-  border: none;
-}
-
-/* Remove the complex header styling */
-.inline-code-block .code-header {
-  display: none;
-}
-
-/* Simplified Output Example Container */
-.output-example-container {
-  background: #1a202c;
-  border: 1px solid #2d3748;
-  border-radius: 8px;
-  margin: 15px 0;
-}
-
-.output-example-container .code-header {
-  display: none;
-}
-
-.output-example-container .output-example {
-  background: #1a202c;
-  color: #68d391;
-  border: none;
-  border-radius: 8px;
-  padding: 16px 20px;
-  font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
-  font-size: 0.95rem;
-  margin: 0;
-  overflow-x: auto;
-  white-space: pre;
-}
-
-/* Keep inline code simple */
-.inline-code, code {
-  background: #f1f5f9;
-  color: #1e293b;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-family: 'Monaco', 'Menlo', 'Consolas', 'Source Code Pro', monospace;
-  font-size: 0.9em;
-  border: 1px solid #e2e8f0;
-}
-
-
-/* Formatted Content Container */
-.formatted-content {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: #2d3748;
-}
-
-.formatted-content p {
-  margin-bottom: 16px;
-}
-
-/* Enhanced Labels for Better Structure */
-.overview-label, .exercise-label {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #2b6cb0;
-  display: block;
-  margin-bottom: 10px;
-}
-
-.exercise-label {
-  color: #1d4ed8;
-}
-
-.overview-text, .exercise-text {
-  font-size: 1.1rem;
-  line-height: 1.7;
-  color: #2d3748;
-}
-
-/* Enhanced Output Example Container */
-.output-example-container {
-  background: #1a202c;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  margin: 15px 0;
-}
-
-.output-example-container .code-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 16px;
-  background: #2d3748;
-  border-bottom: 1px solid #4a5568;
-}
-
-.output-example-container .output-example {
-  background: #1a202c;
-  color: #22c55e;
-  border: none;
-  border-radius: 0;
-  padding: 16px;
-  font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
-  font-size: 0.95rem;
-  margin: 0;
-  box-shadow: none;
-  overflow-x: auto;
-  white-space: pre-wrap;
-}
-
-/* Enhanced Test Cases */
-.test-case {
-  background: linear-gradient(135deg, #fef3c7, #fef7cd);
-  border: 2px solid #fbbf24;
-  border-radius: 10px;
-  padding: 15px;
-  margin: 10px 0;
-  font-size: 1rem;
-  box-shadow: 0 4px 15px rgba(251, 191, 36, 0.1);
-}
-
-.test-case .inline-code {
-  background: #f59e0b;
-  color: white;
-  border: none;
-  font-weight: 600;
-}
-
-/* Improved Section Headers with Icons */
-.learning-objectives h4,
-.exercise-instructions h4,
-.expected-output h4,
-.test-cases h4,
-.hints-section h4 {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #1a202c;
-  margin-bottom: 15px;
-}
-
-/* Enhanced Content Boxes with Better Labels */
-.explanation-overview, .exercise-description {
-  position: relative;
-}
-
-.key-concepts-box .key-concepts-title,
-.examples-box h4,
-.why-matters-box h4,
-.next-steps-box h4 {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-bottom: 15px;
-}
-
-/* Character Cards Enhancement */
-.character {
-  background: linear-gradient(135deg, #fef7ff, #f3e8ff);
-  border: 2px solid #c084fc;
-  border-radius: 12px;
-  padding: 15px;
-  margin: 8px 0;
-  box-shadow: 0 4px 15px rgba(192, 132, 252, 0.1);
-}
-
-.character strong {
-  color: #7c3aed;
-  font-size: 1.1rem;
-}
-
-/* Quiz Question Enhancement */
-.quiz-question {
-  background: #f8fafc;
-  border: 2px solid #e2e8f0;
-  border-radius: 12px;
-  padding: 25px;
-  margin: 20px 0;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-}
-
-.quiz-question h4 {
-  color: #1e293b;
-  font-size: 1.2rem;
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.quiz-option {
-  display: block;
-  padding: 12px 15px;
-  margin: 8px 0;
-  background: #ffffff;
-  border: 2px solid #e5e7eb;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-size: 1.05rem;
-}
-
-.quiz-option:hover {
-  background: #f3f4f6;
-  border-color: #d1d5db;
-  transform: translateX(4px);
-}
-
-.quiz-option input {
-  margin-right: 12px;
-  transform: scale(1.2);
-}
-
-/* Responsive adjustments for code blocks */
-@media (max-width: 768px) {
-  .inline-code-block .code-content {
-    font-size: 0.85rem;
-    padding: 15px;
-  }
-  
-  .inline-code-block .code-header {
-    padding: 12px 15px;
-  }
-  
-  .formatted-content {
-    font-size: 1.05rem;
-  }
-}
-
-/* Example topics section */
-.example-topics {
-  margin-top: 35px;
-  text-align: center;
-}
-
-.example-topics h4 {
-  margin-bottom: 20px;
-  color: #4a5568;
-  font-size: 1.1rem;
-  font-weight: 600;
-}
-
-.topic-examples {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-/* Example Topic Buttons */
-.example-topic {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 6px;
-  padding: 10px 16px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: #475569;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  white-space: nowrap;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.example-topic:hover:not(:disabled) {
-  background: #4f46e5;
-  color: white;
-  border-color: #4f46e5;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
-}
-
-.example-topic:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  background: #f1f5f9;
-  color: #94a3b8;
-}
-
-/* Responsive design for example topics */
-@media (max-width: 768px) {
-  .topic-examples {
-    gap: 8px;
-  }
-  
-  .example-topic {
-    font-size: 0.9rem;
-    padding: 8px 14px;
-    min-height: 36px;
-  }
-}
-
-/* Code Editor Buttons */
-.run-button {
-  background: #2563eb;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 0.9rem;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
-}
-
-.run-button:hover:not(:disabled) {
-  background: #1d4ed8;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-}
-
-.run-button:disabled {
-  background: #9ca3af;
-  cursor: not-allowed;
-  transform: none;
-}
-
-.run-button.running {
-  background: #f59e0b;
-  animation: pulse 1.5s infinite;
-}
-
-.submit-code-button {
-  background: #059669;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 0.9rem;
-  transition: all 0.2s ease;
-  margin-left: auto;
-  box-shadow: 0 2px 8px rgba(5, 150, 105, 0.2);
-}
-
-.submit-code-button:hover:not(:disabled) {
-  background: #047857;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
-}
-
-.submit-code-button:disabled {
-  background: #9ca3af;
-  cursor: not-allowed;
-  transform: none;
-}
-
-.clear-button, .reset-button {
-  background: #6b7280;
-  color: white;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 500;
-  font-size: 0.9rem;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 8px rgba(107, 114, 128, 0.2);
-}
-
-.clear-button:hover, .reset-button:hover {
-  background: #4b5563;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(107, 114, 128, 0.3);
-}
-
-/* Close error button */
-.close-error {
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  color: #dc2626;
-  cursor: pointer;
-  padding: 4px 8px;
-  border-radius: 4px;
-  transition: all 0.2s ease;
-}
-
-.close-error:hover {
-  background: rgba(220, 38, 38, 0.1);
-}
-
-/* Remove any button focus outlines and add clean focus states */
-button:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
-}
-
-/* Ensure all buttons have consistent typography */
-button {
-  font-family: inherit;
-  letter-spacing: 0.025em;
-}
-
-/* Code Editor Container */
+/* Code Editor Styles */
 .code-editor-container {
   background: white;
   border-radius: 12px;
@@ -1547,14 +1373,6 @@ button {
 .execution-time {
   background: rgba(34, 197, 94, 0.1);
   color: #059669;
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-weight: 500;
-}
-
-.backend-status {
-  background: rgba(59, 130, 246, 0.1);
-  color: #3b82f6;
   padding: 4px 8px;
   border-radius: 6px;
   font-weight: 500;
@@ -1657,31 +1475,79 @@ button {
   font-size: 0.9rem;
 }
 
-/* Responsive design for code editor */
-@media (max-width: 768px) {
-  .editor-controls {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 8px;
-  }
-  
-  .keyboard-hint {
-    text-align: center;
-    margin-left: 0;
-    margin-top: 8px;
-  }
-  
-  .header-info {
-    flex-direction: column;
-    gap: 8px;
-    align-items: flex-end;
-  }
-  
-  .editor-header {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 10px;
-  }
+.run-button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+}
+
+.run-button:hover:not(:disabled) {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.run-button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.run-button.running {
+  background: #f59e0b;
+  animation: pulse 1.5s infinite;
+}
+
+.submit-code-button {
+  background: #059669;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  margin-left: auto;
+  box-shadow: 0 2px 8px rgba(5, 150, 105, 0.2);
+}
+
+.submit-code-button:hover:not(:disabled) {
+  background: #047857;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+}
+
+.submit-code-button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.clear-button, .reset-button {
+  background: #6b7280;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(107, 114, 128, 0.2);
+}
+
+.clear-button:hover, .reset-button:hover {
+  background: #4b5563;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(107, 114, 128, 0.3);
 }
 
 /* Tab Navigation */
@@ -1729,13 +1595,12 @@ button {
   cursor: not-allowed;
 }
 
-/* Tab Content */
 .tab-content {
   min-height: 300px;
 }
 
-/* PDF Tab */
-.pdf-tab {
+/* PDF and YouTube Upload Sections */
+.pdf-tab, .youtube-tab {
   padding: 20px 0;
 }
 
@@ -1753,18 +1618,18 @@ button {
   background: rgba(249, 250, 251, 0.5);
 }
 
-.upload-icon {
+.upload-icon, .youtube-icon {
   font-size: 3rem;
   margin-bottom: 15px;
 }
 
-.upload-area h3 {
+.upload-area h3, .youtube-input-container h3 {
   color: #374151;
   margin-bottom: 10px;
   font-size: 1.3rem;
 }
 
-.upload-area p {
+.upload-area p, .youtube-input-container p {
   color: #6b7280;
   margin-bottom: 25px;
   font-size: 1rem;
@@ -1799,31 +1664,9 @@ button {
   font-size: 0.9rem;
 }
 
-/* YouTube Tab */
-.youtube-tab {
-  padding: 20px 0;
-}
-
 .youtube-input-container {
   max-width: 600px;
   margin: 0 auto;
-}
-
-.youtube-icon {
-  font-size: 3rem;
-  margin-bottom: 15px;
-}
-
-.youtube-input-container h3 {
-  color: #374151;
-  margin-bottom: 10px;
-  font-size: 1.3rem;
-}
-
-.youtube-input-container p {
-  color: #6b7280;
-  margin-bottom: 25px;
-  font-size: 1rem;
 }
 
 .youtube-input {
@@ -1865,7 +1708,6 @@ button {
   color: #1e40af;
 }
 
-/* Demo Notes */
 .demo-note {
   margin-top: 15px;
   padding: 10px 15px;
@@ -1877,7 +1719,7 @@ button {
 }
 
 /* Processing States */
-.processing-content {
+.processing-content, .extracted-topic {
   text-align: center;
   padding: 60px 20px;
 }
@@ -1886,31 +1728,29 @@ button {
   margin-bottom: 25px;
 }
 
-.processing-content h3 {
+.processing-content h3, .extracted-topic h3 {
   color: #374151;
   margin-bottom: 10px;
   font-size: 1.5rem;
 }
 
-.processing-content p {
+.extracted-topic h3 {
+  color: #059669;
+  margin-bottom: 20px;
+}
+
+.processing-content p, .extracted-topic p {
   color: #6b7280;
   font-size: 1.1rem;
 }
 
-.extracted-topic {
-  text-align: center;
-  padding: 60px 20px;
+.extracted-topic p {
+  margin-top: 15px;
 }
 
 .success-icon {
   font-size: 3rem;
   margin-bottom: 20px;
-}
-
-.extracted-topic h3 {
-  color: #059669;
-  margin-bottom: 20px;
-  font-size: 1.5rem;
 }
 
 .detected-topic {
@@ -1939,15 +1779,79 @@ button {
   font-size: 1.3rem;
 }
 
-.extracted-topic p {
-  color: #6b7280;
-  font-size: 1rem;
-  margin-top: 15px;
+/* Button focus states and typography */
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
 }
 
-/* UPDATE the responsive section by adding these rules */
+button {
+  font-family: inherit;
+  letter-spacing: 0.025em;
+}
+
+/* Responsive design */
 @media (max-width: 768px) {
-  /* Add these to your existing @media rules */
+  .App {
+    padding: 15px;
+  }
+  
+  .app-header h1 {
+    font-size: 2.5rem;
+  }
+  
+  .app-header p {
+    font-size: 1.2rem;
+  }
+  
+  .topic-input-container {
+    flex-direction: column;
+  }
+  
+  .progress-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .content-area {
+    padding: 25px;
+  }
+  
+  .content-section h3 {
+    font-size: 1.8rem;
+  }
+  
+  .backend-status {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .trending-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .trending-topic-card {
+    padding: 20px;
+  }
+  
+  .trending-topic-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .trending-topic-header h5 {
+    font-size: 1.2rem;
+  }
+  
+  .topic-category {
+    align-self: flex-start;
+  }
+  
+  .trending-header h4 {
+    font-size: 1.5rem;
+  }
   
   .input-tabs {
     max-width: 100%;
@@ -1965,6 +1869,268 @@ button {
   }
   
   .youtube-input-container {
+    max-width: 100%;
+  }
+  
+  .inline-code-block .code-content {
+    font-size: 0.85rem;
+    padding: 15px;
+  }
+  
+  .formatted-content {
+    font-size: 1.05rem;
+  }
+  
+  .editor-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  
+  .keyboard-hint {
+    text-align: center;
+    margin-left: 0;
+    margin-top: 8px;
+  }
+  
+  .header-info {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-end;
+  }
+  
+  .editor-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+}
+
+/* Contextual Questions Section */
+.contextual-questions-section {
+  margin-top: 40px;
+  padding: 30px;
+  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+  border: 2px solid #cbd5e1;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(203, 213, 225, 0.15);
+}
+
+.contextual-questions-section h4 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.questions-intro {
+  color: #475569;
+  font-size: 1.05rem;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.questions-container {
+  margin-bottom: 25px;
+}
+
+.contextual-question {
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.contextual-question:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.contextual-question h5 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 8px;
+}
+
+.question-text {
+  font-size: 1.05rem;
+  color: #1e293b;
+  margin-bottom: 15px;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.question-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.question-option {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+  color: #374151;
+}
+
+.question-option:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.question-option input[type="radio"] {
+  margin-right: 12px;
+  transform: scale(1.2);
+  accent-color: #4f46e5;
+}
+
+.question-option:has(input:checked) {
+  background: #eff6ff;
+  border-color: #3b82f6;
+  color: #1e40af;
+  font-weight: 500;
+}
+
+.question-textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 15px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  resize: vertical;
+  transition: all 0.2s ease;
+  background: #f8fafc;
+  line-height: 1.5;
+}
+
+.question-textarea:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+  background: white;
+}
+
+.question-textarea::placeholder {
+  color: #94a3b8;
+  font-style: italic;
+}
+
+.questions-hint {
+  color: #f59e0b;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.simple-continue {
+  margin-top: 30px;
+  text-align: center;
+  padding: 20px;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+/* Different question type styling */
+.contextual-question.multiple-choice {
+  border-left: 4px solid #3b82f6;
+}
+
+.contextual-question.short-answer {
+  border-left: 4px solid #10b981;
+}
+
+.contextual-question.reflection {
+  border-left: 4px solid #8b5cf6;
+}
+
+.contextual-question.multiple-choice h5::before {
+  content: "🔘";
+  margin-right: 8px;
+}
+
+.contextual-question.short-answer h5::before {
+  content: "✍️";
+  margin-right: 8px;
+}
+
+.contextual-question.reflection h5::before {
+  content: "💭";
+  margin-right: 8px;
+}
+
+/* Enhanced submit button for contextual questions */
+.contextual-questions-section .submit-button {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: white;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.25);
+  letter-spacing: 0.3px;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  display: block;
+}
+
+.contextual-questions-section .submit-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #4338ca, #6d28d9);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.35);
+}
+
+.contextual-questions-section .submit-button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 2px 8px rgba(156, 163, 175, 0.2);
+}
+
+/* Responsive design for contextual questions */
+@media (max-width: 768px) {
+  .contextual-questions-section {
+    padding: 20px;
+    margin-top: 30px;
+  }
+  
+  .contextual-question {
+    padding: 15px;
+  }
+  
+  .question-option {
+    padding: 10px 12px;
+    font-size: 0.95rem;
+  }
+  
+  .question-textarea {
+    min-height: 70px;
+    padding: 12px;
+  }
+  
+  .contextual-questions-section .submit-button {
+    padding: 14px 28px;
+    font-size: 1rem;
     max-width: 100%;
   }
 }
@@ -2010,11 +2176,11 @@ code {
 File: ./src/components/ContentRenderer.jsx
 ----------------------------------------
 /**
- * ContentRenderer.jsx - Professional Version with Clean Styling
- * Renders different content types from LangGraph structured responses
+ * ContentRenderer.jsx - Updated with Contextual Questions
+ * Renders different content types with targeted questions instead of generic response box
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import CodeEditor from './CodeEditor';
 
 const ContentRenderer = ({ 
@@ -2026,6 +2192,9 @@ const ContentRenderer = ({
   userId 
 }) => {
   
+  // State for contextual questions
+  const [questionResponses, setQuestionResponses] = useState({});
+  
   if (!structuredContent) {
     return (
       <div className="content-section">
@@ -2036,9 +2205,112 @@ const ContentRenderer = ({
 
   const { content_type, data, progress } = structuredContent;
 
-  const handleSubmit = () => {
-    if (userResponse.trim()) {
-      onSubmit(userResponse);
+  /**
+   * Handle contextual question responses
+   */
+  const handleQuestionResponse = (questionIndex, response) => {
+    setQuestionResponses(prev => ({
+      ...prev,
+      [questionIndex]: response
+    }));
+  };
+
+  /**
+   * Submit contextual questions or continue
+   */
+  const handleContextualSubmit = () => {
+    if (data.contextual_questions && data.contextual_questions.length > 0) {
+      // Submit question responses
+      const responses = {
+        type: 'contextual_questions',
+        questions: data.contextual_questions.map((q, index) => ({
+          question: q.question,
+          user_response: questionResponses[index] || '',
+          question_type: q.question_type
+        }))
+      };
+      onSubmit(JSON.stringify(responses));
+    } else {
+      // No questions, just continue
+      onSubmit("Section completed");
+    }
+  };
+
+  /**
+   * Check if user has answered required questions
+   */
+  const hasAnsweredRequiredQuestions = () => {
+    if (!data.contextual_questions || data.contextual_questions.length === 0) {
+      return true; // No questions required
+    }
+    
+    return data.contextual_questions.every((q, index) => {
+      const response = questionResponses[index];
+      return response && response.trim().length > 0;
+    });
+  };
+
+  /**
+   * Render a contextual question
+   */
+  const renderContextualQuestion = (question, index) => {
+    const response = questionResponses[index] || '';
+    
+    switch (question.question_type) {
+      case 'multiple_choice':
+        return (
+          <div key={index} className="contextual-question multiple-choice">
+            <h5>Question {index + 1}:</h5>
+            <p className="question-text">{question.question}</p>
+            <div className="question-options">
+              {question.options?.map((option, optionIndex) => (
+                <label key={optionIndex} className="question-option">
+                  <input 
+                    type="radio" 
+                    name={`contextual-question-${index}`}
+                    value={optionIndex}
+                    checked={response === optionIndex.toString()}
+                    onChange={(e) => handleQuestionResponse(index, e.target.value)}
+                  />
+                  {String.fromCharCode(65 + optionIndex)}. {option}
+                </label>
+              ))}
+            </div>
+          </div>
+        );
+      
+      case 'short_answer':
+        return (
+          <div key={index} className="contextual-question short-answer">
+            <h5>Question {index + 1}:</h5>
+            <p className="question-text">{question.question}</p>
+            <textarea
+              value={response}
+              onChange={(e) => handleQuestionResponse(index, e.target.value)}
+              placeholder={question.placeholder || "Type your answer here..."}
+              className="question-textarea"
+              rows={3}
+            />
+          </div>
+        );
+      
+      case 'reflection':
+        return (
+          <div key={index} className="contextual-question reflection">
+            <h5>Reflection {index + 1}:</h5>
+            <p className="question-text">{question.question}</p>
+            <textarea
+              value={response}
+              onChange={(e) => handleQuestionResponse(index, e.target.value)}
+              placeholder={question.placeholder || "Share your thoughts..."}
+              className="question-textarea"
+              rows={3}
+            />
+          </div>
+        );
+      
+      default:
+        return null;
     }
   };
 
@@ -2105,7 +2377,7 @@ const ContentRenderer = ({
     case 'explanation':
       return (
         <div className="content-section explanation-content">
-          <h3>Mastering {data.title?.replace(/^(📚\s*)?/g, '')}</h3>
+          <h3>📚 {data.title?.replace(/^(📚\s*)?/g, '')}</h3>
           
           <div className="explanation-overview">
             <div className="overview-label">Overview:</div>
@@ -2113,7 +2385,7 @@ const ContentRenderer = ({
           </div>
 
           <div className="key-concepts-box">
-            <div className="key-concepts-title">Key Concepts:</div>
+            <div className="key-concepts-title">🔑 Key Concepts:</div>
             <ul className="key-concepts-list">
               {data.key_concepts?.map((concept, index) => (
                 <li key={index}>{concept}</li>
@@ -2129,7 +2401,7 @@ const ContentRenderer = ({
 
           {data.examples && data.examples.length > 0 && (
             <div className="examples-box">
-              <h4>Examples:</h4>
+              <h4>💡 Examples:</h4>
               <ul>
                 {data.examples.map((example, index) => (
                   <li key={index}>{renderInlineCode(example)}</li>
@@ -2139,40 +2411,64 @@ const ContentRenderer = ({
           )}
 
           <div className="why-matters-box">
-            <h4>Why This Matters:</h4>
+            <h4>🎯 Why This Matters:</h4>
             <p>{data.why_it_matters}</p>
           </div>
 
           <div className="next-steps-box">
-            <h4>Next Steps:</h4>
+            <h4>🚀 Next Steps:</h4>
             <p>{data.next_steps}</p>
           </div>
           
-          <div className="response-area">
-            <h4>Your thoughts or questions:</h4>
-            <textarea
-              value={userResponse}
-              onChange={(e) => setUserResponse(e.target.value)}
-              placeholder="Share your understanding, ask questions, or note key takeaways..."
-              className="response-textarea"
-              rows={4}
-              disabled={loading}
-            />
-            <button 
-              onClick={handleSubmit}
-              disabled={loading || !userResponse.trim()}
-              className="submit-button"
-            >
-              {loading ? 'Processing...' : 'Continue'}
-            </button>
-          </div>
+          {/* NEW: Contextual Questions Section */}
+          {data.contextual_questions && data.contextual_questions.length > 0 && (
+            <div className="contextual-questions-section">
+              <h4>🤔 Check Your Understanding:</h4>
+              <p className="questions-intro">
+                Let's make sure you've grasped the key concepts before moving on:
+              </p>
+              
+              <div className="questions-container">
+                {data.contextual_questions.map((question, index) => 
+                  renderContextualQuestion(question, index)
+                )}
+              </div>
+              
+              <button 
+                onClick={handleContextualSubmit}
+                disabled={loading || !hasAnsweredRequiredQuestions()}
+                className="submit-button"
+              >
+                {loading ? 'Processing...' : 'Continue to Next Section'}
+              </button>
+              
+              {!hasAnsweredRequiredQuestions() && (
+                <p className="questions-hint">
+                  Please answer all questions above to continue.
+                </p>
+              )}
+            </div>
+          )}
+          
+          {/* Fallback if no contextual questions */}
+          {(!data.contextual_questions || data.contextual_questions.length === 0) && (
+            <div className="simple-continue">
+              <button 
+                onClick={handleContextualSubmit}
+                disabled={loading}
+                className="submit-button"
+              >
+                {loading ? 'Loading...' : 'Continue to Next Section'}
+              </button>
+            </div>
+          )}
         </div>
       );
 
     case 'code_exercise':
       return (
         <div className="content-section code-exercise-content">
-          <h3>Coding Exercise: {data.title?.replace(/^(💻\s*)?/g, '')}</h3>
+          <h3>💻 {data.title?.replace(/^(💻\s*)?/g, '')}</h3>
           
           <div className="exercise-description">
             <div className="exercise-label">Problem:</div>
@@ -2180,7 +2476,7 @@ const ContentRenderer = ({
           </div>
 
           <div className="learning-objectives">
-            <h4>Learning Objectives:</h4>
+            <h4>🎯 Learning Objectives:</h4>
             <ul>
               {data.learning_objectives?.map((objective, index) => (
                 <li key={index}>{objective}</li>
@@ -2189,7 +2485,7 @@ const ContentRenderer = ({
           </div>
 
           <div className="exercise-instructions">
-            <h4>Instructions:</h4>
+            <h4>📋 Instructions:</h4>
             <ol>
               {data.instructions?.map((instruction, index) => (
                 <li key={index}>{instruction}</li>
@@ -2199,7 +2495,7 @@ const ContentRenderer = ({
 
           {data.expected_output && (
             <div className="expected-output">
-              <h4>Expected Output:</h4>
+              <h4>🎯 Expected Output:</h4>
               <div className="output-example-container">
                 <pre className="output-example">{data.expected_output}</pre>
               </div>
@@ -2208,7 +2504,7 @@ const ContentRenderer = ({
 
           {data.test_cases && data.test_cases.length > 0 && (
             <div className="test-cases">
-              <h4>Test Cases:</h4>
+              <h4>🧪 Test Cases:</h4>
               {data.test_cases.map((testCase, index) => (
                 <div key={index} className="test-case">
                   <strong>Input:</strong> <code className="inline-code">{testCase.input}</code> → <strong>Output:</strong> <code className="inline-code">{testCase.output}</code>
@@ -2219,7 +2515,7 @@ const ContentRenderer = ({
 
           {data.hints && data.hints.length > 0 && (
             <div className="hints-section">
-              <h4>Hints:</h4>
+              <h4>💡 Hints:</h4>
               <ul>
                 {data.hints.map((hint, index) => (
                   <li key={index}>{hint}</li>
@@ -2246,16 +2542,16 @@ const ContentRenderer = ({
     case 'scenario':
       return (
         <div className="content-section scenario-content">
-          <h3>Business Scenario: {data.title?.replace(/^(🎭\s*)?/g, '')}</h3>
+          <h3>🎭 {data.title?.replace(/^(🎭\s*)?/g, '')}</h3>
           
           <div className="scenario-context">
-            <h4>Context:</h4>
+            <h4>🏢 Context:</h4>
             <p>{data.context}</p>
           </div>
 
           {data.characters && data.characters.length > 0 && (
             <div className="characters">
-              <h4>Key People:</h4>
+              <h4>👥 Key People:</h4>
               {data.characters.map((character, index) => (
                 <div key={index} className="character">
                   <strong>{character.name}</strong> ({character.role}): {character.description}
@@ -2265,17 +2561,17 @@ const ContentRenderer = ({
           )}
 
           <div className="situation">
-            <h4>Situation:</h4>
+            <h4>⚡ Situation:</h4>
             <p>{data.situation}</p>
           </div>
 
           <div className="your-role">
-            <h4>Your Role:</h4>
+            <h4>🎯 Your Role:</h4>
             <p>{data.your_role}</p>
           </div>
 
           <div className="decision-points">
-            <h4>Key Decisions:</h4>
+            <h4>🤔 Key Decisions:</h4>
             <ul>
               {data.decision_points?.map((point, index) => (
                 <li key={index}>{point}</li>
@@ -2284,7 +2580,7 @@ const ContentRenderer = ({
           </div>
 
           <div className="considerations">
-            <h4>Consider:</h4>
+            <h4>⚖️ Consider:</h4>
             <ul>
               {data.considerations?.map((consideration, index) => (
                 <li key={index}>{consideration}</li>
@@ -2293,12 +2589,12 @@ const ContentRenderer = ({
           </div>
 
           <div className="success-criteria">
-            <h4>Success Looks Like:</h4>
+            <h4>🏆 Success Looks Like:</h4>
             <p>{data.success_criteria}</p>
           </div>
           
           <div className="response-area">
-            <h4>How would you handle this situation?</h4>
+            <h4>📝 How would you handle this situation?</h4>
             <textarea
               value={userResponse}
               onChange={(e) => setUserResponse(e.target.value)}
@@ -2308,7 +2604,7 @@ const ContentRenderer = ({
               disabled={loading}
             />
             <button 
-              onClick={handleSubmit}
+              onClick={() => onSubmit(userResponse)}
               disabled={loading || !userResponse.trim()}
               className="submit-button"
             >
@@ -2321,7 +2617,7 @@ const ContentRenderer = ({
     case 'quiz':
       return (
         <div className="content-section quiz-content">
-          <h3>Knowledge Check: {data.title?.replace(/^(❓\s*)?/g, '')}</h3>
+          <h3>❓ {data.title?.replace(/^(❓\s*)?/g, '')}</h3>
           
           <div className="quiz-instructions">
             <p>{data.instructions}</p>
@@ -2373,13 +2669,13 @@ const ContentRenderer = ({
     case 'completion':
       return (
         <div className="content-section completion-content">
-          <h3>Module Complete: {data.title?.replace(/^(🎉\s*)?/g, '')}</h3>
+          <h3>🎉 {data.title?.replace(/^(🎉\s*)?/g, '')}</h3>
           <div className="completion-message">
             <p>{data.message}</p>
           </div>
           {data.summary && (
             <div className="completion-summary">
-              <h4>Summary:</h4>
+              <h4>📋 Summary:</h4>
               <div className="formatted-content">
                 {renderFormattedContent(data.summary)}
               </div>
@@ -2395,17 +2691,9 @@ const ContentRenderer = ({
           <pre>{JSON.stringify(data, null, 2)}</pre>
           
           <div className="response-area">
-            <textarea
-              value={userResponse}
-              onChange={(e) => setUserResponse(e.target.value)}
-              placeholder="Your response..."
-              className="response-textarea"
-              rows={4}
-              disabled={loading}
-            />
             <button 
-              onClick={handleSubmit}
-              disabled={loading || !userResponse.trim()}
+              onClick={() => onSubmit("Content viewed")}
+              disabled={loading}
               className="submit-button"
             >
               {loading ? 'Processing...' : 'Continue'}
@@ -2421,7 +2709,7 @@ export default ContentRenderer;
 File: ./src/components/TopicInputSection.jsx
 ----------------------------------------
 /**
- * TopicInputSection.jsx - Multi-input interface for topic, PDF, and YouTube
+ * TopicInputSection.jsx - Enhanced with bigger topics and trending section
  */
 
 import React, { useState } from 'react';
@@ -2434,12 +2722,63 @@ const TopicInputSection = ({ loading, onStartModule }) => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [extractedTopic, setExtractedTopic] = useState('');
 
+  // Enhanced trending topics - bigger, more substantial learning modules
+  const trendingTopics = [
+    {
+      title: 'LangGraph Tutorial',
+      description: 'Master workflow orchestration with LangChain\'s graph framework',
+      category: 'AI/ML',
+      estimatedTime: '45-60 min'
+    },
+    {
+      title: 'MCP Server Development',
+      description: 'Build Model Context Protocol servers for AI integrations',
+      category: 'Development',
+      estimatedTime: '50-65 min'
+    },
+    {
+      title: 'FastAPI Production Deployment',
+      description: 'Deploy scalable Python APIs with Docker and cloud platforms',
+      category: 'DevOps',
+      estimatedTime: '55-70 min'
+    },
+    {
+      title: 'React Server Components',
+      description: 'Next.js App Router with server-side rendering strategies',
+      category: 'Frontend',
+      estimatedTime: '40-55 min'
+    },
+    {
+      title: 'Vector Database Fundamentals',
+      description: 'Embeddings, similarity search, and RAG implementations',
+      category: 'AI/ML',
+      estimatedTime: '45-60 min'
+    },
+    {
+      title: 'Kubernetes Microservices',
+      description: 'Container orchestration and service mesh architecture',
+      category: 'DevOps',
+      estimatedTime: '60-75 min'
+    },
+    {
+      title: 'Advanced TypeScript Patterns',
+      description: 'Generic constraints, mapped types, and conditional types',
+      category: 'Development',
+      estimatedTime: '50-65 min'
+    },
+    {
+      title: 'Product Management Strategy',
+      description: 'Roadmap planning, user research, and feature prioritization',
+      category: 'Business',
+      estimatedTime: '40-55 min'
+    }
+  ];
+
   // Hardcoded topic mappings for demo
   const getTopicFromContent = (type, content) => {
     if (type === 'pdf') {
       return 'Self-refine iterative refinement with LLMs';
     } else if (type === 'youtube') {
-      // Any YouTube URL leads to LangGraph tutorial for demo
       return 'LangGraph workflow orchestration';
     }
     return content;
@@ -2450,14 +2789,12 @@ const TopicInputSection = ({ loading, onStartModule }) => {
     setIsProcessing(true);
     setExtractedTopic('');
     
-    // Simulate analysis time
     await new Promise(resolve => setTimeout(resolve, 2500));
     
     const topic = getTopicFromContent(type, content);
     setExtractedTopic(topic);
     setIsProcessing(false);
     
-    // Auto-start after showing extracted topic
     setTimeout(() => {
       onStartModule(topic);
     }, 1500);
@@ -2485,16 +2822,9 @@ const TopicInputSection = ({ loading, onStartModule }) => {
     }
   };
 
-  const exampleTopics = [
-    'Python list comprehensions',
-    'Agile project management', 
-    'JavaScript async/await',
-    'Database normalization',
-    'Team leadership skills',
-    'Machine learning basics',
-    'React state management',
-    'SQL query optimization'
-  ];
+  const handleTrendingTopicClick = (topic) => {
+    setTopicInput(topic.title);
+  };
 
   if (isProcessing) {
     return (
@@ -2565,7 +2895,7 @@ const TopicInputSection = ({ loading, onStartModule }) => {
                 value={topicInput}
                 onChange={(e) => setTopicInput(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && !loading && handleTopicSubmit()}
-                placeholder="e.g., Python functions, Project management, React hooks..."
+                placeholder="e.g., LangGraph tutorial, Kubernetes deployment, React hooks..."
                 className="topic-input"
                 disabled={loading}
               />
@@ -2578,20 +2908,34 @@ const TopicInputSection = ({ loading, onStartModule }) => {
               </button>
             </div>
             
-            {/* Example topics */}
-            <div className="example-topics">
-              <h4>Popular learning topics:</h4>
-              <div className="topic-examples">
-                {exampleTopics.map((topic, index) => (
-                  <button 
+            {/* Trending Topics Section */}
+            <div className="trending-topics">
+              <div className="trending-header">
+                <h4>🔥 Trending Topics</h4>
+                <p>Popular learning modules our AI tutors are creating</p>
+              </div>
+              <div className="trending-grid">
+                {trendingTopics.map((topic, index) => (
+                  <div 
                     key={index}
-                    onClick={() => setTopicInput(topic)}
-                    className="example-topic"
+                    onClick={() => handleTrendingTopicClick(topic)}
+                    className="trending-topic-card"
                     disabled={loading}
-                    type="button"
                   >
-                    {topic}
-                  </button>
+                    <div className="trending-topic-header">
+                      <h5>{topic.title}</h5>
+                      <span className="topic-category">{topic.category}</span>
+                    </div>
+                    <p className="topic-description">{topic.description}</p>
+                    <div className="topic-meta">
+                      <span className="estimated-time">
+                        ⏱️ {topic.estimatedTime}
+                      </span>
+                      <span className="start-indicator">
+                        Start →
+                      </span>
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
@@ -2655,7 +2999,7 @@ const TopicInputSection = ({ loading, onStartModule }) => {
               </button>
               
               <div className="youtube-example">
-                <small>📝 Try this LangGraph video: 
+                <small>🔗 Try this LangGraph video: 
                   <button 
                     className="example-url"
                     onClick={() => setYoutubeUrl('https://www.youtube.com/watch?v=CnXdddeZ4tQ')}

@@ -8,6 +8,8 @@ import ContentRenderer from './components/ContentRenderer';
 import TopicInputSection from './components/TopicInputSection';
 import './App.css';
 
+const API_BASE_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
+
 // Generate random user ID
 const generateUserId = () => {
   return 'user_' + Math.random().toString(36).substr(2, 9);
@@ -37,7 +39,7 @@ function App() {
    */
   const checkBackendHealth = async () => {
     try {
-      const response = await fetch('/api/health');
+      const response = await fetch(`${API_BASE_URL}/api/health`);
       const data = await response.json();
       setBackendStatus(data.status === 'healthy' ? 'healthy' : 'unhealthy');
     } catch (error) {
@@ -60,7 +62,7 @@ function App() {
     setStructuredContent(null);
 
     try {
-      const response = await fetch('/api/start-module', {
+      const response = await fetch(`${API_BASE_URL}/api/start-module`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -104,7 +106,7 @@ function App() {
     setError('');
 
     try {
-      const submitResponse = await fetch('/api/submit-response', {
+      const submitResponse = await fetch(`${API_BASE_URL}/api/submit-response`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -141,7 +143,7 @@ function App() {
   const resetModule = async () => {
     // Reset session on backend
     try {
-      await fetch(`/api/reset-session/${userId}`, { method: 'DELETE' });
+      await fetch(`${API_BASE_URL}/api/reset-session/${userId}`, { method: 'DELETE' });
     } catch (err) {
       console.warn('Failed to reset backend session:', err);
     }
