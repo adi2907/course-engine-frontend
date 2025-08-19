@@ -1,9 +1,9 @@
 /**
- * ContentRenderer.jsx - Professional Version with Clean Styling
- * Renders different content types from LangGraph structured responses
+ * ContentRenderer.jsx - Updated with Contextual Questions
+ * Renders different content types with targeted questions instead of generic response box
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import CodeEditor from './CodeEditor';
 
 const ContentRenderer = ({ 
@@ -15,6 +15,9 @@ const ContentRenderer = ({
   userId 
 }) => {
   
+  // State for contextual questions
+  const [questionResponses, setQuestionResponses] = useState({});
+  
   if (!structuredContent) {
     return (
       <div className="content-section">
@@ -25,9 +28,112 @@ const ContentRenderer = ({
 
   const { content_type, data, progress } = structuredContent;
 
-  const handleSubmit = () => {
-    if (userResponse.trim()) {
-      onSubmit(userResponse);
+  /**
+   * Handle contextual question responses
+   */
+  const handleQuestionResponse = (questionIndex, response) => {
+    setQuestionResponses(prev => ({
+      ...prev,
+      [questionIndex]: response
+    }));
+  };
+
+  /**
+   * Submit contextual questions or continue
+   */
+  const handleContextualSubmit = () => {
+    if (data.contextual_questions && data.contextual_questions.length > 0) {
+      // Submit question responses
+      const responses = {
+        type: 'contextual_questions',
+        questions: data.contextual_questions.map((q, index) => ({
+          question: q.question,
+          user_response: questionResponses[index] || '',
+          question_type: q.question_type
+        }))
+      };
+      onSubmit(JSON.stringify(responses));
+    } else {
+      // No questions, just continue
+      onSubmit("Section completed");
+    }
+  };
+
+  /**
+   * Check if user has answered required questions
+   */
+  const hasAnsweredRequiredQuestions = () => {
+    if (!data.contextual_questions || data.contextual_questions.length === 0) {
+      return true; // No questions required
+    }
+    
+    return data.contextual_questions.every((q, index) => {
+      const response = questionResponses[index];
+      return response && response.trim().length > 0;
+    });
+  };
+
+  /**
+   * Render a contextual question
+   */
+  const renderContextualQuestion = (question, index) => {
+    const response = questionResponses[index] || '';
+    
+    switch (question.question_type) {
+      case 'multiple_choice':
+        return (
+          <div key={index} className="contextual-question multiple-choice">
+            <h5>Question {index + 1}:</h5>
+            <p className="question-text">{question.question}</p>
+            <div className="question-options">
+              {question.options?.map((option, optionIndex) => (
+                <label key={optionIndex} className="question-option">
+                  <input 
+                    type="radio" 
+                    name={`contextual-question-${index}`}
+                    value={optionIndex}
+                    checked={response === optionIndex.toString()}
+                    onChange={(e) => handleQuestionResponse(index, e.target.value)}
+                  />
+                  {String.fromCharCode(65 + optionIndex)}. {option}
+                </label>
+              ))}
+            </div>
+          </div>
+        );
+      
+      case 'short_answer':
+        return (
+          <div key={index} className="contextual-question short-answer">
+            <h5>Question {index + 1}:</h5>
+            <p className="question-text">{question.question}</p>
+            <textarea
+              value={response}
+              onChange={(e) => handleQuestionResponse(index, e.target.value)}
+              placeholder={question.placeholder || "Type your answer here..."}
+              className="question-textarea"
+              rows={3}
+            />
+          </div>
+        );
+      
+      case 'reflection':
+        return (
+          <div key={index} className="contextual-question reflection">
+            <h5>Reflection {index + 1}:</h5>
+            <p className="question-text">{question.question}</p>
+            <textarea
+              value={response}
+              onChange={(e) => handleQuestionResponse(index, e.target.value)}
+              placeholder={question.placeholder || "Share your thoughts..."}
+              className="question-textarea"
+              rows={3}
+            />
+          </div>
+        );
+      
+      default:
+        return null;
     }
   };
 
@@ -94,7 +200,7 @@ const ContentRenderer = ({
     case 'explanation':
       return (
         <div className="content-section explanation-content">
-          <h3>Mastering {data.title?.replace(/^(📚\s*)?/g, '')}</h3>
+          <h3>📚 {data.title?.replace(/^(📚\s*)?/g, '')}</h3>
           
           <div className="explanation-overview">
             <div className="overview-label">Overview:</div>
@@ -102,7 +208,7 @@ const ContentRenderer = ({
           </div>
 
           <div className="key-concepts-box">
-            <div className="key-concepts-title">Key Concepts:</div>
+            <div className="key-concepts-title">🔑 Key Concepts:</div>
             <ul className="key-concepts-list">
               {data.key_concepts?.map((concept, index) => (
                 <li key={index}>{concept}</li>
@@ -118,7 +224,7 @@ const ContentRenderer = ({
 
           {data.examples && data.examples.length > 0 && (
             <div className="examples-box">
-              <h4>Examples:</h4>
+              <h4>💡 Examples:</h4>
               <ul>
                 {data.examples.map((example, index) => (
                   <li key={index}>{renderInlineCode(example)}</li>
@@ -128,40 +234,64 @@ const ContentRenderer = ({
           )}
 
           <div className="why-matters-box">
-            <h4>Why This Matters:</h4>
+            <h4>🎯 Why This Matters:</h4>
             <p>{data.why_it_matters}</p>
           </div>
 
           <div className="next-steps-box">
-            <h4>Next Steps:</h4>
+            <h4>🚀 Next Steps:</h4>
             <p>{data.next_steps}</p>
           </div>
           
-          <div className="response-area">
-            <h4>Your thoughts or questions:</h4>
-            <textarea
-              value={userResponse}
-              onChange={(e) => setUserResponse(e.target.value)}
-              placeholder="Share your understanding, ask questions, or note key takeaways..."
-              className="response-textarea"
-              rows={4}
-              disabled={loading}
-            />
-            <button 
-              onClick={handleSubmit}
-              disabled={loading || !userResponse.trim()}
-              className="submit-button"
-            >
-              {loading ? 'Processing...' : 'Continue'}
-            </button>
-          </div>
+          {/* NEW: Contextual Questions Section */}
+          {data.contextual_questions && data.contextual_questions.length > 0 && (
+            <div className="contextual-questions-section">
+              <h4>🤔 Check Your Understanding:</h4>
+              <p className="questions-intro">
+                Let's make sure you've grasped the key concepts before moving on:
+              </p>
+              
+              <div className="questions-container">
+                {data.contextual_questions.map((question, index) => 
+                  renderContextualQuestion(question, index)
+                )}
+              </div>
+              
+              <button 
+                onClick={handleContextualSubmit}
+                disabled={loading || !hasAnsweredRequiredQuestions()}
+                className="submit-button"
+              >
+                {loading ? 'Processing...' : 'Continue to Next Section'}
+              </button>
+              
+              {!hasAnsweredRequiredQuestions() && (
+                <p className="questions-hint">
+                  Please answer all questions above to continue.
+                </p>
+              )}
+            </div>
+          )}
+          
+          {/* Fallback if no contextual questions */}
+          {(!data.contextual_questions || data.contextual_questions.length === 0) && (
+            <div className="simple-continue">
+              <button 
+                onClick={handleContextualSubmit}
+                disabled={loading}
+                className="submit-button"
+              >
+                {loading ? 'Loading...' : 'Continue to Next Section'}
+              </button>
+            </div>
+          )}
         </div>
       );
 
     case 'code_exercise':
       return (
         <div className="content-section code-exercise-content">
-          <h3>Coding Exercise: {data.title?.replace(/^(💻\s*)?/g, '')}</h3>
+          <h3>💻 {data.title?.replace(/^(💻\s*)?/g, '')}</h3>
           
           <div className="exercise-description">
             <div className="exercise-label">Problem:</div>
@@ -169,7 +299,7 @@ const ContentRenderer = ({
           </div>
 
           <div className="learning-objectives">
-            <h4>Learning Objectives:</h4>
+            <h4>🎯 Learning Objectives:</h4>
             <ul>
               {data.learning_objectives?.map((objective, index) => (
                 <li key={index}>{objective}</li>
@@ -178,7 +308,7 @@ const ContentRenderer = ({
           </div>
 
           <div className="exercise-instructions">
-            <h4>Instructions:</h4>
+            <h4>📋 Instructions:</h4>
             <ol>
               {data.instructions?.map((instruction, index) => (
                 <li key={index}>{instruction}</li>
@@ -188,7 +318,7 @@ const ContentRenderer = ({
 
           {data.expected_output && (
             <div className="expected-output">
-              <h4>Expected Output:</h4>
+              <h4>🎯 Expected Output:</h4>
               <div className="output-example-container">
                 <pre className="output-example">{data.expected_output}</pre>
               </div>
@@ -197,7 +327,7 @@ const ContentRenderer = ({
 
           {data.test_cases && data.test_cases.length > 0 && (
             <div className="test-cases">
-              <h4>Test Cases:</h4>
+              <h4>🧪 Test Cases:</h4>
               {data.test_cases.map((testCase, index) => (
                 <div key={index} className="test-case">
                   <strong>Input:</strong> <code className="inline-code">{testCase.input}</code> → <strong>Output:</strong> <code className="inline-code">{testCase.output}</code>
@@ -208,7 +338,7 @@ const ContentRenderer = ({
 
           {data.hints && data.hints.length > 0 && (
             <div className="hints-section">
-              <h4>Hints:</h4>
+              <h4>💡 Hints:</h4>
               <ul>
                 {data.hints.map((hint, index) => (
                   <li key={index}>{hint}</li>
@@ -235,16 +365,16 @@ const ContentRenderer = ({
     case 'scenario':
       return (
         <div className="content-section scenario-content">
-          <h3>Business Scenario: {data.title?.replace(/^(🎭\s*)?/g, '')}</h3>
+          <h3>🎭 {data.title?.replace(/^(🎭\s*)?/g, '')}</h3>
           
           <div className="scenario-context">
-            <h4>Context:</h4>
+            <h4>🏢 Context:</h4>
             <p>{data.context}</p>
           </div>
 
           {data.characters && data.characters.length > 0 && (
             <div className="characters">
-              <h4>Key People:</h4>
+              <h4>👥 Key People:</h4>
               {data.characters.map((character, index) => (
                 <div key={index} className="character">
                   <strong>{character.name}</strong> ({character.role}): {character.description}
@@ -254,17 +384,17 @@ const ContentRenderer = ({
           )}
 
           <div className="situation">
-            <h4>Situation:</h4>
+            <h4>⚡ Situation:</h4>
             <p>{data.situation}</p>
           </div>
 
           <div className="your-role">
-            <h4>Your Role:</h4>
+            <h4>🎯 Your Role:</h4>
             <p>{data.your_role}</p>
           </div>
 
           <div className="decision-points">
-            <h4>Key Decisions:</h4>
+            <h4>🤔 Key Decisions:</h4>
             <ul>
               {data.decision_points?.map((point, index) => (
                 <li key={index}>{point}</li>
@@ -273,7 +403,7 @@ const ContentRenderer = ({
           </div>
 
           <div className="considerations">
-            <h4>Consider:</h4>
+            <h4>⚖️ Consider:</h4>
             <ul>
               {data.considerations?.map((consideration, index) => (
                 <li key={index}>{consideration}</li>
@@ -282,12 +412,12 @@ const ContentRenderer = ({
           </div>
 
           <div className="success-criteria">
-            <h4>Success Looks Like:</h4>
+            <h4>🏆 Success Looks Like:</h4>
             <p>{data.success_criteria}</p>
           </div>
           
           <div className="response-area">
-            <h4>How would you handle this situation?</h4>
+            <h4>📝 How would you handle this situation?</h4>
             <textarea
               value={userResponse}
               onChange={(e) => setUserResponse(e.target.value)}
@@ -297,7 +427,7 @@ const ContentRenderer = ({
               disabled={loading}
             />
             <button 
-              onClick={handleSubmit}
+              onClick={() => onSubmit(userResponse)}
               disabled={loading || !userResponse.trim()}
               className="submit-button"
             >
@@ -310,7 +440,7 @@ const ContentRenderer = ({
     case 'quiz':
       return (
         <div className="content-section quiz-content">
-          <h3>Knowledge Check: {data.title?.replace(/^(❓\s*)?/g, '')}</h3>
+          <h3>❓ {data.title?.replace(/^(❓\s*)?/g, '')}</h3>
           
           <div className="quiz-instructions">
             <p>{data.instructions}</p>
@@ -362,13 +492,13 @@ const ContentRenderer = ({
     case 'completion':
       return (
         <div className="content-section completion-content">
-          <h3>Module Complete: {data.title?.replace(/^(🎉\s*)?/g, '')}</h3>
+          <h3>🎉 {data.title?.replace(/^(🎉\s*)?/g, '')}</h3>
           <div className="completion-message">
             <p>{data.message}</p>
           </div>
           {data.summary && (
             <div className="completion-summary">
-              <h4>Summary:</h4>
+              <h4>📋 Summary:</h4>
               <div className="formatted-content">
                 {renderFormattedContent(data.summary)}
               </div>
@@ -384,17 +514,9 @@ const ContentRenderer = ({
           <pre>{JSON.stringify(data, null, 2)}</pre>
           
           <div className="response-area">
-            <textarea
-              value={userResponse}
-              onChange={(e) => setUserResponse(e.target.value)}
-              placeholder="Your response..."
-              className="response-textarea"
-              rows={4}
-              disabled={loading}
-            />
             <button 
-              onClick={handleSubmit}
-              disabled={loading || !userResponse.trim()}
+              onClick={() => onSubmit("Content viewed")}
+              disabled={loading}
               className="submit-button"
             >
               {loading ? 'Processing...' : 'Continue'}

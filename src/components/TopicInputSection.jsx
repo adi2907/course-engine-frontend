@@ -1,5 +1,5 @@
 /**
- * TopicInputSection.jsx - Multi-input interface for topic, PDF, and YouTube
+ * TopicInputSection.jsx - Enhanced with bigger topics and trending section
  */
 
 import React, { useState } from 'react';
@@ -12,12 +12,63 @@ const TopicInputSection = ({ loading, onStartModule }) => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [extractedTopic, setExtractedTopic] = useState('');
 
+  // Enhanced trending topics - bigger, more substantial learning modules
+  const trendingTopics = [
+    {
+      title: 'LangGraph Tutorial',
+      description: 'Master workflow orchestration with LangChain\'s graph framework',
+      category: 'AI/ML',
+      estimatedTime: '45-60 min'
+    },
+    {
+      title: 'MCP Server Development',
+      description: 'Build Model Context Protocol servers for AI integrations',
+      category: 'Development',
+      estimatedTime: '50-65 min'
+    },
+    {
+      title: 'FastAPI Production Deployment',
+      description: 'Deploy scalable Python APIs with Docker and cloud platforms',
+      category: 'DevOps',
+      estimatedTime: '55-70 min'
+    },
+    {
+      title: 'React Server Components',
+      description: 'Next.js App Router with server-side rendering strategies',
+      category: 'Frontend',
+      estimatedTime: '40-55 min'
+    },
+    {
+      title: 'Vector Database Fundamentals',
+      description: 'Embeddings, similarity search, and RAG implementations',
+      category: 'AI/ML',
+      estimatedTime: '45-60 min'
+    },
+    {
+      title: 'Kubernetes Microservices',
+      description: 'Container orchestration and service mesh architecture',
+      category: 'DevOps',
+      estimatedTime: '60-75 min'
+    },
+    {
+      title: 'Advanced TypeScript Patterns',
+      description: 'Generic constraints, mapped types, and conditional types',
+      category: 'Development',
+      estimatedTime: '50-65 min'
+    },
+    {
+      title: 'Product Management Strategy',
+      description: 'Roadmap planning, user research, and feature prioritization',
+      category: 'Business',
+      estimatedTime: '40-55 min'
+    }
+  ];
+
   // Hardcoded topic mappings for demo
   const getTopicFromContent = (type, content) => {
     if (type === 'pdf') {
       return 'Self-refine iterative refinement with LLMs';
     } else if (type === 'youtube') {
-      // Any YouTube URL leads to LangGraph tutorial for demo
       return 'LangGraph workflow orchestration';
     }
     return content;
@@ -28,14 +79,12 @@ const TopicInputSection = ({ loading, onStartModule }) => {
     setIsProcessing(true);
     setExtractedTopic('');
     
-    // Simulate analysis time
     await new Promise(resolve => setTimeout(resolve, 2500));
     
     const topic = getTopicFromContent(type, content);
     setExtractedTopic(topic);
     setIsProcessing(false);
     
-    // Auto-start after showing extracted topic
     setTimeout(() => {
       onStartModule(topic);
     }, 1500);
@@ -63,16 +112,9 @@ const TopicInputSection = ({ loading, onStartModule }) => {
     }
   };
 
-  const exampleTopics = [
-    'Python list comprehensions',
-    'Agile project management', 
-    'JavaScript async/await',
-    'Database normalization',
-    'Team leadership skills',
-    'Machine learning basics',
-    'React state management',
-    'SQL query optimization'
-  ];
+  const handleTrendingTopicClick = (topic) => {
+    setTopicInput(topic.title);
+  };
 
   if (isProcessing) {
     return (
@@ -143,7 +185,7 @@ const TopicInputSection = ({ loading, onStartModule }) => {
                 value={topicInput}
                 onChange={(e) => setTopicInput(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && !loading && handleTopicSubmit()}
-                placeholder="e.g., Python functions, Project management, React hooks..."
+                placeholder="e.g., LangGraph tutorial, Kubernetes deployment, React hooks..."
                 className="topic-input"
                 disabled={loading}
               />
@@ -156,20 +198,34 @@ const TopicInputSection = ({ loading, onStartModule }) => {
               </button>
             </div>
             
-            {/* Example topics */}
-            <div className="example-topics">
-              <h4>Popular learning topics:</h4>
-              <div className="topic-examples">
-                {exampleTopics.map((topic, index) => (
-                  <button 
+            {/* Trending Topics Section */}
+            <div className="trending-topics">
+              <div className="trending-header">
+                <h4>🔥 Trending Topics</h4>
+                <p>Popular learning modules our AI tutors are creating</p>
+              </div>
+              <div className="trending-grid">
+                {trendingTopics.map((topic, index) => (
+                  <div 
                     key={index}
-                    onClick={() => setTopicInput(topic)}
-                    className="example-topic"
+                    onClick={() => handleTrendingTopicClick(topic)}
+                    className="trending-topic-card"
                     disabled={loading}
-                    type="button"
                   >
-                    {topic}
-                  </button>
+                    <div className="trending-topic-header">
+                      <h5>{topic.title}</h5>
+                      <span className="topic-category">{topic.category}</span>
+                    </div>
+                    <p className="topic-description">{topic.description}</p>
+                    <div className="topic-meta">
+                      <span className="estimated-time">
+                        ⏱️ {topic.estimatedTime}
+                      </span>
+                      <span className="start-indicator">
+                        Start →
+                      </span>
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
@@ -233,7 +289,7 @@ const TopicInputSection = ({ loading, onStartModule }) => {
               </button>
               
               <div className="youtube-example">
-                <small>📝 Try this LangGraph video: 
+                <small>🔗 Try this LangGraph video: 
                   <button 
                     className="example-url"
                     onClick={() => setYoutubeUrl('https://www.youtube.com/watch?v=CnXdddeZ4tQ')}

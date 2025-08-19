@@ -1,5 +1,5 @@
 Repository Source Code Contents
-Generated on: Mon Aug 18 01:22:37 IST 2025
+Generated on: Mon Aug 18 16:47:35 IST 2025
 ----------------------------------------
 File: ./README.md
 ----------------------------------------
@@ -1683,6 +1683,291 @@ button {
     gap: 10px;
   }
 }
+
+/* Tab Navigation */
+.input-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 30px;
+  background: #f1f5f9;
+  border-radius: 12px;
+  padding: 6px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.tab-button:hover:not(:disabled) {
+  color: #374151;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.tab-button.active {
+  background: white;
+  color: #4f46e5;
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.15);
+  font-weight: 600;
+}
+
+.tab-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Tab Content */
+.tab-content {
+  min-height: 300px;
+}
+
+/* PDF Tab */
+.pdf-tab {
+  padding: 20px 0;
+}
+
+.upload-area {
+  border: 3px dashed #d1d5db;
+  border-radius: 16px;
+  padding: 40px 20px;
+  max-width: 500px;
+  margin: 0 auto;
+  transition: all 0.2s ease;
+}
+
+.upload-area:hover {
+  border-color: #9ca3af;
+  background: rgba(249, 250, 251, 0.5);
+}
+
+.upload-icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.upload-area h3 {
+  color: #374151;
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+}
+
+.upload-area p {
+  color: #6b7280;
+  margin-bottom: 25px;
+  font-size: 1rem;
+}
+
+.upload-button {
+  display: inline-block;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: white;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.25);
+}
+
+.upload-button:hover {
+  background: linear-gradient(135deg, #4338ca, #6d28d9);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.35);
+}
+
+.uploaded-file {
+  margin-top: 15px;
+  padding: 10px 15px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  color: #166534;
+  font-size: 0.9rem;
+}
+
+/* YouTube Tab */
+.youtube-tab {
+  padding: 20px 0;
+}
+
+.youtube-input-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.youtube-icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.youtube-input-container h3 {
+  color: #374151;
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+}
+
+.youtube-input-container p {
+  color: #6b7280;
+  margin-bottom: 25px;
+  font-size: 1rem;
+}
+
+.youtube-input {
+  width: 100%;
+  padding: 16px 20px;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  transition: border-color 0.2s ease;
+}
+
+.youtube-input:focus {
+  outline: none;
+  border-color: #ef4444;
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+}
+
+.youtube-example {
+  margin-top: 20px;
+  padding: 15px;
+  background: #fef3c7;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.example-url {
+  background: none;
+  border: none;
+  color: #1d4ed8;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: inherit;
+  padding: 0;
+  margin-left: 5px;
+}
+
+.example-url:hover {
+  color: #1e40af;
+}
+
+/* Demo Notes */
+.demo-note {
+  margin-top: 15px;
+  padding: 10px 15px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  color: #1e40af;
+  font-size: 0.85rem;
+}
+
+/* Processing States */
+.processing-content {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.processing-spinner {
+  margin-bottom: 25px;
+}
+
+.processing-content h3 {
+  color: #374151;
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+.processing-content p {
+  color: #6b7280;
+  font-size: 1.1rem;
+}
+
+.extracted-topic {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.success-icon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.extracted-topic h3 {
+  color: #059669;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.detected-topic {
+  background: #f0fdf4;
+  border: 2px solid #bbf7d0;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 500px;
+}
+
+.detected-topic .label {
+  display: block;
+  color: #166534;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detected-topic .topic {
+  display: block;
+  color: #059669;
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.extracted-topic p {
+  color: #6b7280;
+  font-size: 1rem;
+  margin-top: 15px;
+}
+
+/* UPDATE the responsive section by adding these rules */
+@media (max-width: 768px) {
+  /* Add these to your existing @media rules */
+  
+  .input-tabs {
+    max-width: 100%;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .tab-button {
+    padding: 14px 20px;
+    font-size: 1rem;
+  }
+  
+  .upload-area {
+    padding: 30px 15px;
+  }
+  
+  .youtube-input-container {
+    max-width: 100%;
+  }
+}
 ----------------------------------------
 File: ./src/index.js
 ----------------------------------------
@@ -2133,6 +2418,267 @@ const ContentRenderer = ({
 
 export default ContentRenderer;
 ----------------------------------------
+File: ./src/components/TopicInputSection.jsx
+----------------------------------------
+/**
+ * TopicInputSection.jsx - Multi-input interface for topic, PDF, and YouTube
+ */
+
+import React, { useState } from 'react';
+
+const TopicInputSection = ({ loading, onStartModule }) => {
+  const [activeTab, setActiveTab] = useState('topic');
+  const [topicInput, setTopicInput] = useState('');
+  const [youtubeUrl, setYoutubeUrl] = useState('');
+  const [uploadedFile, setUploadedFile] = useState(null);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [extractedTopic, setExtractedTopic] = useState('');
+
+  // Hardcoded topic mappings for demo
+  const getTopicFromContent = (type, content) => {
+    if (type === 'pdf') {
+      return 'Self-refine iterative refinement with LLMs';
+    } else if (type === 'youtube') {
+      // Any YouTube URL leads to LangGraph tutorial for demo
+      return 'LangGraph workflow orchestration';
+    }
+    return content;
+  };
+
+  // Simulate content processing
+  const simulateProcessing = async (type, content) => {
+    setIsProcessing(true);
+    setExtractedTopic('');
+    
+    // Simulate analysis time
+    await new Promise(resolve => setTimeout(resolve, 2500));
+    
+    const topic = getTopicFromContent(type, content);
+    setExtractedTopic(topic);
+    setIsProcessing(false);
+    
+    // Auto-start after showing extracted topic
+    setTimeout(() => {
+      onStartModule(topic);
+    }, 1500);
+  };
+
+  const handleTopicSubmit = () => {
+    if (topicInput.trim()) {
+      onStartModule(topicInput.trim());
+    }
+  };
+
+  const handleFileUpload = (event) => {
+    const file = event.target.files[0];
+    if (file && file.type === 'application/pdf') {
+      setUploadedFile(file);
+      simulateProcessing('pdf', file.name);
+    } else {
+      alert('Please upload a PDF file');
+    }
+  };
+
+  const handleYouTubeSubmit = () => {
+    if (youtubeUrl.trim()) {
+      simulateProcessing('youtube', youtubeUrl);
+    }
+  };
+
+  const exampleTopics = [
+    'Python list comprehensions',
+    'Agile project management', 
+    'JavaScript async/await',
+    'Database normalization',
+    'Team leadership skills',
+    'Machine learning basics',
+    'React state management',
+    'SQL query optimization'
+  ];
+
+  if (isProcessing) {
+    return (
+      <div className="topic-input-section">
+        <div className="processing-content">
+          <div className="processing-spinner">
+            <div className="spinner"></div>
+          </div>
+          <h3>🔍 Analyzing content...</h3>
+          <p>Extracting key concepts and learning objectives</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (extractedTopic) {
+    return (
+      <div className="topic-input-section">
+        <div className="extracted-topic">
+          <div className="success-icon">✅</div>
+          <h3>Content Analysis Complete!</h3>
+          <div className="detected-topic">
+            <span className="label">Detected Topic:</span>
+            <span className="topic">{extractedTopic}</span>
+          </div>
+          <p>Generating your personalized learning module...</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="topic-input-section">
+      <h2>What would you like to master today?</h2>
+      
+      {/* Tab Navigation */}
+      <div className="input-tabs">
+        <button 
+          className={`tab-button ${activeTab === 'topic' ? 'active' : ''}`}
+          onClick={() => setActiveTab('topic')}
+          disabled={loading}
+        >
+          📝 Topic
+        </button>
+        <button 
+          className={`tab-button ${activeTab === 'pdf' ? 'active' : ''}`}
+          onClick={() => setActiveTab('pdf')}
+          disabled={loading}
+        >
+          📄 PDF
+        </button>
+        <button 
+          className={`tab-button ${activeTab === 'youtube' ? 'active' : ''}`}
+          onClick={() => setActiveTab('youtube')}
+          disabled={loading}
+        >
+          🎥 YouTube
+        </button>
+      </div>
+
+      {/* Tab Content */}
+      <div className="tab-content">
+        {activeTab === 'topic' && (
+          <div className="topic-tab">
+            <div className="topic-input-container">
+              <input
+                type="text"
+                value={topicInput}
+                onChange={(e) => setTopicInput(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && !loading && handleTopicSubmit()}
+                placeholder="e.g., Python functions, Project management, React hooks..."
+                className="topic-input"
+                disabled={loading}
+              />
+              <button 
+                onClick={handleTopicSubmit}
+                disabled={loading || !topicInput.trim()}
+                className="start-button"
+              >
+                {loading ? 'Creating Your Module...' : 'Start Learning'}
+              </button>
+            </div>
+            
+            {/* Example topics */}
+            <div className="example-topics">
+              <h4>Popular learning topics:</h4>
+              <div className="topic-examples">
+                {exampleTopics.map((topic, index) => (
+                  <button 
+                    key={index}
+                    onClick={() => setTopicInput(topic)}
+                    className="example-topic"
+                    disabled={loading}
+                    type="button"
+                  >
+                    {topic}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'pdf' && (
+          <div className="pdf-tab">
+            <div className="upload-area">
+              <div className="upload-icon">📄</div>
+              <h3>Upload a PDF Document</h3>
+              <p>We'll analyze your document and create a personalized course</p>
+              
+              <label className="upload-button">
+                <input
+                  type="file"
+                  accept=".pdf"
+                  onChange={handleFileUpload}
+                  disabled={loading}
+                  style={{ display: 'none' }}
+                />
+                📤 Choose PDF File
+              </label>
+              
+              {uploadedFile && (
+                <div className="uploaded-file">
+                  <span>Selected: {uploadedFile.name}</span>
+                </div>
+              )}
+              
+              <div className="demo-note">
+                <small>💡 Demo: Upload any PDF to generate a course on "Self-refine iterative refinement with LLMs"</small>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'youtube' && (
+          <div className="youtube-tab">
+            <div className="youtube-input-container">
+              <div className="youtube-icon">🎥</div>
+              <h3>YouTube Video URL</h3>
+              <p>Provide a YouTube link and we'll create a course from the content</p>
+              
+              <input
+                type="url"
+                value={youtubeUrl}
+                onChange={(e) => setYoutubeUrl(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && !loading && handleYouTubeSubmit()}
+                placeholder="https://www.youtube.com/watch?v=..."
+                className="youtube-input"
+                disabled={loading}
+              />
+              
+              <button 
+                onClick={handleYouTubeSubmit}
+                disabled={loading || !youtubeUrl.trim()}
+                className="start-button"
+              >
+                {loading ? 'Analyzing Video...' : 'Generate Course'}
+              </button>
+              
+              <div className="youtube-example">
+                <small>📝 Try this LangGraph video: 
+                  <button 
+                    className="example-url"
+                    onClick={() => setYoutubeUrl('https://www.youtube.com/watch?v=CnXdddeZ4tQ')}
+                    disabled={loading}
+                  >
+                    https://www.youtube.com/watch?v=CnXdddeZ4tQ
+                  </button>
+                </small>
+              </div>
+              
+              <div className="demo-note">
+                <small>💡 Demo: LangGraph videos will generate workflow orchestration courses</small>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default TopicInputSection;
+----------------------------------------
 File: ./src/components/CodeEditor.jsx
 ----------------------------------------
 /**
@@ -2433,6 +2979,7 @@ File: ./src/App.js
 
 import React, { useState, useEffect } from 'react';
 import ContentRenderer from './components/ContentRenderer';
+import TopicInputSection from './components/TopicInputSection';
 import './App.css';
 
 // Generate random user ID
@@ -2476,8 +3023,8 @@ function App() {
   /**
    * Start a new learning module
    */
-  const startModule = async () => {
-    if (!topicInput.trim()) {
+  const startModule = async (topic = topicInput) => {
+    if (!topic || !topic.trim()) {
       setError('Please enter a topic to learn');
       return;
     }
@@ -2493,7 +3040,7 @@ function App() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          topic: topicInput.trim(),
+          topic: topic.trim(),
           user_id: userId
         }),
       });
@@ -2654,55 +3201,11 @@ function App() {
 
       {/* Main content */}
       {!structuredContent ? (
-        // Topic input screen
-        <div className="topic-input-section">
-          <h2>What would you like to master today?</h2>
-          <div className="topic-input-container">
-            <input
-              type="text"
-              value={topicInput}
-              onChange={(e) => setTopicInput(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && !loading && startModule()}
-              placeholder="e.g., Python functions, Project management, React hooks..."
-              className="topic-input"
-              disabled={loading}
-            />
-            <button 
-              onClick={startModule}
-              disabled={loading || !topicInput.trim()}
-              className="start-button"
-            >
-              {loading ? 'Creating Your Module...' : 'Start Learning'}
-            </button>
-          </div>
-          
-          {/* Example topics */}
-            <div className="example-topics">
-              <h4>Popular learning topics:</h4>
-              <div className="topic-examples">
-                {[
-                  'Python list comprehensions',
-                  'Agile project management', 
-                  'JavaScript async/await',
-                  'Database normalization',
-                  'Team leadership skills',
-                  'Machine learning basics',
-                  'React state management',
-                  'SQL query optimization'
-                ].map((topic, index) => (
-                  <button 
-                    key={index}
-                    onClick={() => setTopicInput(topic)}
-                    className="example-topic"
-                    disabled={loading}
-                    type="button"
-                  >
-                    {topic}
-                  </button>
-                ))}
-              </div>
-            </div>
-        </div>
+        // Topic input screen with tabs
+        <TopicInputSection 
+          loading={loading}
+          onStartModule={startModule}
+        />
       ) : (
         // Active module interface
         <div className="module-interface">
