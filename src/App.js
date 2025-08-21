@@ -9,6 +9,7 @@ import TopicInputSection from './components/TopicInputSection';
 import './App.css';
 
 const API_BASE_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
+console.log('Backend URL being used:', API_BASE_URL);
 
 // Generate random user ID
 const generateUserId = () => {
@@ -38,6 +39,8 @@ function App() {
    * Check if backend is healthy
    */
   const checkBackendHealth = async () => {
+    const healthUrl = `${API_BASE_URL}/api/health`;
+    console.log('Checking health at:', healthUrl); 
     try {
       const response = await fetch(`${API_BASE_URL}/api/health`);
       const data = await response.json();
